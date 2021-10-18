@@ -1,4 +1,4 @@
-package com.enums;
+package com.beanbox.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

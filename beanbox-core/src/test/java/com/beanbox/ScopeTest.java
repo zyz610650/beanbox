@@ -1,7 +1,7 @@
 package com.beanbox;
 
-import com.annotation.Scope;
-import com.enums.ScopeEnum;
+import com.beanbox.annotation.Scope;
+import com.beanbox.enums.ScopeEnum;
 
 /**
  * @author: @zyz

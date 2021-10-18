@@ -8,9 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="beanbox-core" />
+        <module name="beanbox-commons" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="BeanBox" target="1.8" />
+      <module name="beanbox-commons" target="1.8" />
       <module name="beanbox-core" target="1.8" />
     </bytecodeTargetLevel>
   </component>

@@ -1,10 +1,9 @@
-package com.filter;
+package com.beanbox.filter;
 
-import com.enums.AnnotationEnum;
-import com.utils.ConcurrentHashSet;
+import com.beanbox.enums.AnnotationEnum;
+import com.beanbox.utils.ConcurrentHashSet;
 
 import java.lang.annotation.Annotation;
-import java.util.HashSet;
 import java.util.Set;
 
 /**

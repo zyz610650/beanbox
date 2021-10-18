@@ -1,4 +1,4 @@
-package com.utils;
+package com.beanbox.utils;
 
 import java.util.AbstractSet;
 import java.util.Iterator;

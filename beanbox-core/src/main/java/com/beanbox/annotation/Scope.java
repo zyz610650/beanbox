@@ -1,6 +1,6 @@
-package com.annotation;
+package com.beanbox.annotation;
 
-import com.enums.ScopeEnum;
+import com.beanbox.enums.ScopeEnum;
 
 import java.lang.annotation.*;
 

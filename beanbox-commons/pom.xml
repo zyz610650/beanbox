@@ -9,16 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>beanbox-core</artifactId>
-
-    <dependencies>
-
-        <dependency>
-            <groupId>com.beanbox</groupId>
-            <artifactId>beanbox-commons</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+    <artifactId>beanbox-commons</artifactId>
 
 
-    </dependencies>
 </project>

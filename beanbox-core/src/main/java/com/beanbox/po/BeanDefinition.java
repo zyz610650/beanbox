@@ -1,6 +1,6 @@
-package com.po;
+package com.beanbox.po;
 
-import com.enums.ScopeEnum;
+import com.beanbox.enums.ScopeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +13,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BeanDefinition {
-	private Class<?> clazz;
+
+	private Class beanClass;
 	private ScopeEnum scope;
+
+
+
+
+
 }

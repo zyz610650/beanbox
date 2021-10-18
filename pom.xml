@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>beanbox-core</module>
+        <module>beanbox-commons</module>
     </modules>
     <properties>
         <encoding>UTF-8</encoding>
@@ -19,12 +20,19 @@
         <lomback.version>1.18.8</lomback.version>
         <fastjson.version>1.2.73</fastjson.version>
         <commonlang.version>2.6</commonlang.version>
-        <spring.version>5.2.7.RELEASE</spring.version>
-
+        <junit.version>4.12</junit.version>
+        <cglib.version>2.2.2</cglib.version>
         <checkstyle-maven-plugin.version>3.1.1</checkstyle-maven-plugin.version>
     </properties>
 
     <dependencies>
+
+       <!-- cglib动态代理-->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>${cglib.version}</version>
+        </dependency>
         <!-- lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -50,6 +58,13 @@
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
             <version>${commonlang.version}</version>
+        </dependency>
+       <!-- test-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

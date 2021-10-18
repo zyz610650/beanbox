@@ -1,4 +1,4 @@
-package com.utils;
+package com.beanbox.utils;
 
 /**
  * @author: @zyz

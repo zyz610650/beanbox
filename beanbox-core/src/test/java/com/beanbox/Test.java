@@ -1,7 +1,7 @@
 package com.beanbox;
 
-import com.annotation.Autowired;
-import com.annotation.Component;
+import com.beanbox.annotation.Autowired;
+import com.beanbox.annotation.Component;
 import lombok.Value;
 
 /**
