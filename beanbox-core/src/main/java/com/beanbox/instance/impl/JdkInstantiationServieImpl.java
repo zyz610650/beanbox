@@ -20,7 +20,7 @@ public class JdkInstantiationServieImpl implements InstantiationService {
 			{
 					return clazz.getDeclaredConstructor ().newInstance ();
 			}else{
-				return clazz.getDeclaredConstructor (constructor.getParameterTypes ()).newInstance ();
+				return clazz.getDeclaredConstructor (constructor.getParameterTypes ()).newInstance (args);
 			}
 		} catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
 			throw new BeanException ("Failed to instantiate the class ["+clazz.getName ()+"]",e);

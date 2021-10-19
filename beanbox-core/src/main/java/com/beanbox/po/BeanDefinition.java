@@ -10,12 +10,15 @@ import lombok.NoArgsConstructor;
  * 保存解析的类
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class BeanDefinition {
 
 	private Class beanClass;
-	private ScopeEnum scope;
+
+
+	public BeanDefinition (Class beanClass) {
+		this.beanClass = beanClass;
+	}
 
 
 

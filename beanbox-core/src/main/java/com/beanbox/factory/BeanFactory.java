@@ -12,13 +12,6 @@ import java.util.concurrent.ConcurrentHashMap;
 public interface BeanFactory {
 
 
-	/**
-	 * 根据bean的name从IOC容器中获取bean
-	 * 用于无参构造
-	 * @param name
-	 * @return
-	 */
-	public Object getBean(String name);
 
 	/**
 	 * 根据bean的name从IOC容器中获取bean
