@@ -1,4 +1,4 @@
-package com.beanbox.registry;
+package com.beanbox.beans.registry;
 
 /**
  * @author: @zyz

@@ -1,6 +1,8 @@
-package com.beanbox.instance;
+package com.beanbox.beans.instance;
 
-import com.beanbox.po.BeanDefinition;
+
+
+import com.beanbox.beans.po.BeanDefinition;
 
 import java.lang.reflect.Constructor;
 

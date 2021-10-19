@@ -1,8 +1,9 @@
-package com.beanbox.instance.impl;
+package com.beanbox.beans.instance.impl;
 
+import com.beanbox.beans.po.BeanDefinition;
 import com.beanbox.exception.BeanException;
-import com.beanbox.instance.InstantiationService;
-import com.beanbox.po.BeanDefinition;
+import com.beanbox.beans.instance.InstantiationService;
+
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

@@ -1,6 +1,6 @@
-package com.beanbox.registry;
+package com.beanbox.beans.registry.impl;
 
-import com.beanbox.registry.SingletonBeanRegistry;
+import com.beanbox.beans.registry.SingletonBeanRegistry;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

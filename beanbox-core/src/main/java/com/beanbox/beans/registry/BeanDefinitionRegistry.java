@@ -1,6 +1,7 @@
-package com.beanbox.registry;
+package com.beanbox.beans.registry;
 
-import com.beanbox.po.BeanDefinition;
+import com.beanbox.beans.po.BeanDefinition;
+
 
 /**
  * @author: @zyz

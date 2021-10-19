@@ -1,9 +1,4 @@
-package com.beanbox.factory;
-
-import com.beanbox.po.BeanDefinition;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+package com.beanbox.beans.factory;
 
 /**
  *

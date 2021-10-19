@@ -22,6 +22,7 @@
         <commonlang.version>2.6</commonlang.version>
         <junit.version>4.12</junit.version>
         <cglib.version>2.2.2</cglib.version>
+        <hutool.vsersion>5.4.1</hutool.vsersion>
         <checkstyle-maven-plugin.version>3.1.1</checkstyle-maven-plugin.version>
     </properties>
 
@@ -65,6 +66,12 @@
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.vsersion}</version>
         </dependency>
     </dependencies>
 

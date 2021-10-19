@@ -1,7 +1,8 @@
-package com.beanbox.factory;
+package com.beanbox.beans.factory;
 
-import com.beanbox.po.BeanDefinition;
-import com.beanbox.registry.DefaultSingletonBeanRegistry;
+import com.beanbox.beans.po.BeanDefinition;
+
+import com.beanbox.beans.registry.impl.DefaultSingletonBeanRegistry;
 
 /**
  * @author: @zyz
@@ -30,7 +31,7 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 	 */
 	protected  abstract  BeanDefinition getBeanDefinition(String beanName);
 
-	
+
 	/**
 	 * 创建带参Bean对象
 	 * @param name
@@ -38,4 +39,12 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 	 * @return
 	 */
 	protected abstract Object createBean (String name , BeanDefinition beanDefinition , Object[] args);
+
+	/**
+	 * 注入Bean的属性
+	 * @param beanName
+	 * @param bean
+	 * @param beanDefinition
+	 */
+	protected abstract void applyPropertyValues(String beanName,Object bean,BeanDefinition beanDefinition);
 }

@@ -1,7 +1,5 @@
 package com.beanbox.test.service;
 
-import com.beanbox.factory.BeanFactory;
-import com.beanbox.po.BeanDefinition;
 import org.junit.Test;
 
 /**

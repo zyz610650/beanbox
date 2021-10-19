@@ -1,7 +1,7 @@
 package com.beanbox.enums;
 
 
-import com.beanbox.annotation.*;
+import com.beanbox.test.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

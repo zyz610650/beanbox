@@ -1,7 +1,8 @@
-package com.beanbox.instance.impl;
+package com.beanbox.beans.instance.impl;
 
-import com.beanbox.instance.InstantiationService;
-import com.beanbox.po.BeanDefinition;
+import com.beanbox.beans.instance.InstantiationService;
+
+import com.beanbox.beans.po.BeanDefinition;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.NoOp;
 
@@ -22,7 +23,9 @@ public class CglibInstantiationServiceImpl implements InstantiationService {
 				return super.hashCode ();
 			}
 		});
-		if (null==constructor) return enhancer.create ();
+		if (null==constructor) {
+			return enhancer.create ();
+		}
 
 		return enhancer.create (constructor.getParameterTypes (),args);
 
