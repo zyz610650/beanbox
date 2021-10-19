@@ -30,6 +30,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			throw new BeanException ("Failed to instantiate the class ["+beanName+"]",e);
 		}
 
+		// 属性注入
 		applyPropertyValues (beanName,bean,beanDefinition);
 		return bean;
 	}

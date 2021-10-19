@@ -32,4 +32,11 @@ public class ClassUtils {
 		return StringUtils.toLowFirstChar (clazz.getSimpleName ());
 	}
 
+	/**
+	 * 获得类的默认类加载器
+	 * @return
+	 */
+	public static ClassLoader getDefaultClassLoader(){
+			return Thread.currentThread ().getContextClassLoader ();
+	}
 }
