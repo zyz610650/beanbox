@@ -25,7 +25,7 @@ import java.io.InputStream;
  * @author: @zyz
  */
 public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
-	protected XmlBeanDefinitionReader (BeanDefinitionRegistry registry) {
+	public XmlBeanDefinitionReader (BeanDefinitionRegistry registry) {
 		super (registry);
 	}
 

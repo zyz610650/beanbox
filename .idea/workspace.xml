@@ -54,7 +54,7 @@
       <recent name="com.beanbox.test.bean" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.test">
+  <component name="RunManager" selected="Application.XmlBeanDefinitionReaderTest">
     <configuration name="BeanFactoryTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.beanbox.test.bean.BeanFactoryTest" />
       <module name="beanbox-core" />
@@ -81,12 +81,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ScopeTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.beanbox.test.annotation.ScopeTest" />
+    <configuration name="XmlBeanDefinitionReaderTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.beanbox.test.reader.XmlBeanDefinitionReaderTest" />
       <module name="beanbox-core" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.beanbox.test.annotation.*" />
+          <option name="PATTERN" value="com.beanbox.test.reader.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -133,11 +133,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.XmlBeanDefinitionReaderTest" />
         <item itemvalue="Application.test" />
         <item itemvalue="Application.BeanFactoryTest2" />
         <item itemvalue="Application.instanceTest" />
         <item itemvalue="Application.BeanFactoryTest" />
-        <item itemvalue="Application.ScopeTest" />
       </list>
     </recent_temporary>
   </component>
@@ -160,7 +160,7 @@
       <workItem from="1634623837814" duration="20000" />
       <workItem from="1634631622342" duration="15723000" />
       <workItem from="1634694166595" duration="3237000" />
-      <workItem from="1634729392195" duration="5414000" />
+      <workItem from="1634729392195" duration="7416000" />
     </task>
     <servers />
   </component>
@@ -201,29 +201,29 @@
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="2020" y="184" key="FileChooserDialogImpl/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634214524826" />
-    <state width="1557" height="222" key="GridCell.Tab.0.bottom" timestamp="1634733920052">
+    <state width="1557" height="222" key="GridCell.Tab.0.bottom" timestamp="1634736551634">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1397" height="222" key="GridCell.Tab.0.bottom/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1634643215544" />
-    <state width="1557" height="222" key="GridCell.Tab.0.bottom/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634733920052" />
+    <state width="1557" height="222" key="GridCell.Tab.0.bottom/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634736551634" />
     <state width="1397" height="222" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1634302908433" />
-    <state width="1557" height="222" key="GridCell.Tab.0.center" timestamp="1634733920052">
+    <state width="1557" height="222" key="GridCell.Tab.0.center" timestamp="1634736551633">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1397" height="222" key="GridCell.Tab.0.center/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1634643215544" />
-    <state width="1557" height="222" key="GridCell.Tab.0.center/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634733920052" />
+    <state width="1557" height="222" key="GridCell.Tab.0.center/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634736551633" />
     <state width="1397" height="222" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1634302908432" />
-    <state width="1557" height="222" key="GridCell.Tab.0.left" timestamp="1634733920052">
+    <state width="1557" height="222" key="GridCell.Tab.0.left" timestamp="1634736551633">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1397" height="222" key="GridCell.Tab.0.left/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1634643215544" />
-    <state width="1557" height="222" key="GridCell.Tab.0.left/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634733920052" />
+    <state width="1557" height="222" key="GridCell.Tab.0.left/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634736551633" />
     <state width="1397" height="222" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1634302908432" />
-    <state width="1557" height="222" key="GridCell.Tab.0.right" timestamp="1634733920052">
+    <state width="1557" height="222" key="GridCell.Tab.0.right" timestamp="1634736551634">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1397" height="222" key="GridCell.Tab.0.right/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1634643215544" />
-    <state width="1557" height="222" key="GridCell.Tab.0.right/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634733920052" />
+    <state width="1557" height="222" key="GridCell.Tab.0.right/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634736551634" />
     <state width="1397" height="222" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1634302908433" />
     <state width="1557" height="276" key="GridCell.Tab.1.bottom" timestamp="1634647746687">
       <screen x="1440" y="0" width="1600" height="860" />
@@ -249,6 +249,10 @@
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="1741" y="74" key="SettingsEditor/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634551810038" />
+    <state x="23" y="90" width="1091" height="670" key="dock-window-1" timestamp="1634736886405">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="23" y="90" width="1091" height="670" key="dock-window-1/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634736886405" />
     <state x="1970" y="186" key="extract.method.dialog" timestamp="1634638571037">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
