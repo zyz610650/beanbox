@@ -8,7 +8,7 @@ import com.beanbox.test.service.ApiTest;
 public class test {
 	public static void main (String[] args) {
 		Class < ApiTest > testClass = ApiTest.class;
-		System.out.println (testClass.getName ());
+		System.out.println (testClass.getSimpleName ());
 
 	}
 }

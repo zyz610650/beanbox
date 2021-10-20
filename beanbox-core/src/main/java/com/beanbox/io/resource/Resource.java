@@ -8,5 +8,5 @@ import java.io.InputStream;
  * @author: @zyz
  */
 public interface Resource {
-	InputStream getInputStream() throws FileNotFoundException, IOException;
+	InputStream getInputStream() throws  IOException;
 }
