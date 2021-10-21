@@ -1,6 +1,6 @@
 package com.beanbox.test.bean;
 
-import com.beanbox.beans.factory.DefaultListableBeanFactory;
+import com.beanbox.beans.factory.support.DefaultListableBeanFactory;
 import com.beanbox.beans.po.BeanDefinition;
 import com.beanbox.beans.po.BeanReference;
 import com.beanbox.beans.po.PropertyValue;

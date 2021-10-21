@@ -2,7 +2,7 @@ package com.beanbox.beans.reader;
 
 import com.beanbox.beans.registry.BeanDefinitionRegistry;
 import com.beanbox.io.loader.ResourceLoader;
-import com.beanbox.io.loader.impl.DefaultResourceLoader;
+import com.beanbox.io.loader.support.DefaultResourceLoader;
 
 
 /**

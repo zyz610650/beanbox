@@ -1,35 +1,49 @@
 package com.beanbox.beans.factory;
 
+import com.beanbox.beans.factory.support.ConfigurableListableBeanFactory;
 import com.beanbox.beans.po.BeanDefinition;
 
+import com.beanbox.beans.processor.BeanPostProcessor;
 import com.beanbox.beans.registry.impl.DefaultSingletonBeanRegistry;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author: @zyz
  */
-public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory{
+public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableListableBeanFactory {
 
-
-
+	// BeanPostProcessor容器 项目启动时扫描所有BeanPostProcessor加载到该容器中
+	private final List < BeanPostProcessor> beanPostProcessors=new ArrayList <> ();
 
 	@Override
 	public Object getBean (String name , Object... args) {
-		Object bean=getSingleton (name);
-		if (bean!=null)
-			return bean;
-		BeanDefinition beanDefinition=getBeanDefinition (name);
-
-		return createBean (name,beanDefinition,args);
+		return doGetBean (name,args);
 	}
 
+	@Override
+	public < T > T getBean (String name , Class < T > requiredType) {
+		return (T) getBean (name);
+	}
 
+	private <T> T doGetBean(final  String name,final Object[] args)
+	{
+		Object bean=getSingleton (name);
+		if (bean!=null)
+			return (T) bean;
+		BeanDefinition beanDefinition=getBeanDefinition (name);
+
+		return (T) createBean (name,beanDefinition,args);
+	}
 
 	/**
 	 * 获得BeanDefinition
 	 * @param beanName
 	 * @return
 	 */
-	protected  abstract  BeanDefinition getBeanDefinition(String beanName);
+	@Override
+	public abstract  BeanDefinition getBeanDefinition (String beanName);
 
 
 	/**
@@ -47,4 +61,11 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 	 * @param beanDefinition
 	 */
 	protected abstract void applyPropertyValues(String beanName,Object bean,BeanDefinition beanDefinition);
+
+	@Override
+	public void addBeanPostProcessor (BeanPostProcessor beanPostProcessor) {
+		//防止beanPostProcessor重复添加 因为list不会判重
+		beanPostProcessors.remove (beanPostProcessor);
+		beanPostProcessors.add (beanPostProcessor);
+	}
 }

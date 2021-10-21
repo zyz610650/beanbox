@@ -1,4 +1,4 @@
-package com.beanbox.beans.instance.impl;
+package com.beanbox.beans.instance.support;
 
 import com.beanbox.beans.po.BeanDefinition;
 import com.beanbox.exception.BeanException;
@@ -11,7 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * @author: @zyz
  */
-public class JdkInstantiationServieImpl implements InstantiationService {
+public class JdkInstantiationServieSupport implements InstantiationService {
 	@Override
 	public Object instantiate (BeanDefinition beanDefinition , String beanName , Constructor constructor , Object[] args) {
 		Class<?> clazz=beanDefinition.getBeanClass ();

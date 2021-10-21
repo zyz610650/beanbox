@@ -2,7 +2,7 @@ package com.beanbox.beans.factory;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.beanbox.beans.instance.InstantiationService;
-import com.beanbox.beans.instance.impl.JdkInstantiationServieImpl;
+import com.beanbox.beans.instance.support.JdkInstantiationServieSupport;
 import com.beanbox.beans.po.BeanDefinition;
 import com.beanbox.beans.po.BeanReference;
 import com.beanbox.beans.po.PropertyValue;
@@ -11,14 +11,13 @@ import com.beanbox.exception.BeanException;
 
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 
 
 /**
  * @author: @zyz
  */
 public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory{
-	private  InstantiationService instantiationService=new JdkInstantiationServieImpl ();
+	private  InstantiationService instantiationService=new JdkInstantiationServieSupport ();
 
 	@Override
 	protected Object createBean (String beanName , BeanDefinition beanDefinition, Object[] args) {

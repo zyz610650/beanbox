@@ -1,9 +1,8 @@
-package com.beanbox.io.resource.impl;
+package com.beanbox.io.resource.support;
 
 import cn.hutool.core.lang.Assert;
 import com.beanbox.io.resource.Resource;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;

@@ -1,4 +1,4 @@
-package com.beanbox.io.resource.impl;
+package com.beanbox.io.resource.support;
 
 import cn.hutool.core.lang.Assert;
 import com.beanbox.io.resource.Resource;

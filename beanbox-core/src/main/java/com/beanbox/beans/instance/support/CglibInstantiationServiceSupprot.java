@@ -1,4 +1,4 @@
-package com.beanbox.beans.instance.impl;
+package com.beanbox.beans.instance.support;
 
 import com.beanbox.beans.instance.InstantiationService;
 
@@ -11,7 +11,7 @@ import java.lang.reflect.Constructor;
 /**
  * @author: @zyz
  */
-public class CglibInstantiationServiceImpl implements InstantiationService {
+public class CglibInstantiationServiceSupprot implements InstantiationService {
 	@Override
 	public Object instantiate (BeanDefinition beanDefinition , String beanName , Constructor constructor , Object[] args) {
 		Class<?> clazz=beanDefinition.getBeanClass ();

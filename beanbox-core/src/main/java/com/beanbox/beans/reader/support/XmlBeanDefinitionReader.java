@@ -1,4 +1,4 @@
-package com.beanbox.beans.reader.impl;
+package com.beanbox.beans.reader.support;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.XmlUtil;
@@ -10,7 +10,7 @@ import com.beanbox.beans.registry.BeanDefinitionRegistry;
 import com.beanbox.beans.sessions.PropertyValueSession;
 import com.beanbox.exception.BeanException;
 import com.beanbox.io.loader.ResourceLoader;
-import com.beanbox.io.loader.impl.DefaultResourceLoader;
+import com.beanbox.io.loader.support.DefaultResourceLoader;
 import com.beanbox.io.resource.Resource;
 import com.beanbox.utils.ClassUtils;
 import lombok.SneakyThrows;
@@ -18,7 +18,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 /**

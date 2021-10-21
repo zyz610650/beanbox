@@ -16,6 +16,15 @@ public interface BeanFactory {
 	 */
 	public Object getBean(String name,Object... args);
 
+	/**
+	 * beanName+classType 确定bean
+	 * @param name
+	 * @param requiredType
+	 * @param <T>
+	 * @return
+	 */
+	<T> T getBean(String name,Class<T> requiredType);
+
 
 
 

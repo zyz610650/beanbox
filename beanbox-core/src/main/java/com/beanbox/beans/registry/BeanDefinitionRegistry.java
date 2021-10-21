@@ -2,8 +2,6 @@ package com.beanbox.beans.registry;
 
 import com.beanbox.beans.po.BeanDefinition;
 
-import java.util.List;
-
 
 /**
  * @author: @zyz
@@ -34,5 +32,5 @@ public interface BeanDefinitionRegistry {
 	 * 获取容器中所有BeanDefinitionName
 	 * @return
 	 */
-	public List <String> getBeanDefinitionNames();
+	public String[] getBeanDefinitionNames();
 }

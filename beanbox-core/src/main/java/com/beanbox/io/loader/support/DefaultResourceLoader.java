@@ -1,11 +1,11 @@
-package com.beanbox.io.loader.impl;
+package com.beanbox.io.loader.support;
 
 import cn.hutool.core.lang.Assert;
 import com.beanbox.io.loader.ResourceLoader;
 import com.beanbox.io.resource.Resource;
-import com.beanbox.io.resource.impl.ClassPathResource;
-import com.beanbox.io.resource.impl.FileResource;
-import com.beanbox.io.resource.impl.UrlResource;
+import com.beanbox.io.resource.support.ClassPathResource;
+import com.beanbox.io.resource.support.FileResource;
+import com.beanbox.io.resource.support.UrlResource;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -20,6 +20,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 		if (location.startsWith (CLASSPATH_URL_PREFIX))
 		{
 			return new ClassPathResource (location.substring (CLASSPATH_URL_PREFIX.length ()));
+
 		}else {
 
 			try {

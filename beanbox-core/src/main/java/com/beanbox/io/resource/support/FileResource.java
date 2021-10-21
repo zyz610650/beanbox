@@ -1,4 +1,4 @@
-package com.beanbox.io.resource.impl;
+package com.beanbox.io.resource.support;
 
 import com.beanbox.io.resource.Resource;
 

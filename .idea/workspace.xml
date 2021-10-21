@@ -18,8 +18,8 @@
       <list>
         <option value="AnnotationType" />
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -42,32 +42,19 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/OpenItem/spring/Spring-Zhouyu" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../spring/small-spring" />
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.beanbox.annotation" />
       <recent name="com.beanbox" />
+      <recent name="com.beanbox.annotation" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.beanbox.test.bean" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.XmlBeanDefinitionReaderTest">
-    <configuration name="BeanFactoryTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.beanbox.test.bean.BeanFactoryTest" />
-      <module name="beanbox-core" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.beanbox.test.bean.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.XmlBeanDefinitionReaderTest.testReader">
     <configuration name="BeanFactoryTest2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.beanbox.test.bean.BeanFactoryTest2" />
       <module name="beanbox-core" />
@@ -131,13 +118,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="XmlBeanDefinitionReaderTest.testReader" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="beanbox-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.beanbox.test.reader.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.beanbox.test.reader" />
+      <option name="MAIN_CLASS_NAME" value="com.beanbox.test.reader.XmlBeanDefinitionReaderTest" />
+      <option name="METHOD_NAME" value="testReader" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.XmlBeanDefinitionReaderTest.testReader" />
         <item itemvalue="Application.XmlBeanDefinitionReaderTest" />
         <item itemvalue="Application.test" />
         <item itemvalue="Application.BeanFactoryTest2" />
         <item itemvalue="Application.instanceTest" />
-        <item itemvalue="Application.BeanFactoryTest" />
       </list>
     </recent_temporary>
   </component>
@@ -160,7 +163,9 @@
       <workItem from="1634623837814" duration="20000" />
       <workItem from="1634631622342" duration="15723000" />
       <workItem from="1634694166595" duration="3237000" />
-      <workItem from="1634729392195" duration="7416000" />
+      <workItem from="1634729392195" duration="8670000" />
+      <workItem from="1634786172590" duration="20000" />
+      <workItem from="1634812315872" duration="10088000" />
     </task>
     <servers />
   </component>
@@ -168,23 +173,24 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2464" y="159" key="#com.intellij.ide.util.MemberChooser" timestamp="1634732077963">
+    <state x="2464" y="159" key="#com.intellij.ide.util.MemberChooser" timestamp="1634824346715">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
-    <state x="2464" y="159" key="#com.intellij.ide.util.MemberChooser/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634732077963" />
-    <state x="1877" y="352" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1634636577549">
+    <state x="2464" y="159" key="#com.intellij.ide.util.MemberChooser/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634824346715" />
+    <state x="1877" y="352" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1634816500802">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="393" y="352" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1634305473595" />
-    <state x="1877" y="352" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634636577549" />
+    <state x="1877" y="352" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634816500802" />
     <state x="1997" y="296" width="486" height="274" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1634639937416">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="1997" y="296" width="486" height="274" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634639937416" />
-    <state x="499" y="309" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1634305474734">
-      <screen x="0" y="0" width="1440" height="860" />
+    <state x="1994" y="309" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1634816501678">
+      <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="499" y="309" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1634305474734" />
+    <state x="1994" y="309" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634816501678" />
     <state x="1797" y="25" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1634639933104">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
@@ -197,33 +203,33 @@
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="1952" y="284" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634636620630" />
-    <state x="2020" y="184" key="FileChooserDialogImpl" timestamp="1634214524826">
+    <state x="2020" y="184" key="FileChooserDialogImpl" timestamp="1634815879585">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
-    <state x="2020" y="184" key="FileChooserDialogImpl/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634214524826" />
-    <state width="1557" height="222" key="GridCell.Tab.0.bottom" timestamp="1634736551634">
+    <state x="2020" y="184" key="FileChooserDialogImpl/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634815879585" />
+    <state width="1557" height="222" key="GridCell.Tab.0.bottom" timestamp="1634824482900">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1397" height="222" key="GridCell.Tab.0.bottom/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1634643215544" />
-    <state width="1557" height="222" key="GridCell.Tab.0.bottom/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634736551634" />
+    <state width="1557" height="222" key="GridCell.Tab.0.bottom/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634824482900" />
     <state width="1397" height="222" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1634302908433" />
-    <state width="1557" height="222" key="GridCell.Tab.0.center" timestamp="1634736551633">
+    <state width="1557" height="222" key="GridCell.Tab.0.center" timestamp="1634824482900">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1397" height="222" key="GridCell.Tab.0.center/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1634643215544" />
-    <state width="1557" height="222" key="GridCell.Tab.0.center/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634736551633" />
+    <state width="1557" height="222" key="GridCell.Tab.0.center/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634824482900" />
     <state width="1397" height="222" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1634302908432" />
-    <state width="1557" height="222" key="GridCell.Tab.0.left" timestamp="1634736551633">
+    <state width="1557" height="222" key="GridCell.Tab.0.left" timestamp="1634824482900">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1397" height="222" key="GridCell.Tab.0.left/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1634643215544" />
-    <state width="1557" height="222" key="GridCell.Tab.0.left/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634736551633" />
+    <state width="1557" height="222" key="GridCell.Tab.0.left/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634824482900" />
     <state width="1397" height="222" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1634302908432" />
-    <state width="1557" height="222" key="GridCell.Tab.0.right" timestamp="1634736551634">
+    <state width="1557" height="222" key="GridCell.Tab.0.right" timestamp="1634824482900">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1397" height="222" key="GridCell.Tab.0.right/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1634643215544" />
-    <state width="1557" height="222" key="GridCell.Tab.0.right/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634736551634" />
+    <state width="1557" height="222" key="GridCell.Tab.0.right/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634824482900" />
     <state width="1397" height="222" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1634302908433" />
     <state width="1557" height="276" key="GridCell.Tab.1.bottom" timestamp="1634647746687">
       <screen x="1440" y="0" width="1600" height="860" />
@@ -261,10 +267,10 @@
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="1772" y="88" key="new project wizard/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634555989293" />
-    <state x="1903" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1634290357718">
+    <state x="1903" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1634815025458">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
-    <state x="1903" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634290357718" />
+    <state x="1903" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634815025458" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

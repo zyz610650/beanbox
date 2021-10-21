@@ -1,30 +1,24 @@
 package com.beanbox.test.reader;
 
-import com.beanbox.beans.factory.DefaultListableBeanFactory;
-import com.beanbox.beans.po.BeanDefinition;
-import com.beanbox.beans.po.BeanReference;
-import com.beanbox.beans.po.PropertyValue;
+import com.beanbox.beans.factory.support.DefaultListableBeanFactory;
 import com.beanbox.beans.reader.BeanDefinitionReader;
-import com.beanbox.beans.reader.impl.XmlBeanDefinitionReader;
-import com.beanbox.beans.registry.impl.DefaultSingletonBeanRegistry;
-import com.beanbox.beans.sessions.PropertyValueSession;
+import com.beanbox.beans.reader.support.XmlBeanDefinitionReader;
 import com.beanbox.io.loader.ResourceLoader;
-import com.beanbox.io.loader.impl.DefaultResourceLoader;
+import com.beanbox.io.loader.support.DefaultResourceLoader;
 import com.beanbox.io.resource.Resource;
 import com.beanbox.test.pojo.User;
 import com.beanbox.test.service.UserService;
 import lombok.SneakyThrows;
+import org.junit.Test;
 
 /**
  * @author: @zyz
  */
 public class XmlBeanDefinitionReaderTest {
 	@SneakyThrows
-	public static void main (String[] args) {
-
-
-
-
+	@Test
+	public void testReader()
+	{
 		DefaultListableBeanFactory defaultListableBeanFactory=new DefaultListableBeanFactory ();
 		ResourceLoader resourceLoader=new DefaultResourceLoader ();
 		Resource resource = resourceLoader.getResource ("classpath:beanbox.xml");
@@ -36,6 +30,6 @@ public class XmlBeanDefinitionReaderTest {
 		System.out.println (user.getAge ());
 		System.out.println (user.getName ());
 		System.out.println (user.getHigherUser ());
-
 	}
+
 }
