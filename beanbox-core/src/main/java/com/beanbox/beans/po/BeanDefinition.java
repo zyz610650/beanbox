@@ -8,6 +8,8 @@ import net.sf.cglib.beans.BeanMap;
 /**
  * @author: @zyz
  * 保存解析的类
+ * beanClass: 类的类型
+ * propertyValueSession: 该Bean所依赖的类集合
  */
 @Data
 @NoArgsConstructor

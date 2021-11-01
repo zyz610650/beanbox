@@ -15,6 +15,7 @@ import java.lang.reflect.Constructor;
 
 /**
  * @author: @zyz
+ *，
  */
 public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory{
 	private  InstantiationService instantiationService=new JdkInstantiationServieSupport ();
@@ -48,6 +49,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		Constructor<?> constructor=null;
 		for (Constructor ctor:declaredConstructors)
 		{
+			//找到符合的构造器
 			if (null!= args &&ctor.getParameterTypes ().length== args.length)
 			{
 				constructor=ctor;

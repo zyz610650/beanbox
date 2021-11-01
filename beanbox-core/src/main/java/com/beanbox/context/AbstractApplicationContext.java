@@ -12,9 +12,11 @@ import java.util.Map;
  * @author: @zyz
  */
 public abstract class AbstractApplicationContext extends DefaultResourceLoader implements ConfigurableApplicationContext {
+
 	@Override
 	public void refresh () {
 
+		// 创建BeanFactory，并加载BeanDefinition
 		//扫描xml/注解 把配置的bean封装为BeanDefinition
 		//其中会把配置的beanDefinition处理器和Bean处理器添加到BeanDefinitionMap容器中
 		refreshBeanFactory ();
@@ -60,7 +62,29 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	{
 		Map < String, BeanPostProcessor > beansOfType = beanFactory.getBeansOfType (BeanPostProcessor.class);
 		beansOfType.forEach ((name,processor)->{
+			beanFactory.addBeanPostProcessor (processor);
 
 		});
 	}
+
+	@Override
+	public < T > Map < String, T > getBeansOfType (Class < T > type) {
+		return getBeanFactory ().getBeansOfType (type);
+	}
+
+	@Override
+	public String[] getBeanDefinitionNames () {
+		return getBeanFactory ().getBeanDefinitionNames ();
+	}
+
+	@Override
+	public Object getBean (String name , Object... args) {
+		return getBeanFactory ().getBean (name,args);
+	}
+
+	@Override
+	public < T > T getBean (String name , Class < T > requiredType) {
+		return getBeanFactory ().getBean (name,requiredType);
+	}
+
 }

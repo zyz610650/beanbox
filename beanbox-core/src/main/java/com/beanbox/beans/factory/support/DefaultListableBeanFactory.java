@@ -13,6 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author: @zyz
+ *  与BeanDefinition类有关方法的具体实现类
  */
 public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry,ConfigurableListableBeanFactory {
 	private Map<String, BeanDefinition > beanDefinitionMap=new ConcurrentHashMap <> ();

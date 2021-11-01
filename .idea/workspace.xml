@@ -18,8 +18,8 @@
       <list>
         <option value="AnnotationType" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -166,6 +166,9 @@
       <workItem from="1634729392195" duration="8670000" />
       <workItem from="1634786172590" duration="20000" />
       <workItem from="1634812315872" duration="10088000" />
+      <workItem from="1634981678669" duration="653000" />
+      <workItem from="1635141960716" duration="40000" />
+      <workItem from="1635729871835" duration="9516000" />
     </task>
     <servers />
   </component>
@@ -173,10 +176,10 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2464" y="159" key="#com.intellij.ide.util.MemberChooser" timestamp="1634824346715">
+    <state x="2464" y="159" key="#com.intellij.ide.util.MemberChooser" timestamp="1635740601549">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
-    <state x="2464" y="159" key="#com.intellij.ide.util.MemberChooser/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634824346715" />
+    <state x="2464" y="159" key="#com.intellij.ide.util.MemberChooser/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1635740601549" />
     <state x="1877" y="352" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1634816500802">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>

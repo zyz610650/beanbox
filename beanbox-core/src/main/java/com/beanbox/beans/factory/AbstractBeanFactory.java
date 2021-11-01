@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * @author: @zyz
+ * 与Bean类有关方法的具体实现类
  */
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableListableBeanFactory {
 

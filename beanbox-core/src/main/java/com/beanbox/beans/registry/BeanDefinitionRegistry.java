@@ -5,6 +5,7 @@ import com.beanbox.beans.po.BeanDefinition;
 
 /**
  * @author: @zyz
+ * BeanDefinition用到的方法接口
  */
 public interface BeanDefinitionRegistry {
 

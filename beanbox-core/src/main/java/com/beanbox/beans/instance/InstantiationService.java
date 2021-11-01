@@ -8,6 +8,8 @@ import java.lang.reflect.Constructor;
 
 /**
  * @author: @zyz
+ *
+ * 策略模式
  */
 public interface InstantiationService {
 

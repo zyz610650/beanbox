@@ -12,6 +12,7 @@ import java.net.URL;
 
 /**
  * @author: @zyz
+ * 工厂模式
  */
 public class DefaultResourceLoader implements ResourceLoader {
 	@Override
