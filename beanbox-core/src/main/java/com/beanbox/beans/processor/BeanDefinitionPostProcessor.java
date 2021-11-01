@@ -1,6 +1,7 @@
 package com.beanbox.beans.processor;
 
 import com.beanbox.beans.factory.ConfigurableBeanFactory;
+import com.beanbox.beans.factory.ConfigurableListableBeanFactory;
 
 /**
  * @author: @zyz
@@ -13,6 +14,6 @@ public interface BeanDefinitionPostProcessor {
 	 * 改 BeanDefinition 属性的机制
 	 * @param beanFactory
 	 */
-	void postProcessBeanDefinition(ConfigurableBeanFactory beanFactory);
+	void postProcessBeanDefinition(ConfigurableListableBeanFactory beanFactory);
 
 }

@@ -11,7 +11,6 @@ import java.io.IOException;
  */
 public interface BeanDefinitionReader {
 
-	// 接口里的前两个方法是不是以后会被用到 所以定义在接口里 -pppppppppppppp
 	BeanDefinitionRegistry getRegistry();
 
 	ResourceLoader getResourceLoader();

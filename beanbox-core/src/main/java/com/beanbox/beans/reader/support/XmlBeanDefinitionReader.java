@@ -77,13 +77,14 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 			String className=element.getAttribute ("class");
 			try {
 				String beanName=id;
-				if (beanName==null) beanName=name;
+				if (beanName==null||beanName.equals (""))  beanName=name;
 
 				Class < ? > clazz=null;
 
 				clazz = ClassUtils.getDefaultClassLoader ().loadClass (className);
 
-				if (beanName==null) beanName=StrUtil.lowerFirst (clazz.getSimpleName ());
+				if (beanName==null||beanName.equals (""))
+					beanName=StrUtil.lowerFirst (clazz.getSimpleName ());
 				//属性注入
 				PropertyValueSession propertyValueSession = doLoadByPropertyValue (element);
 				//id的优先级高于name
