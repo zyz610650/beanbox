@@ -1,12 +1,12 @@
 package com.beanbox.beans.factory.support;
 
 import com.beanbox.beans.factory.AbstractAutowireCapableBeanFactory;
+import com.beanbox.beans.factory.ConfigurableListableBeanFactory;
 import com.beanbox.beans.po.BeanDefinition;
 import com.beanbox.exception.BeanException;
 
 import com.beanbox.beans.registry.BeanDefinitionRegistry;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author: @zyz
  *  与BeanDefinition类有关方法的具体实现类
  */
-public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry,ConfigurableListableBeanFactory {
+public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry, ConfigurableListableBeanFactory {
 	private Map<String, BeanDefinition > beanDefinitionMap=new ConcurrentHashMap <> ();
 	@Override
 	public BeanDefinition getBeanDefinition (String beanName) {
@@ -28,6 +28,10 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		return beanDefinition;
 	}
 
+	@Override
+	public void preInstantiateSingletons () {
+		beanDefinitionMap.keySet ().forEach (beanName->getBean (beanName));
+	}
 
 
 	@Override
@@ -45,7 +49,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				res.put (beanName, (T) getBean (beanName));
 			}
 		});
-		return null;
+		return res;
 	}
 
 	@Override

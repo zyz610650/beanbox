@@ -1,6 +1,6 @@
 package com.beanbox.context;
 
-import com.beanbox.beans.factory.support.ConfigurableListableBeanFactory;
+import com.beanbox.beans.factory.ConfigurableListableBeanFactory;
 import com.beanbox.beans.factory.support.DefaultListableBeanFactory;
 
 /**

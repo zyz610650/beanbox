@@ -1,4 +1,4 @@
-package com.beanbox.beans.factory.support;
+package com.beanbox.beans.factory;
 
 import com.beanbox.beans.factory.AutowireCapableBeanFactory;
 import com.beanbox.beans.factory.ConfigurableBeanFactory;

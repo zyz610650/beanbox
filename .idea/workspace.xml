@@ -107,13 +107,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -169,6 +171,7 @@
       <workItem from="1634981678669" duration="653000" />
       <workItem from="1635141960716" duration="40000" />
       <workItem from="1635729871835" duration="9516000" />
+      <workItem from="1635756192806" duration="5742000" />
     </task>
     <servers />
   </component>
@@ -176,10 +179,10 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2464" y="159" key="#com.intellij.ide.util.MemberChooser" timestamp="1635740601549">
+    <state x="2464" y="159" key="#com.intellij.ide.util.MemberChooser" timestamp="1635759318891">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
-    <state x="2464" y="159" key="#com.intellij.ide.util.MemberChooser/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1635740601549" />
+    <state x="2464" y="159" key="#com.intellij.ide.util.MemberChooser/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1635759318891" />
     <state x="1877" y="352" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1634816500802">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
@@ -198,6 +201,10 @@
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="1797" y="25" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634639933104" />
+    <state x="1970" y="176" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1635758696281">
+      <screen x="1440" y="0" width="1600" height="860" />
+    </state>
+    <state x="1970" y="176" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1635758696281" />
     <state x="1970" y="176" width="540" height="507" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1634299271549">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
@@ -270,10 +277,10 @@
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="1772" y="88" key="new project wizard/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634555989293" />
-    <state x="1903" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1634815025458">
+    <state x="1903" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1635758219023">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
-    <state x="1903" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634815025458" />
+    <state x="1903" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1635758219023" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

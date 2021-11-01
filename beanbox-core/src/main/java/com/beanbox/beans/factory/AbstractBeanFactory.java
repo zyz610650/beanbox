@@ -1,6 +1,5 @@
 package com.beanbox.beans.factory;
 
-import com.beanbox.beans.factory.support.ConfigurableListableBeanFactory;
 import com.beanbox.beans.po.BeanDefinition;
 
 import com.beanbox.beans.processor.BeanPostProcessor;
@@ -68,5 +67,10 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 		//防止beanPostProcessor重复添加 因为list不会判重
 		beanPostProcessors.remove (beanPostProcessor);
 		beanPostProcessors.add (beanPostProcessor);
+	}
+
+	public List<BeanPostProcessor> getBeanPostProcessors()
+	{
+		return this.beanPostProcessors;
 	}
 }
