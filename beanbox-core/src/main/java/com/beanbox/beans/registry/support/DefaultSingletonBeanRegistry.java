@@ -1,4 +1,4 @@
-package com.beanbox.beans.registry.impl;
+package com.beanbox.beans.registry.support;
 
 import com.beanbox.beans.registry.SingletonBeanRegistry;
 import com.beanbox.context.DisposableBean;
@@ -50,7 +50,7 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 	{
 		disposableBeansMap.put (beanName,bean);
 	}
-
+// https://blog.csdn.net/zymx14/article/details/78394464
 	/**
 	 * 销毁单例对象
 	 */
@@ -59,12 +59,13 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 		Set<String> keySet=disposableBeansMap.keySet ();
 		for (String key:keySet)
 		{
+			try {
 			//从单例缓存中清除bean
 			singletonObjectMap.remove (key);
 			//从销毁缓存中取出Bean对应的销毁函数
 			DisposableBean disposable = disposableBeansMap.remove (key);
-			try {
-				disposable.destory ();
+
+			disposable.destory ();
 			} catch (Exception e) {
 				throw  new BeanException ("Destory method on bean with name ' "+key+ " ' throw an exception:",e);
 			}

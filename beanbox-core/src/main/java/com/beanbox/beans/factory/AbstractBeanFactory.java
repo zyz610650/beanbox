@@ -3,7 +3,7 @@ package com.beanbox.beans.factory;
 import com.beanbox.beans.po.BeanDefinition;
 
 import com.beanbox.beans.processor.BeanPostProcessor;
-import com.beanbox.beans.registry.impl.DefaultSingletonBeanRegistry;
+import com.beanbox.beans.registry.support.DefaultSingletonBeanRegistry;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -34,7 +34,7 @@ public class DisposableBeanAdapter implements DisposableBean {
 			((DisposableBean) bean).destory ();
 		}
 		// 2.方式2: 配置destory-method 实现销毁  防止二次销毁
-		if (StrUtil.isNotEmpty (destoryMethodeName)&&!(bean instanceof DisposableBean)&&"destory".equals (this.destoryMethodeName))
+		if (StrUtil.isNotEmpty (destoryMethodeName)&&!(bean instanceof DisposableBean&&"destory".equals (this.destoryMethodeName)))
 		{
 			Method destoryMethod;
 			try {

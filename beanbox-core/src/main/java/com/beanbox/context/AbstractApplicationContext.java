@@ -29,6 +29,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 		//BeanPostProcessor 需要提前于其他 Bean 对象实例化之前加到Processors缓存中
 		registerBeanPostProcessors (beanFactory);
+
+		//提前实例化单例Bean对象
+		beanFactory.preInstantiateSingletons ();
 	}
 
 	/**
@@ -80,7 +83,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 	@Override
 	public void registerShutdownHook () {
 		//添加关闭线程
-		Runtime.getRuntime ().addShutdownHook (new Thread (this::close));
+		Runtime.getRuntime ().addShutdownHook (new Thread (this::close,"destoryThread"));
 	}
 
 	@Override

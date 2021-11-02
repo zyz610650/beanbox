@@ -42,4 +42,11 @@ public class BeanDefinition {
 		this.beanClass = beanClass;
 		this.propertyValueSession = propertyValueSession!=null?propertyValueSession:new PropertyValueSession ();
 	}
+
+	public BeanDefinition (Class beanClass , PropertyValueSession propertyValueSession , String initMethodName , String destroyMethodName) {
+		this.beanClass = beanClass;
+		this.propertyValueSession = propertyValueSession;
+		this.initMethodName = initMethodName;
+		this.destroyMethodName = destroyMethodName;
+	}
 }

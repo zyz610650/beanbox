@@ -75,6 +75,8 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 			String id=element.getAttribute ("id");
 			String name=element.getAttribute ("name");
 			String className=element.getAttribute ("class");
+			String initMethodName=element.getAttribute ("init-method");
+			String destroyMethodName=element.getAttribute ("destory-method");
 			try {
 				String beanName=id;
 				if (beanName==null||beanName.equals (""))  beanName=name;
@@ -89,6 +91,18 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 				PropertyValueSession propertyValueSession = doLoadByPropertyValue (element);
 				//id的优先级高于name
 				BeanDefinition beanDefinition=new BeanDefinition (clazz,propertyValueSession);
+
+				//注入初始化函数
+				if (initMethodName!=null&&!initMethodName.equals (""))
+				{
+					beanDefinition.setInitMethodName (initMethodName);
+				}
+
+				//注入销毁函数
+				if (destroyMethodName!=null&&!destroyMethodName.equals (""))
+				{
+					beanDefinition.setDestroyMethodName (destroyMethodName);
+				}
 
 				//判重
 				if(registry.containsBeanDefinition (beanName))
