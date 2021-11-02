@@ -15,8 +15,22 @@ import net.sf.cglib.beans.BeanMap;
 @NoArgsConstructor
 public class BeanDefinition {
 
+	/**
+	 * bean的Class对象
+	 */
 	private Class beanClass;
+	/**
+	 * bean中的依赖属性
+	 */
 	private PropertyValueSession propertyValueSession;
+	/**
+	 * bean所对应的初始化方法
+	 */
+	private String initMethodName;
+	/**
+	 * bean销毁时所调用的方法
+	 */
+	private String destroyMethodName;
 
 
 	public BeanDefinition (Class beanClass) {

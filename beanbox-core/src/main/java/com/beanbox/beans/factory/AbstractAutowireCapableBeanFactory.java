@@ -1,8 +1,7 @@
 package com.beanbox.beans.factory;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.beanbox.beans.factory.AbstractBeanFactory;
-import com.beanbox.beans.factory.AutowireCapableBeanFactory;
+import cn.hutool.core.util.StrUtil;
 import com.beanbox.beans.instance.InstantiationService;
 import com.beanbox.beans.instance.support.CglibInstantiationServiceSupprot;
 import com.beanbox.beans.po.BeanDefinition;
@@ -10,9 +9,14 @@ import com.beanbox.beans.po.BeanReference;
 import com.beanbox.beans.po.PropertyValue;
 import com.beanbox.beans.processor.BeanPostProcessor;
 import com.beanbox.beans.sessions.PropertyValueSession;
-import org.omg.CORBA.PUBLIC_MEMBER;
+import com.beanbox.context.DisposableBean;
+import com.beanbox.context.InitializingBean;
+import com.beanbox.context.suppport.DisposableBeanAdapter;
+import com.beanbox.exception.BeanException;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * @author: @zyz
@@ -31,6 +35,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		// 执行 Bean 的初始化方法和 BeanPostProcessor 的前置和后置处理方法
 		bean=initializeBean (name,bean,beanDefinition);
+
+
+		//为实现了DisposableBean接口/配置了destory-name的Bean对象添加销毁方法
+		registerDisposableIfNecessary (name,bean,beanDefinition);
 
 		addSingletonObject (name,bean);
 		return bean;
@@ -85,6 +93,13 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		this.instantiationService=instantiationService;
 	}
 
+	/**
+	 * 初始化Bean 其中执行了init-method 和before 和after处理函数
+	 * @param beanName
+	 * @param bean
+	 * @param beanDefinition
+	 * @return
+	 */
 	private Object initializeBean(String beanName,Object bean,BeanDefinition beanDefinition)
 	{
 		//1.Bean初始化前预处理 Before
@@ -98,9 +113,53 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		return wrappedBean;
 	}
 
-	private void invokeInitMethods(String beanName,Object wrappedBean,BeanDefinition beanDefinition)
+	/**
+	 * 为该bean添加销毁方法
+	 * @param beanName
+	 * @param bean
+	 * @param beanDefinition
+	 */
+	public void registerDisposableIfNecessary(String beanName,Object bean,BeanDefinition beanDefinition)
 	{
 
+		if (bean instanceof DisposableBean ||StrUtil.isNotEmpty (beanDefinition.getDestroyMethodName ()))
+		{
+			registerDisposableBean (beanName,new DisposableBeanAdapter (bean,beanName,beanDefinition));
+		}
+	}
+
+	/**
+	 * 执行Bean的初始化操作
+	 * @param beanName
+	 * @param wrappedBean
+	 * @param beanDefinition
+	 */
+	private void invokeInitMethods(String beanName,Object wrappedBean,BeanDefinition beanDefinition)
+	{
+		// 1. 若Bean实现初始化接口InitializingBean
+			if(wrappedBean instanceof InitializingBean)
+			{
+				((InitializingBean) wrappedBean).afterPropertiesSet ();
+			}
+
+			//2. 若Bean 定义了初始化方法 init-method
+			String initMethodName=beanDefinition.getInitMethodName ();
+			try
+			{
+				if (StrUtil.isNotEmpty (initMethodName))
+				{
+						Method initMethod=beanDefinition.getBeanClass ().getMethod (initMethodName);
+						if (initMethod==null)
+						{
+							throw new BeanException ("Could not find an init method named '"+initMethodName+"'on bean with name '"+
+									beanName+" '");
+						}
+						initMethod.invoke (wrappedBean);
+				}
+				}
+			   catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+				e.printStackTrace ();
+			}
 	}
 
 	@Override

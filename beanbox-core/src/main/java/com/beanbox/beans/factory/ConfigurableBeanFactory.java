@@ -1,9 +1,11 @@
 package com.beanbox.beans.factory;
 
+import com.beanbox.beans.registry.SingletonBeanRegistry;
+
 /**
  * @author: @zyz
  */
-public interface ConfigurableBeanFactory extends HierarchicalBeanFactory{
+public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, SingletonBeanRegistry {
 
 	/**
 	 * 单例
@@ -13,4 +15,9 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory{
 	 * 原型
 	 */
 	String SCOPE_PROTOTYPE="prototype";
+
+	/**
+	 * 销毁单例对象
+	 */
+	void destorySingletons();
 }
