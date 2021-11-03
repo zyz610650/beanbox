@@ -109,13 +109,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -176,6 +178,7 @@
       <workItem from="1635820275853" duration="8053000" />
       <workItem from="1635833542180" duration="10000" />
       <workItem from="1635856294749" duration="5300000" />
+      <workItem from="1635901009747" duration="1016000" />
     </task>
     <servers />
   </component>
@@ -221,29 +224,29 @@
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="2020" y="184" key="FileChooserDialogImpl/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634815879585" />
-    <state width="1557" height="233" key="GridCell.Tab.0.bottom" timestamp="1635861646591">
+    <state width="1557" height="222" key="GridCell.Tab.0.bottom" timestamp="1635901544135">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
-    <state width="1397" height="222" key="GridCell.Tab.0.bottom/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1634643215544" />
-    <state width="1557" height="233" key="GridCell.Tab.0.bottom/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1635861646591" />
+    <state width="1397" height="222" key="GridCell.Tab.0.bottom/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1635901307792" />
+    <state width="1557" height="222" key="GridCell.Tab.0.bottom/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1635901544135" />
     <state width="1397" height="222" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1634302908433" />
-    <state width="1557" height="233" key="GridCell.Tab.0.center" timestamp="1635861646591">
+    <state width="1557" height="222" key="GridCell.Tab.0.center" timestamp="1635901544135">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
-    <state width="1397" height="222" key="GridCell.Tab.0.center/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1634643215544" />
-    <state width="1557" height="233" key="GridCell.Tab.0.center/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1635861646591" />
+    <state width="1397" height="222" key="GridCell.Tab.0.center/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1635901307792" />
+    <state width="1557" height="222" key="GridCell.Tab.0.center/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1635901544135" />
     <state width="1397" height="222" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1634302908432" />
-    <state width="1557" height="233" key="GridCell.Tab.0.left" timestamp="1635861646591">
+    <state width="1557" height="222" key="GridCell.Tab.0.left" timestamp="1635901544135">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
-    <state width="1397" height="222" key="GridCell.Tab.0.left/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1634643215544" />
-    <state width="1557" height="233" key="GridCell.Tab.0.left/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1635861646591" />
+    <state width="1397" height="222" key="GridCell.Tab.0.left/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1635901307792" />
+    <state width="1557" height="222" key="GridCell.Tab.0.left/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1635901544135" />
     <state width="1397" height="222" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1634302908432" />
-    <state width="1557" height="233" key="GridCell.Tab.0.right" timestamp="1635861646591">
+    <state width="1557" height="222" key="GridCell.Tab.0.right" timestamp="1635901544135">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
-    <state width="1397" height="222" key="GridCell.Tab.0.right/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1634643215544" />
-    <state width="1557" height="233" key="GridCell.Tab.0.right/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1635861646591" />
+    <state width="1397" height="222" key="GridCell.Tab.0.right/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1635901307792" />
+    <state width="1557" height="222" key="GridCell.Tab.0.right/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1635901544135" />
     <state width="1397" height="222" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1634302908433" />
     <state width="1557" height="233" key="GridCell.Tab.1.bottom" timestamp="1635861646591">
       <screen x="1440" y="0" width="1600" height="860" />
@@ -289,16 +292,5 @@
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="1903" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1635758219023" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/beanbox-core/src/main/java/com/beanbox/beans/registry/support/DefaultSingletonBeanRegistry.java</url>
-          <line>58</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
