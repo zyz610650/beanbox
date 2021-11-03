@@ -1,5 +1,6 @@
 package com.beanbox.beans.po;
 
+import com.beanbox.beans.factory.ConfigurableBeanFactory;
 import com.beanbox.beans.sessions.PropertyValueSession;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,10 @@ import net.sf.cglib.beans.BeanMap;
 @Data
 @NoArgsConstructor
 public class BeanDefinition {
+
+	String SCOPE_SINGLETON= ConfigurableBeanFactory.SCOPE_SINGLETON;
+
+	String SCOPE_PROTOTYPE=ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
 	/**
 	 * bean的Class对象
@@ -31,6 +36,14 @@ public class BeanDefinition {
 	 * bean销毁时所调用的方法
 	 */
 	private String destroyMethodName;
+
+
+	// Bean对象的作用范围 模拟人为单例
+	private String scope=SCOPE_SINGLETON;
+
+	private boolean singleton=true;
+
+	private boolean prototype=false;
 
 
 	public BeanDefinition (Class beanClass) {
