@@ -1,9 +1,11 @@
-package com.beanbox.beans.factory;
+package com.beanbox.beans.factory.support;
 
+import com.beanbox.beans.factory.ConfigurableListableBeanFactory;
 import com.beanbox.beans.po.BeanDefinition;
 
 import com.beanbox.beans.processor.BeanPostProcessor;
 import com.beanbox.beans.registry.support.DefaultSingletonBeanRegistry;
+import com.beanbox.utils.ClassUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,8 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 
 	// BeanPostProcessor容器 项目启动时扫描所有BeanPostProcessor加载到该容器中
 	private final List < BeanPostProcessor> beanPostProcessors=new ArrayList <> ();
+
+	private ClassLoader beanClassLoader= ClassUtils.getDefaultClassLoader ();
 
 	@Override
 	public Object getBean (String name , Object... args) {
@@ -72,5 +76,10 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 	public List<BeanPostProcessor> getBeanPostProcessors()
 	{
 		return this.beanPostProcessors;
+	}
+
+	public ClassLoader getBeanClassLoader()
+	{
+		return this.beanClassLoader;
 	}
 }

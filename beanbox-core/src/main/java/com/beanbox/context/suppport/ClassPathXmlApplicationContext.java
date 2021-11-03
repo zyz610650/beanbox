@@ -1,9 +1,6 @@
 package com.beanbox.context.suppport;
 
 
-import com.beanbox.context.AbstractXmlApplicationContext;
-
-
 /**
  * @author: @zyz
  */

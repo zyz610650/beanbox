@@ -5,7 +5,6 @@ import cn.hutool.core.util.XmlUtil;
 import com.beanbox.beans.po.BeanDefinition;
 import com.beanbox.beans.po.BeanReference;
 import com.beanbox.beans.po.PropertyValue;
-import com.beanbox.beans.reader.AbstractBeanDefinitionReader;
 import com.beanbox.beans.registry.BeanDefinitionRegistry;
 import com.beanbox.beans.sessions.PropertyValueSession;
 import com.beanbox.exception.BeanException;

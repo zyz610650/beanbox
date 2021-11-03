@@ -1,9 +1,11 @@
-package com.beanbox.context;
+package com.beanbox.context.suppport;
 
 
 import com.beanbox.beans.factory.ConfigurableListableBeanFactory;
 import com.beanbox.beans.processor.BeanDefinitionPostProcessor;
 import com.beanbox.beans.processor.BeanPostProcessor;
+import com.beanbox.beans.processor.support.ApplicationContextAwareProcessor;
+import com.beanbox.context.ConfigurableApplicationContext;
 import com.beanbox.io.loader.support.DefaultResourceLoader;
 
 import java.util.Map;
@@ -23,6 +25,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 		//获取beanFactory
 		ConfigurableListableBeanFactory beanFactory=getBeanFactory ();
+
+		// 添加ApplicationContextAwareProcessor,让继承自ApplicationContextAware的Bean对象都能感知所属的ApplicationContext
+		beanFactory.addBeanPostProcessor (new ApplicationContextAwareProcessor (this));
 
 		//执行定义的BeanDefinition处理器
 		registerBeanDefinitionPostProcessors (beanFactory);

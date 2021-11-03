@@ -1,7 +1,12 @@
-package com.beanbox.beans.factory;
+package com.beanbox.beans.factory.support;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
+import com.beanbox.beans.aware.Aware;
+import com.beanbox.beans.aware.BeanClassLoaderAware;
+import com.beanbox.beans.aware.BeanFactoryAware;
+import com.beanbox.beans.aware.BeanNameAware;
+import com.beanbox.beans.factory.AutowireCapableBeanFactory;
 import com.beanbox.beans.instance.InstantiationService;
 import com.beanbox.beans.instance.support.CglibInstantiationServiceSupprot;
 import com.beanbox.beans.po.BeanDefinition;
@@ -102,6 +107,23 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 */
 	private Object initializeBean(String beanName,Object bean,BeanDefinition beanDefinition)
 	{
+		//0.invokeAwareMethods
+		if(bean instanceof Aware)
+		{
+			if (bean instanceof BeanFactoryAware)
+			{
+				((BeanFactoryAware)bean).setBeanFactory (this);
+			}
+			if (bean instanceof BeanClassLoaderAware)
+			{
+				((BeanClassLoaderAware) bean).setBeanClassLoader (getBeanClassLoader ());
+			}
+			if (bean instanceof BeanNameAware)
+			{
+				((BeanNameAware)bean).setBeanName (beanName);
+			}
+		}
+
 		//1.Bean初始化前预处理 Before
 		Object wrappedBean=applyBeanPostProcessorsBeforeInitialization (bean,beanName);
 

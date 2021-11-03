@@ -1,16 +1,15 @@
-package com.beanbox.context;
+package com.beanbox.context.suppport;
 
 import com.beanbox.beans.factory.support.DefaultListableBeanFactory;
 import com.beanbox.beans.reader.support.XmlBeanDefinitionReader;
-import com.beanbox.context.suppport.ClassPathXmlApplicationContext;
-import lombok.NoArgsConstructor;
+import com.beanbox.context.suppport.AbstractRefreshableApplicationContext;
 
 /**
  * @author: @zyz
  * 模板模式
  */
 
-public abstract class AbstractXmlApplicationContext extends AbstractRefreshableApplicationContext{
+public abstract class AbstractXmlApplicationContext extends AbstractRefreshableApplicationContext {
 
 
 

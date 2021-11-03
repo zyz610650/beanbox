@@ -23,10 +23,10 @@ public class ApplicationMainProcessor {
 
 		UserService userService= (UserService) applicationContext.getBean ("userService");
 		userService.queryUserInfo ();
-		User user = userService.getUser ();
-		System.out.println (user.getAge ());
-		System.out.println (user.getName ());
-		System.out.println (user.getHigherUser ());
+//		User user = userService.getUser ();
+//		System.out.println (user.getAge ());
+//		System.out.println (user.getName ());
+//		System.out.println (user.getHigherUser ());
 
 	}
 }

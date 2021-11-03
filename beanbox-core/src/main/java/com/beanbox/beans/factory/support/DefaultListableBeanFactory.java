@@ -1,6 +1,5 @@
 package com.beanbox.beans.factory.support;
 
-import com.beanbox.beans.factory.AbstractAutowireCapableBeanFactory;
 import com.beanbox.beans.factory.ConfigurableListableBeanFactory;
 import com.beanbox.beans.po.BeanDefinition;
 import com.beanbox.exception.BeanException;

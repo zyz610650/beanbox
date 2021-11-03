@@ -6,7 +6,6 @@ import com.beanbox.beans.aware.BeanFactoryAware;
 import com.beanbox.beans.aware.BeanNameAware;
 import com.beanbox.beans.factory.BeanFactory;
 import com.beanbox.context.ApplicationContext;
-import com.beanbox.test.pojo.User;
 import com.beanbox.test.pojo.UserDao;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Data
-public class UserService implements BeanNameAware, BeanClassLoaderAware, ApplicationContextAware, BeanFactoryAware {
+public class UserService2 implements BeanNameAware, BeanClassLoaderAware, ApplicationContextAware, BeanFactoryAware {
 
 	private ApplicationContext applicationContext;
 	private BeanFactory beanFactory;

@@ -23,7 +23,7 @@ public class BeanFactoryTest2 {
 		beanFactory.registerBeanDefinition ("userService",beanDefinition);
 		UserService userService= (UserService) beanFactory.getBean ("userService");
 		userService.queryUserInfo ();
-		System.out.println (userService.getUser ());
+//		System.out.println (userService.getUser ());
 
 	}
 }

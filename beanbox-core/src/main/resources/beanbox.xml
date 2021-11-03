@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
     <bean id="userService" class="com.beanbox.test.service.UserService">
-          <property name="user" ref="user"></property>
+<!--          <property name="user" ref="user"></property>-->
+    </bean>
+
+    <bean id="userService2" class="com.beanbox.test.service.UserService2">
+        <!--          <property name="user" ref="user"></property>-->
     </bean>
     <bean id="user" class="com.beanbox.test.pojo.User">
         <property name="name" value="zyz"/>

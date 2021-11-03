@@ -1,5 +1,6 @@
-package com.beanbox.beans.reader;
+package com.beanbox.beans.reader.support;
 
+import com.beanbox.beans.reader.BeanDefinitionReader;
 import com.beanbox.beans.registry.BeanDefinitionRegistry;
 import com.beanbox.io.loader.ResourceLoader;
 import com.beanbox.io.loader.support.DefaultResourceLoader;
@@ -8,7 +9,7 @@ import com.beanbox.io.loader.support.DefaultResourceLoader;
 /**
  * @author: @zyz
  */
-public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader{
+public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader {
 
 	/**
 	 * BeanDefinition注册器 用于注册BeanDefinition

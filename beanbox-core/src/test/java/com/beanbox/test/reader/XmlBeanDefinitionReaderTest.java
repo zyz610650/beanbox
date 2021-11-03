@@ -26,10 +26,10 @@ public class XmlBeanDefinitionReaderTest {
 		beanDefinitionReader.loadBeanDefinitions (resource);
 		UserService userService= (UserService) defaultListableBeanFactory.getBean ("userService");
 		userService.queryUserInfo ();
-		User user = userService.getUser ();
-		System.out.println (user.getAge ());
-		System.out.println (user.getName ());
-		System.out.println (user.getHigherUser ());
+//		User user = userService.getUser ();
+//		System.out.println (user.getAge ());
+//		System.out.println (user.getName ());
+//		System.out.println (user.getHigherUser ());
 	}
 
 }
