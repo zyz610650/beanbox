@@ -1,10 +1,11 @@
 package com.beanbox.beans.factory.support;
 
 import com.beanbox.beans.factory.ConfigurableListableBeanFactory;
+import com.beanbox.beans.factory.FactoryBean;
 import com.beanbox.beans.po.BeanDefinition;
 
 import com.beanbox.beans.processor.BeanPostProcessor;
-import com.beanbox.beans.registry.support.DefaultSingletonBeanRegistry;
+import com.beanbox.beans.registry.support.FactoryBeanRegistrySupport;
 import com.beanbox.utils.ClassUtils;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
  * @author: @zyz
  * 与Bean类有关方法的具体实现类
  */
-public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableListableBeanFactory {
+public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport implements ConfigurableListableBeanFactory {
 
 	// BeanPostProcessor容器 项目启动时扫描所有BeanPostProcessor加载到该容器中
 	private final List < BeanPostProcessor> beanPostProcessors=new ArrayList <> ();
@@ -35,10 +36,12 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 	{
 		Object bean=getSingleton (name);
 		if (bean!=null)
-			return (T) bean;
-		BeanDefinition beanDefinition=getBeanDefinition (name);
+			return (T) getObjectForBeanInstance (bean,name);
 
-		return (T) createBean (name,beanDefinition,args);
+		BeanDefinition beanDefinition=getBeanDefinition (name);
+         bean = createBean (name, beanDefinition, args);
+
+		return (T) getObjectForBeanInstance (bean,name);
 	}
 
 	/**
@@ -81,5 +84,24 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 	public ClassLoader getBeanClassLoader()
 	{
 		return this.beanClassLoader;
+	}
+
+	private Object getObjectForBeanInstance(Object beanInstance, String beanName)
+	{
+		if (!(beanInstance instanceof FactoryBean))
+		{
+			return beanInstance;
+		}
+
+		Object object=getCachedObjectForFactoryBean (beanName);
+
+		if (object == null)
+		{
+			FactoryBean<?> factoryBean= (FactoryBean < ? >) beanInstance;
+
+			object=getObjectForBeanInstance (factoryBean,beanName);
+
+		}
+		return object;
 	}
 }

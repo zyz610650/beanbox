@@ -1,6 +1,7 @@
 package com.beanbox.beans.registry.support;
 
 import com.beanbox.beans.factory.FactoryBean;
+import com.beanbox.beans.registry.support.DefaultSingletonBeanRegistry;
 import com.beanbox.exception.BeanException;
 
 import java.util.Map;
@@ -9,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * @author: @zyz
  */
-public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanRegistry{
+public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanRegistry {
 
 	/**
 	 * 缓存由FactoryBean创建的单例对象
