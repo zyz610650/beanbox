@@ -40,4 +40,16 @@ public class ClassUtils {
 			return Thread.currentThread ().getContextClassLoader ();
 
 	}
+
+	/**
+	 * 判断该类是否是CGLIB生成的代理类
+	 * @param clazz
+	 * @return
+	 */
+	public static boolean isCglibProxyClass(Class<?> clazz)
+	{
+		if (clazz==null&&!(clazz.getName ().contains ("$$"))) return false;
+		 return true;
+
+	}
 }

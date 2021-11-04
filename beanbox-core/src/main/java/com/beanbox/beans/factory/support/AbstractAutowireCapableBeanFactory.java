@@ -9,6 +9,7 @@ import com.beanbox.beans.aware.BeanNameAware;
 import com.beanbox.beans.factory.AutowireCapableBeanFactory;
 import com.beanbox.beans.instance.InstantiationService;
 import com.beanbox.beans.instance.support.CglibInstantiationServiceSupprot;
+import com.beanbox.beans.instance.support.JdkInstantiationServieSupport;
 import com.beanbox.beans.po.BeanDefinition;
 import com.beanbox.beans.po.BeanReference;
 import com.beanbox.beans.po.PropertyValue;
@@ -29,7 +30,7 @@ import java.lang.reflect.Method;
 public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory implements AutowireCapableBeanFactory {
 
 	private InstantiationService instantiationService=new CglibInstantiationServiceSupprot ();
-
+//private InstantiationService instantiationService=new JdkInstantiationServieSupport ();
 	@Override
 	protected Object createBean (String name , BeanDefinition beanDefinition , Object[] args) {
 		Object bean=null;

@@ -10,6 +10,8 @@ import java.lang.reflect.InvocationTargetException;
 
 /**
  * @author: @zyz
+ *
+ * 通过构造器反射创建对象
  */
 public class JdkInstantiationServieSupport implements InstantiationService {
 	@Override

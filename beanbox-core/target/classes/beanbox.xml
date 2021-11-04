@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
-    <bean id="userService" class="com.beanbox.test.aop.UserService" scope="ss">
+    <bean id="userService" class="com.beanbox.test.aop.UserService" scope="prototype">
     <property name="uId" value="zyz"></property>
         <property name="uId" value="zyz"></property>
         <property name="company" value="jlu"></property>

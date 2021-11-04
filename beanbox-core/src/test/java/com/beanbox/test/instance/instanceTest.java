@@ -15,6 +15,9 @@ public class instanceTest {
 		defaultListableBeanFactory.registerBeanDefinition ("user",beanDefinition);
 		Object[] 	arg=new Object[]{"zyz","jlu",5};
 		Object bean = defaultListableBeanFactory.getBean ("user" , arg);
+		System.out.println (bean.getClass ().getName ());
+		System.out.println (bean.getClass ().getSimpleName ());
+		System.out.println (bean.getClass ().getSuperclass ().getName ());
 		User user= (User) bean;
 		System.out.println (	user.getName ());
 		arg=new Object[]{"zyz","jlu",5};
