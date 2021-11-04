@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
-    <bean id="userService" class="com.beanbox.test.service.UserService">
-<!--          <property name="user" ref="user"></property>-->
+    <bean id="userService" class="com.beanbox.test.aop.UserService" scope="ss">
+    <property name="uId" value="zyz"></property>
+        <property name="uId" value="zyz"></property>
+        <property name="company" value="jlu"></property>
+        <property name="location" value="changchun"></property>
+        <property name="userDao" ref="proxyUserDao"></property>
     </bean>
-
-    <bean id="userService2" class="com.beanbox.test.service.UserService2">
-        <!--          <property name="user" ref="user"></property>-->
-    </bean>
-    <bean id="user" class="com.beanbox.test.pojo.User">
-        <property name="name" value="zyz"/>
-        <property name="age" value="12"></property>
-        <property name="higherUser" ref="higherUser"/>
-    </bean>
-    <bean id="higherUser" class="com.beanbox.test.pojo.HigherUser"/>
+    <bean name="proxyUserDao" class="com.beanbox.test.aop.ProxyUserDao" ></bean>
+<!--    <bean id="userService2" class="com.beanbox.test.service.UserService2">-->
+<!--        &lt;!&ndash;          <property name="user" ref="user"></property>&ndash;&gt;-->
+<!--    </bean>-->
+<!--    <bean id="user" class="com.beanbox.test.pojo.User">-->
+<!--        <property name="name" value="zyz"/>-->
+<!--        <property name="age" value="12"></property>-->
+<!--        <property name="higherUser" ref="higherUser"/>-->
+<!--    </bean>-->
+<!--    <bean id="higherUser" class="com.beanbox.test.pojo.HigherUser"/>-->
 <!--    <bean class="com.beanbox.test.processor.MyBeanDefinitionPostProcessor"/>-->
 <!--    <bean class="com.beanbox.test.processor.MyBeanPostProcessor"/>-->
 
-    <bean id="userDao" class="com.beanbox.test.pojo.UserDao" init-method="initDataMethod" destory-method="destroyDataMethod"/>
-    <bean id="userBean" class="com.beanbox.test.pojo.UserBean" />
+<!--    <bean id="userDao" class="com.beanbox.test.pojo.UserDao" init-method="initDataMethod" destory-method="destroyDataMethod"/>-->
+<!--    <bean id="userBean" class="com.beanbox.test.pojo.UserBean" />-->
 </beans>

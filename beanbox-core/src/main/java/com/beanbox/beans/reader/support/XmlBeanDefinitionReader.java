@@ -2,6 +2,7 @@ package com.beanbox.beans.reader.support;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.XmlUtil;
+import com.beanbox.beans.factory.ConfigurableBeanFactory;
 import com.beanbox.beans.po.BeanDefinition;
 import com.beanbox.beans.po.BeanReference;
 import com.beanbox.beans.po.PropertyValue;
@@ -107,7 +108,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 				// 设置对象单例/原型
 				if (StrUtil.isNotEmpty (beanScope))
 				{
-					beanDefinition.setScope (beanScope);
+					if (beanScope.equals (ConfigurableBeanFactory.SCOPE_PROTOTYPE)||beanScope.equals (ConfigurableBeanFactory.SCOPE_SINGLETON))
+					 beanDefinition.setScope (beanScope);
+					else  throw new BeanException ("property [scope] exception :"+ beanScope);
 				}
 				//判重
 				if(registry.containsBeanDefinition (beanName))

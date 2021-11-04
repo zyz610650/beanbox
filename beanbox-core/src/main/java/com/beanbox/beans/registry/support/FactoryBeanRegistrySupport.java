@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanRegistry {
 
 	/**
-	 * 缓存由FactoryBean创建的单例对象
+	 * 缓存由FactoryBean创建的单例对象 即由spring维护的用户自定义的bean
 	 */
 	private final Map <String,Object> factoryBeanObjectMap = new ConcurrentHashMap<> ();
 
@@ -38,19 +38,28 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 	{
 		if(factoryBean.isSingleton ())
 		{
+			//从FactoryBean缓存中获取对象
 			Object object=getCachedObjectForFactoryBean (beanName);
 			if (object==null)
 			{
+				//创建对象
 				object=doGetObjectFromFactoryBean (factoryBean,beanName);
+				//放入FactoryBean缓存
 				factoryBeanObjectMap.put (beanName,(object!=null?object:NULL_OBJECT));
 			}
 			return object;
 		}else{
+			//原型 每次需要重新创建
 			return doGetObjectFromFactoryBean (factoryBean,beanName);
 		}
 	}
 
-
+	/**
+	 * 继承FactoryBean接口的类是含有生成代理类方法的实例，并不是真正的代理类,该方法调用用户自定义的getObject获得真正的代理类对象
+	 * @param factoryBean
+	 * @param beanName
+	 * @return
+	 */
 	private Object doGetObjectFromFactoryBean(final  FactoryBean factoryBean,final String beanName)
 	{
 		try {

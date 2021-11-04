@@ -1,6 +1,7 @@
 package com.beanbox.test.service;
 
 import com.beanbox.beans.factory.FactoryBean;
+import com.beanbox.test.aop.IUserDao;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
@@ -10,7 +11,7 @@ import java.util.Map;
 /**
  * @author: @zyz
  */
-public class ProxyBeanFactory implements FactoryBean<IUserDao> {
+public class ProxyBeanFactory implements FactoryBean< IUserDao > {
 	@Override
 	public IUserDao getObject () {
 		InvocationHandler handler = (proxy, method, args) -> {
