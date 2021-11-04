@@ -1,13 +1,21 @@
 package com.beanbox.context.suppport;
 
 
+import com.beanbox.beans.factory.ConfigurableBeanFactory;
 import com.beanbox.beans.factory.ConfigurableListableBeanFactory;
 import com.beanbox.beans.processor.BeanDefinitionPostProcessor;
 import com.beanbox.beans.processor.BeanPostProcessor;
 import com.beanbox.beans.processor.support.ApplicationContextAwareProcessor;
 import com.beanbox.context.ConfigurableApplicationContext;
+import com.beanbox.event.ApplicationEvent;
+import com.beanbox.event.ContextClosedEvent;
+import com.beanbox.event.ContextRefreshedEvent;
+import com.beanbox.event.broadcast.ApplicationEventBroadcaster;
+import com.beanbox.event.broadcast.SimpleApplicationEventBroadcaster;
+import com.beanbox.event.listener.ApplicationListener;
 import com.beanbox.io.loader.support.DefaultResourceLoader;
 
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -15,6 +23,9 @@ import java.util.Map;
  */
 public abstract class AbstractApplicationContext extends DefaultResourceLoader implements ConfigurableApplicationContext {
 
+	public static final String APPLICATION_EVENT_BROADCASTER_BEAN_NAME="applicationEventBroadcaster";
+
+	private ApplicationEventBroadcaster applicationEventBroadcaster;
 	@Override
 	public void refresh () {
 
@@ -35,8 +46,60 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		//BeanPostProcessor 需要提前于其他 Bean 对象实例化之前加到Processors缓存中
 		registerBeanPostProcessors (beanFactory);
 
+
+		//初始化事件通知器
+		initApplicationEventBroadcaster ();
+
+		// 注册事件监听器
+		registerListeners ();
+
 		//提前实例化单例Bean对象
 		beanFactory.preInstantiateSingletons ();
+
+		//发布容器刷新完成事件
+		finshRefresh ();
+	}
+
+	/**
+	 * 初始化事件通知器
+	 */
+	private void initApplicationEventBroadcaster(){
+		ConfigurableListableBeanFactory beanFactory=getBeanFactory ();
+		applicationEventBroadcaster =new SimpleApplicationEventBroadcaster (beanFactory);
+		//注册全局单例通知器
+		beanFactory.registerSingleton (APPLICATION_EVENT_BROADCASTER_BEAN_NAME,applicationEventBroadcaster);
+	}
+
+	/**
+	 * 向通知器里添加监听器
+	 */
+	private void registerListeners()
+	{
+		//获得所有注册的监听器
+		Collection< ApplicationListener > applicationListeners =getBeansOfType (ApplicationListener.class).values ();
+
+		//监听器添加到缓存中 用于后续事件发生时通知器通知坚挺者
+		for (ApplicationListener listener : applicationListeners)
+		{
+			applicationEventBroadcaster.addApplicationListener (listener);
+		}
+
+	}
+
+	/**
+	 * 框架初始化完成后 通知所有监听器
+	 */
+	private  void finshRefresh(){
+		publishEvent (new ContextRefreshedEvent (this));
+	}
+
+	/**
+	 * 发布事件
+	 * @param event
+	 */
+	@Override
+	public void publishEvent (ApplicationEvent event) {
+		applicationEventBroadcaster.broadcastEvent (event);
 	}
 
 	/**
@@ -93,7 +156,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 	@Override
 	public void close () {
-			getBeanFactory ().destorySingletons ();
+
+		// 发布容器关闭事件
+		publishEvent (new ContextClosedEvent (this));
+
+		//执行销毁单例bean的销毁方法
+		getBeanFactory ().destorySingletons ();
 	}
 
 	@Override

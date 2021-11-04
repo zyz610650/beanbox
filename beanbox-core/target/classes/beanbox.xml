@@ -8,6 +8,11 @@
         <property name="userDao" ref="proxyUserDao"></property>
     </bean>
     <bean name="proxyUserDao" class="com.beanbox.test.aop.ProxyUserDao" ></bean>
+
+    <bean class="com.beanbox.test.event.CustomEventListener"></bean>
+    <bean class="com.beanbox.test.event.ContextClosedEventListener"></bean>
+    <bean class="com.beanbox.test.event.ContextRefreshedEventListener"></bean>
+
 <!--    <bean id="userService2" class="com.beanbox.test.service.UserService2">-->
 <!--        &lt;!&ndash;          <property name="user" ref="user"></property>&ndash;&gt;-->
 <!--    </bean>-->

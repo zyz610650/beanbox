@@ -4,9 +4,14 @@ import com.beanbox.beans.aware.BeanFactoryAware;
 import com.beanbox.beans.factory.BeanFactory;
 import com.beanbox.event.ApplicationEvent;
 import com.beanbox.event.listener.ApplicationListener;
+import com.beanbox.exception.BeanException;
 import com.beanbox.utils.ClassUtils;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.Collection;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
 /**
@@ -37,6 +42,23 @@ public abstract class AbstractApplicationEventBroadcaster implements Application
 	}
 
 	/**
+	 * 获得监听该事件的所有监听者
+	 * @param event
+	 * @return
+	 */
+	protected Collection<ApplicationListener> getApplicationListeners(ApplicationEvent event)
+	{
+		LinkedList<ApplicationListener> allListeners =new LinkedList <> ();
+		for (ApplicationListener<ApplicationEvent> listener:applicationListeners)
+		{
+			if (supportsEvent (listener,event))
+			{
+				allListeners.add (listener);
+			}
+		}
+		return allListeners;
+	}
+	/**
 	 * 判断该监听器是否监听该事件
 	 * @param applicationListener
 	 * @param event
@@ -49,6 +71,17 @@ public abstract class AbstractApplicationEventBroadcaster implements Application
 
 		// Cglib生成的代理类名字带有&&
 		Class<?> targetClass = ClassUtils.isCglibProxyClass (listenerClass) ? listenerClass.getSuperclass () : listenerClass;
-		return false;
+
+		Type genericInterface =targetClass.getGenericInterfaces ()[0];
+
+		Type actualTypeArgument=((ParameterizedType)genericInterface).getActualTypeArguments ()[0];
+		String className=actualTypeArgument.getTypeName ();
+		Class<?> eventClassName;
+		try {
+			eventClassName =Class.forName (className);
+		} catch (ClassNotFoundException e) {
+			throw new BeanException ("wrong event class name: "+className);
+		}
+		return eventClassName.isAssignableFrom (event.getClass ());
 	}
 }

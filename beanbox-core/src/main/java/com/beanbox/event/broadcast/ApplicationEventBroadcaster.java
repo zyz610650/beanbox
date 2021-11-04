@@ -1,5 +1,6 @@
 package com.beanbox.event.broadcast;
 
+import com.beanbox.event.ApplicationEvent;
 import com.beanbox.event.listener.ApplicationListener;
 
 /**
@@ -25,5 +26,5 @@ public interface ApplicationEventBroadcaster {
 	 * 将事件通知给对应的监听器
 	 * @param event
 	 */
-	void broadcastEvent(ApplicationListener event);
+	void broadcastEvent(ApplicationEvent event);
 }
