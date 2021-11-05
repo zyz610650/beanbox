@@ -1,7 +1,6 @@
 package com.beanbox.test.main;
 
 import com.beanbox.context.suppport.ClassPathXmlApplicationContext;
-import com.beanbox.test.aop.UserService;
 import com.beanbox.test.event.CustomEvent;
 
 import java.io.IOException;

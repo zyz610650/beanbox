@@ -1,7 +1,7 @@
 package com.beanbox.test.service;
 
 import com.beanbox.beans.factory.FactoryBean;
-import com.beanbox.test.aop.IUserDao;
+import com.beanbox.test.proxy.IUserDao;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;

@@ -1,9 +1,7 @@
 package com.beanbox.test.main;
 
 import com.beanbox.context.suppport.ClassPathXmlApplicationContext;
-import com.beanbox.test.aop.UserService;
-import com.beanbox.test.pojo.UserBean;
-import com.beanbox.test.service.UserService2;
+import com.beanbox.test.service.UserService;
 
 import java.io.IOException;
 

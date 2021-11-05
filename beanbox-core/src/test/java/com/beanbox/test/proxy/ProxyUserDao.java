@@ -1,4 +1,4 @@
-package com.beanbox.test.aop;
+package com.beanbox.test.proxy;
 
 import com.beanbox.beans.factory.FactoryBean;
 
@@ -9,7 +9,7 @@ import java.lang.reflect.Proxy;
 /**
  * @author: @zyz
  */
-public class ProxyUserDao implements FactoryBean<IUserDao> {
+public class ProxyUserDao implements FactoryBean < IUserDao > {
 	@Override
 	public IUserDao getObject () {
 
@@ -18,7 +18,7 @@ public class ProxyUserDao implements FactoryBean<IUserDao> {
 			public Object invoke (Object proxy , Method method , Object[] args) throws Throwable {
 
 
-				 return method.getName() +"被代理了 "  ;
+				return method.getName() +"被代理了 "  ;
 			}
 		};
 		return (IUserDao)Proxy.newProxyInstance (Thread.currentThread ().getContextClassLoader (),new Class[]{IUserDao.class},handler);

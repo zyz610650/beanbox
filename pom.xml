@@ -23,10 +23,25 @@
         <junit.version>4.12</junit.version>
         <cglib.version>2.2.2</cglib.version>
         <hutool.vsersion>5.4.1</hutool.vsersion>
+        <aspectj.version>1.9.7</aspectj.version>
+        <aopalliance.version>1.0</aopalliance.version>
         <checkstyle-maven-plugin.version>3.1.1</checkstyle-maven-plugin.version>
     </properties>
 
     <dependencies>
+
+        <!-- aop -->
+        <dependency>
+            <groupId>aopalliance</groupId>
+            <artifactId>aopalliance</artifactId>
+            <version>${aopalliance.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
 
        <!-- cglib动态代理-->
         <dependency>

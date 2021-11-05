@@ -1,4 +1,4 @@
-package com.beanbox.test.aop;
+package com.beanbox.test.pojo;
 
 /**
  * @author: @zyz

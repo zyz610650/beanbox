@@ -1,6 +1,6 @@
-package com.beanbox.test.aop;
+package com.beanbox.test.proxy;
 
-import lombok.Data;
+import com.beanbox.test.proxy.IUserDao;
 import lombok.Getter;
 
 /**

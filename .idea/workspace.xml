@@ -42,13 +42,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../spring/small-spring" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/beanbox-core/src/test/java/com/beanbox/test/pojo" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.beanbox.aop.aspecj.support" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.beanbox" />
       <recent name="com.beanbox.annotation" />
@@ -60,8 +63,11 @@
       <recent name="com.beanbox.test.bean" />
       <recent name="com.beanbox.test.pojo" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\project\java\BeanBox\beanbox-core\src\test\java\com\beanbox\test\pojo" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.ApplicationMainEvent">
+  <component name="RunManager" selected="JUnit.AopTest.test_aop_method">
     <configuration name="ApiTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.beanbox.test.service.ApiTest" />
       <module name="beanbox-core" />
@@ -75,34 +81,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationMainAware" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.beanbox.test.main.ApplicationMainAware" />
-      <module name="beanbox-core" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.beanbox.test.main.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ApplicationMainEvent" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.beanbox.test.main.ApplicationMainEvent" />
-      <module name="beanbox-core" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.beanbox.test.main.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ApplicationMainFactoryBean" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.beanbox.test.main.ApplicationMainFactoryBean" />
       <module name="beanbox-core" />
       <extension name="coverage">
         <pattern>
@@ -127,13 +107,56 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AopTest.test_aop_method" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="beanbox-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.beanbox.test.aop.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.beanbox.test.aop" />
+      <option name="MAIN_CLASS_NAME" value="com.beanbox.test.aop.AopTest" />
+      <option name="METHOD_NAME" value="test_aop_method" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AopTest.test_pointcut" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="beanbox-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.beanbox.test.aop.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.beanbox.test.aop" />
+      <option name="MAIN_CLASS_NAME" value="com.beanbox.test.aop.AopTest" />
+      <option name="METHOD_NAME" value="test_pointcut" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AopTest.test_aop_method" />
+        <item itemvalue="JUnit.AopTest.test_pointcut" />
         <item itemvalue="Application.ApplicationMainEvent" />
         <item itemvalue="Application.instanceTest" />
         <item itemvalue="Application.ApiTest" />
-        <item itemvalue="Application.ApplicationMainFactoryBean" />
-        <item itemvalue="Application.ApplicationMainAware" />
       </list>
     </recent_temporary>
   </component>
@@ -172,7 +195,8 @@
       <workItem from="1635943970207" duration="2570000" />
       <workItem from="1635987492735" duration="13099000" />
       <workItem from="1636026619394" duration="7256000" />
-      <workItem from="1636073914794" duration="1133000" />
+      <workItem from="1636073914794" duration="4369000" />
+      <workItem from="1636100898549" duration="10064000" />
     </task>
     <servers />
   </component>
@@ -180,23 +204,27 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="1866" y="108" key="#Inspections" timestamp="1636120227576">
+      <screen x="1440" y="0" width="1600" height="860" />
+    </state>
+    <state x="1866" y="108" key="#Inspections/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636120227576" />
     <state x="1720" y="4" key="#Project_Structure" timestamp="1636031376021">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="1720" y="4" key="#Project_Structure/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636031376021" />
-    <state x="2477" y="162" key="#com.intellij.ide.util.MemberChooser" timestamp="1636031886742">
+    <state x="2477" y="162" key="#com.intellij.ide.util.MemberChooser" timestamp="1636119532689">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
-    <state x="2477" y="162" key="#com.intellij.ide.util.MemberChooser/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636031886742" />
-    <state x="1877" y="352" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1634816500802">
+    <state x="2477" y="162" key="#com.intellij.ide.util.MemberChooser/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636119532689" />
+    <state x="1877" y="352" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1636079741049">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="393" y="352" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1634305473595" />
-    <state x="1877" y="352" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634816500802" />
-    <state x="1997" y="296" width="486" height="274" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1634639937416">
+    <state x="1877" y="352" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636079741049" />
+    <state x="1997" y="296" width="486" height="274" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1636078270894">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
-    <state x="1997" y="296" width="486" height="274" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634639937416" />
+    <state x="1997" y="296" width="486" height="274" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636078270894" />
     <state x="1994" y="309" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1634816501678">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
@@ -206,10 +234,10 @@
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="1797" y="25" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634639933104" />
-    <state x="1970" y="176" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1635995669185">
+    <state x="1970" y="176" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1636078322712">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
-    <state x="1970" y="176" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1635995669185" />
+    <state x="1970" y="176" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636078322712" />
     <state x="1970" y="176" width="540" height="507" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1634299271549">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
@@ -222,62 +250,62 @@
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="2020" y="184" key="FileChooserDialogImpl/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634815879585" />
-    <state width="1557" height="2" key="GridCell.Tab.0.bottom" timestamp="1636034646149">
+    <state width="1557" height="2" key="GridCell.Tab.0.bottom" timestamp="1636120826431">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.0.bottom/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="2" key="GridCell.Tab.0.bottom/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636034646149" />
+    <state width="1557" height="2" key="GridCell.Tab.0.bottom/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636120826431" />
     <state width="1397" height="222" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1634302908433" />
-    <state width="1557" height="2" key="GridCell.Tab.0.center" timestamp="1636034646149">
+    <state width="1557" height="2" key="GridCell.Tab.0.center" timestamp="1636120826431">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.0.center/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="2" key="GridCell.Tab.0.center/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636034646149" />
+    <state width="1557" height="2" key="GridCell.Tab.0.center/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636120826431" />
     <state width="1397" height="222" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1634302908432" />
-    <state width="1557" height="2" key="GridCell.Tab.0.left" timestamp="1636034646149">
+    <state width="1557" height="2" key="GridCell.Tab.0.left" timestamp="1636120826431">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.0.left/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="2" key="GridCell.Tab.0.left/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636034646149" />
+    <state width="1557" height="2" key="GridCell.Tab.0.left/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636120826431" />
     <state width="1397" height="222" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1634302908432" />
-    <state width="1557" height="2" key="GridCell.Tab.0.right" timestamp="1636034646149">
+    <state width="1557" height="2" key="GridCell.Tab.0.right" timestamp="1636120826431">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.0.right/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="2" key="GridCell.Tab.0.right/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636034646149" />
+    <state width="1557" height="2" key="GridCell.Tab.0.right/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636120826431" />
     <state width="1397" height="222" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1634302908433" />
-    <state width="1557" height="2" key="GridCell.Tab.1.bottom" timestamp="1636034646149">
+    <state width="1557" height="2" key="GridCell.Tab.1.bottom" timestamp="1636120826431">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.1.bottom/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="2" key="GridCell.Tab.1.bottom/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636034646149" />
-    <state width="1557" height="2" key="GridCell.Tab.1.center" timestamp="1636034646149">
+    <state width="1557" height="2" key="GridCell.Tab.1.bottom/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636120826431" />
+    <state width="1557" height="2" key="GridCell.Tab.1.center" timestamp="1636120826431">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.1.center/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="2" key="GridCell.Tab.1.center/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636034646149" />
-    <state width="1557" height="2" key="GridCell.Tab.1.left" timestamp="1636034646149">
+    <state width="1557" height="2" key="GridCell.Tab.1.center/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636120826431" />
+    <state width="1557" height="2" key="GridCell.Tab.1.left" timestamp="1636120826431">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.1.left/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="2" key="GridCell.Tab.1.left/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636034646149" />
-    <state width="1557" height="2" key="GridCell.Tab.1.right" timestamp="1636034646149">
+    <state width="1557" height="2" key="GridCell.Tab.1.left/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636120826431" />
+    <state width="1557" height="2" key="GridCell.Tab.1.right" timestamp="1636120826431">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.1.right/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="2" key="GridCell.Tab.1.right/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636034646149" />
+    <state width="1557" height="2" key="GridCell.Tab.1.right/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636120826431" />
     <state x="1741" y="74" key="SettingsEditor" timestamp="1635994810264">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="1741" y="74" key="SettingsEditor/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1635994810264" />
-    <state x="104" y="0" width="1267" height="549" key="dock-window-1" timestamp="1636034457640">
+    <state x="1494" y="96" width="1147" height="670" key="dock-window-1" timestamp="1636119995217">
+      <screen x="1440" y="0" width="1600" height="860" />
+    </state>
+    <state x="1494" y="96" width="1147" height="670" key="dock-window-1/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636119995217" />
+    <state x="235" y="0" width="1147" height="614" maximized="true" key="dock-window-2" timestamp="1636120561971">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="104" y="0" width="1267" height="549" key="dock-window-1/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636034457640" />
-    <state x="380" y="0" width="1076" height="598" key="dock-window-2" timestamp="1635772905357">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state x="380" y="0" width="1076" height="598" key="dock-window-2/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1635772905357" />
+    <state x="235" y="0" width="1147" height="614" maximized="true" key="dock-window-2/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636120561971" />
     <state x="1970" y="186" key="extract.method.dialog" timestamp="1634638571037">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
@@ -298,6 +326,11 @@
           <url>file://$PROJECT_DIR$/beanbox-core/src/main/java/com/beanbox/event/broadcast/AbstractApplicationEventBroadcaster.java</url>
           <line>69</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/beanbox-core/src/main/java/com/beanbox/aop/proxy/support/JdkDynamicAopProxy.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

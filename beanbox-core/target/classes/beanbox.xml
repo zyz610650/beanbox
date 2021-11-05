@@ -7,7 +7,7 @@
         <property name="location" value="changchun"></property>
         <property name="userDao" ref="proxyUserDao"></property>
     </bean>
-    <bean name="proxyUserDao" class="com.beanbox.test.aop.ProxyUserDao" ></bean>
+    <bean name="proxyUserDao" class="com.beanbox.test.proxy.ProxyUserDao" ></bean>
 
     <bean class="com.beanbox.test.event.CustomEventListener"></bean>
     <bean class="com.beanbox.test.event.ContextClosedEventListener"></bean>
