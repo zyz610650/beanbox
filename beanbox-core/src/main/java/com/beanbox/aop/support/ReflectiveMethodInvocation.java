@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
  */
 public class ReflectiveMethodInvocation implements MethodInvocation {
 
-	// 目标对象
+	// 目标对象 被代理对象
 	private  final Object target;
 
 	// 方法

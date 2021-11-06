@@ -2,6 +2,7 @@ package com.beanbox.test.aop;
 
 import com.beanbox.aop.MethodMatcher;
 import com.beanbox.aop.proxy.AopProxy;
+import com.beanbox.aop.proxy.support.CglibAopProxy;
 import com.beanbox.aop.proxy.support.JdkDynamicAopProxy;
 import com.beanbox.aop.support.AdvisedSupport;
 import com.beanbox.aop.support.AspectJExpressionPointCut;
@@ -31,15 +32,15 @@ public class AopTest {
 		AspectJExpressionPointCut pointCut=new AspectJExpressionPointCut ("execution( * com.beanbox.test.pojo.UserService.*(..))");
 		advisedSupport.setMethodMatcher (pointCut);
 		advisedSupport.setMethodInterceptor (new UserServiceInterceptor ());
-		IUserService proxy= (IUserService) new JdkDynamicAopProxy (advisedSupport).getProxy ();
-
+//		IUserService proxy= (IUserService) new JdkDynamicAopProxy (advisedSupport).getProxy ();
+		IUserService proxy= (IUserService) new CglibAopProxy (advisedSupport).getProxy ();
 		Class<?> clazz=userService.getClass ();
 
 		Method method = clazz.getDeclaredMethod ("queryUserInfo");
-		System.out.println (pointCut.matches (method,clazz));
-		System.out.println (pointCut.matches (clazz));
-		System.out.println (pointCut.matches (method,targetSource.getTarget ().getClass ()));
-		System.out.println (advisedSupport.getMethodMatcher ().matches (method,null));
+//		System.out.println (pointCut.matches (method,clazz));
+//		System.out.println (pointCut.matches (clazz));
+//		System.out.println (pointCut.matches (method,targetSource.getTarget ().getClass ()));
+//		System.out.println (advisedSupport.getMethodMatcher ().matches (method,null));
 		System.out.println (proxy.queryUserInfo ());
 
 		//

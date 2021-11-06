@@ -5,6 +5,9 @@ package com.beanbox.aop.support;
  */
 public class TargetSource {
 
+	/**
+	 * 被代理对象
+	 */
 	private final Object target;
 
 	public TargetSource (Object target) {
@@ -15,7 +18,7 @@ public class TargetSource {
 	 * 返回目标类继承的接口
 	 * @return
 	 */
-	public Class < ? >[] getTargerClass(){
+	public Class < ? >[] getTargerInterface(){
 		return this.target.getClass ().getInterfaces ();
 	}
 

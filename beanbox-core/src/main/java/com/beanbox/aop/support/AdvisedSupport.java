@@ -12,7 +12,7 @@ import org.aopalliance.intercept.MethodInterceptor;
 public class AdvisedSupport {
 
 	/**
-	 * 被代理的目标对象
+	 * 被代理的目标对象包装类
 	 */
 	private TargetSource targetSource;
 
