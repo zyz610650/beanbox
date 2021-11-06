@@ -1,6 +1,6 @@
-package com.beanbox.aop.proxy.support;
+package com.beanbox.aop.aspect;
 
-import com.beanbox.aop.support.ReflectiveMethodInvocation;
+import com.beanbox.aop.aspect.ReflectiveMethodInvocation;
 import net.sf.cglib.proxy.MethodProxy;
 
 import java.lang.reflect.Method;

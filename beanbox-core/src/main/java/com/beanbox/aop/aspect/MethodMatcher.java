@@ -1,4 +1,4 @@
-package com.beanbox.aop;
+package com.beanbox.aop.aspect;
 
 import java.lang.reflect.Method;
 

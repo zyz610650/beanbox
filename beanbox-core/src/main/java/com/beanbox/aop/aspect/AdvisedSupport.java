@@ -1,6 +1,5 @@
-package com.beanbox.aop.support;
+package com.beanbox.aop.aspect;
 
-import com.beanbox.aop.MethodMatcher;
 import lombok.Data;
 import org.aopalliance.intercept.MethodInterceptor;
 
@@ -10,6 +9,13 @@ import org.aopalliance.intercept.MethodInterceptor;
  */
 @Data
 public class AdvisedSupport {
+
+	/**
+	 *  决定是走jdk动态代理还是cglib
+	 *  ture: cglib
+	 *  false: jdk
+	 */
+	private boolean proxyTargetClass = false;
 
 	/**
 	 * 被代理的目标对象包装类

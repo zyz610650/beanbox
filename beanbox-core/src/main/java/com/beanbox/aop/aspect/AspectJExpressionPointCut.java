@@ -1,8 +1,5 @@
-package com.beanbox.aop.support;
+package com.beanbox.aop.aspect;
 
-import com.beanbox.aop.ClassFilter;
-import com.beanbox.aop.MethodMatcher;
-import com.beanbox.aop.Pointcut;
 import org.aspectj.weaver.tools.PointcutExpression;
 import org.aspectj.weaver.tools.PointcutParser;
 import org.aspectj.weaver.tools.PointcutPrimitive;
@@ -14,6 +11,7 @@ import java.util.Set;
 /**
  * @author: @zyz
  *
+ *  切面
  */
 public class AspectJExpressionPointCut implements Pointcut, ClassFilter, MethodMatcher {
 

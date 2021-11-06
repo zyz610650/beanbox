@@ -1,12 +1,9 @@
 package com.beanbox.test.aop;
 
-import com.beanbox.aop.MethodMatcher;
-import com.beanbox.aop.proxy.AopProxy;
 import com.beanbox.aop.proxy.support.CglibAopProxy;
-import com.beanbox.aop.proxy.support.JdkDynamicAopProxy;
-import com.beanbox.aop.support.AdvisedSupport;
-import com.beanbox.aop.support.AspectJExpressionPointCut;
-import com.beanbox.aop.support.TargetSource;
+import com.beanbox.aop.aspect.AdvisedSupport;
+import com.beanbox.aop.aspect.AspectJExpressionPointCut;
+import com.beanbox.aop.aspect.TargetSource;
 import com.beanbox.test.pojo.IUserService;
 import com.beanbox.test.pojo.UserService;
 

@@ -1,14 +1,12 @@
 package com.beanbox.aop.proxy.support;
 
-import com.beanbox.aop.support.AdvisedSupport;
+import com.beanbox.aop.aspect.AdvisedSupport;
 import com.beanbox.aop.proxy.AopProxy;
-import com.beanbox.aop.support.ReflectiveMethodInvocation;
+import com.beanbox.aop.aspect.ReflectiveMethodInvocation;
 import com.beanbox.utils.ClassUtils;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
 
-import javax.jws.soap.SOAPBinding;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -57,7 +55,7 @@ public class JdkDynamicAopProxy implements AopProxy, InvocationHandler {
 			// ReflectiveMethodInvocation 是MethodInvocation的实现类,
 			// 调用proceed会执行真正被代理的方法
 			MethodInterceptor methodInterceptor =advised.getMethodInterceptor ();
-			return methodInterceptor.invoke (nemeiyw ReflectiveMethodInvocation(advised.getTargetSource ().getTarget (),method,args));
+			return methodInterceptor.invoke (new ReflectiveMethodInvocation(advised.getTargetSource ().getTarget (),method,args));
 		}
 		// 执行原方法
 		return method.invoke (advised.getTargetSource ().getTarget (),args);

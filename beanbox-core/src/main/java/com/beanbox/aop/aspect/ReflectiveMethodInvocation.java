@@ -1,4 +1,4 @@
-package com.beanbox.aop.support;
+package com.beanbox.aop.aspect;
 
 import org.aopalliance.intercept.MethodInvocation;
 
