@@ -103,7 +103,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	}
 
 	/**
-	 * 初始化Bean 其中执行了init-method 和before 和after处理函数
+	 * 初始化Bean 其中执行了init-method 和before 和after处理函数 PostProcessors
 	 * @param beanName
 	 * @param bean
 	 * @param beanDefinition
@@ -128,13 +128,13 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			}
 		}
 
-		//1.Bean初始化前预处理 Before
+		//1.Bean初始化前预处理 Before PostProcessors
 		Object wrappedBean=applyBeanPostProcessorsBeforeInitialization (bean,beanName);
 
 		//2.执行Bean的初始化方法
 		invokeInitMethods (beanName,wrappedBean,beanDefinition);
 
-		//3. Bean创建后，执行定义的后续处理方法 After
+		//3. Bean创建后，执行定义的后续处理方法 After PostProcessors
 		wrappedBean=applyBeanPostProcessorsAfterInitialization (wrappedBean,beanName);
 		return wrappedBean;
 	}
@@ -205,6 +205,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	@Override
 	public Object applyBeanPostProcessorsBeforeInitialization (Object existingBean , String beanName) {
 		Object res=existingBean;
+
+		int size=getBeanPostProcessors().size ();
+
 		for (BeanPostProcessor processor:getBeanPostProcessors ())
 		{
 			Object cnt=processor.postProcessBeforeInitialization (res,beanName);

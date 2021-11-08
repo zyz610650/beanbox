@@ -38,7 +38,7 @@ public class BeanDefinition {
 	private String destroyMethodName;
 
 
-	// Bean对象的作用范围 模拟人为单例
+	// Bean对象的作用范围  默认为单例
 	private String scope=SCOPE_SINGLETON;
 
 	private boolean singleton=true;

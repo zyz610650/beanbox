@@ -38,6 +38,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		if (bean!=null)
 			return (T) getObjectForBeanInstance (bean,name);
 
+		//懒加载 用到的时候才根据BeanDefinition创建具体的bean
 		BeanDefinition beanDefinition=getBeanDefinition (name);
          bean = createBean (name, beanDefinition, args);
 

@@ -6,4 +6,6 @@ package com.beanbox.test.proxy;
 public interface IUserService {
 
 	public String queryUserInfo();
+
+	String register(String userName);
 }

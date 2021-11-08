@@ -1,6 +1,7 @@
 package com.beanbox.test.pojo;
 
 import lombok.Getter;
+import lombok.SneakyThrows;
 
 /**
  * @author: @zyz
@@ -15,8 +16,11 @@ public class UserService implements IUserService{
 
 
 
+	@SneakyThrows
 	@Override
 	public String queryUserInfo() {
+		System.out.println ("进入到 queryUserInfo()");
+		Thread.sleep (2000);
 		System.out.println ("执行 queryUserInfo()");
 		return "执行 queryUserInfo()";
 //		return userDao.queryUserName(uId) + "," + company + "," + location;

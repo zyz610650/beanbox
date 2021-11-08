@@ -56,11 +56,11 @@ public class AspectJExpressionPointCut implements Pointcut, ClassFilter, MethodM
 
 	@Override
 	public ClassFilter getClassFilter () {
-		return null;
+		return this;
 	}
 
 	@Override
 	public MethodMatcher getMethodMatcher () {
-		return null;
+		return this;
 	}
 }

@@ -7,7 +7,7 @@ import lombok.Getter;
  * @author: @zyz
  */
 @Getter
-public class UserService {
+public class UserService implements IUserService{
 
 	private String uId;
 	private String company;
@@ -18,5 +18,10 @@ public class UserService {
 
 	public String queryUserInfo() {
 		return userDao.queryUserName(uId) + "," + company + "," + location;
+	}
+
+	@Override
+	public String register (String userName) {
+		return null;
 	}
 }

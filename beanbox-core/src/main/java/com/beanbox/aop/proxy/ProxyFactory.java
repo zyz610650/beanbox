@@ -19,7 +19,7 @@ public class ProxyFactory {
 
 	public Object getProxy()
 	{
-		return null;
+		return createAopProxy ().getProxy ();
 	}
 
 	/**
