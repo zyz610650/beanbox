@@ -14,11 +14,13 @@ import com.beanbox.beans.po.BeanDefinition;
 import com.beanbox.beans.po.BeanReference;
 import com.beanbox.beans.po.PropertyValue;
 import com.beanbox.beans.processor.BeanPostProcessor;
+import com.beanbox.beans.processor.InstantiationAwareBeanPostProcessor;
 import com.beanbox.beans.sessions.PropertyValueSession;
 import com.beanbox.context.DisposableBean;
 import com.beanbox.context.InitializingBean;
 import com.beanbox.context.suppport.DisposableBeanAdapter;
 import com.beanbox.exception.BeanException;
+import com.sun.corba.se.spi.ior.ObjectKey;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -34,23 +36,94 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	@Override
 	protected Object createBean (String name , BeanDefinition beanDefinition , Object[] args) {
 		Object bean=null;
+
+		// 判断是否走aop 走aop就不走下面普通bean的处理逻辑
+		bean= resolveBeforeInstantiation (name,beanDefinition);
+		if (bean != null) return  bean;
+
 		// 创建实例
 		bean=createBeanInstance (beanDefinition,name,args);
+
+
 		//注入属性
 		applyPropertyValues (name,bean,beanDefinition);
 
-		// 执行 Bean 的初始化方法和 BeanPostProcessor 的前置和后置处理方法
+		// 创建并执行 Bean 的初始化方法和 BeanPostProcessor 的前置和后置处理方法
 		bean=initializeBean (name,bean,beanDefinition);
-
 
 		//为实现了DisposableBean接口/配置了destory-name的Bean对象添加销毁方法
 		registerDisposableIfNecessary (name,bean,beanDefinition);
 
 		if (beanDefinition.isSingleton ())
 		{
+			// 注册单例Bean 并执行Processor
 			registerSingleton (name,bean);
 		}
 		return bean;
+	}
+
+	/**
+	 * 单独对aop代理类进行处理
+	 * @param beanName
+	 * @param beanDefinition
+	 * @return null or aop生成的代理类
+	 */
+	protected Object resolveBeforeInstantiation(String beanName, BeanDefinition beanDefinition)
+	{
+		Object bean=applyBeanPostProcessorsBeforeInstantiation (beanDefinition.getBeanClass (),beanName);
+		if (null != bean)
+		{
+			bean=applyBeanPostProcessorsAfterInitialization (bean,beanName);
+		}
+		return bean;
+	}
+
+	/**
+	 * 使用专门生成aop代理的processor 生成代理类
+	 * @param beanClass
+	 * @param beanName
+	 * @return
+	 */
+	protected Object applyBeanPostProcessorsBeforeInstantiation(Class<?> beanClass, String beanName)
+	{
+		for(BeanPostProcessor beanPostProcessor:getBeanPostProcessors ())
+		{
+			//从所有processor中选出 aop生成代理的processor
+			if (beanPostProcessor instanceof InstantiationAwareBeanPostProcessor)
+			{
+				Object res=((InstantiationAwareBeanPostProcessor) beanPostProcessor).postProcessBeforeInstantiation (beanClass,beanName);
+				if (null != res) return res;
+			}
+
+		}
+		return null;
+	}
+
+
+	@Override
+	public Object applyBeanPostProcessorsAfterInitialization (Object existingBean , String beanName) {
+		Object res=existingBean;
+		for (BeanPostProcessor processor: getBeanPostProcessors ())
+		{
+			Object cnt=processor.postProcessAfterInitialization (res,beanName);
+			if (cnt==null) return res;
+			res=cnt;
+		}
+		return res;
+	}
+
+	@Override
+	public Object applyBeanPostProcessorsBeforeInitialization (Object existingBean , String beanName) {
+		Object res=existingBean;
+
+
+		for (BeanPostProcessor processor:getBeanPostProcessors ())
+		{
+			Object cnt=processor.postProcessBeforeInitialization (res,beanName);
+			if (cnt==null) return res;
+			res=cnt;
+		}
+		return res;
 	}
 
 	/**
@@ -74,11 +147,13 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		return getInstantiationService ().instantiate(beanDefinition, beanName, constructorToUse, args);
 	}
 
-
+//	methodInterceptor
+//	pointcutAdvisor
 	@Override
 	protected void applyPropertyValues(String beanName, Object bean, BeanDefinition beanDefinition)
 	{
 		PropertyValueSession propertyValueSession=beanDefinition.getPropertyValueSession ();
+		PropertyValue[] propertyValues = propertyValueSession.getPropertyValues ();
 		for (PropertyValue propertyValue:propertyValueSession.getPropertyValues ())
 		{
 			String name=propertyValue.getName ();
@@ -190,30 +265,5 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			}
 	}
 
-	@Override
-	public Object applyBeanPostProcessorsAfterInitialization (Object existingBean , String beanName) {
-		Object res=existingBean;
-		for (BeanPostProcessor processor: getBeanPostProcessors ())
-		{
-			Object cnt=processor.postProcessAfterInitialization (res,beanName);
-			if (cnt==null) return res;
-			res=cnt;
-		}
-		return res;
-	}
 
-	@Override
-	public Object applyBeanPostProcessorsBeforeInitialization (Object existingBean , String beanName) {
-		Object res=existingBean;
-
-		int size=getBeanPostProcessors().size ();
-
-		for (BeanPostProcessor processor:getBeanPostProcessors ())
-		{
-			Object cnt=processor.postProcessBeforeInitialization (res,beanName);
-			if (cnt==null) return res;
-			res=cnt;
-		}
-		return res;
-	}
 }

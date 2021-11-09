@@ -16,6 +16,7 @@ public class CglibInstantiationServiceSupprot implements InstantiationService {
 	@Override
 	public Object instantiate (BeanDefinition beanDefinition , String beanName , Constructor constructor , Object[] args) {
 		Class<?> clazz=beanDefinition.getBeanClass ();
+
 		try {
 			Enhancer enhancer=new Enhancer ();
 			enhancer.setSuperclass (clazz);

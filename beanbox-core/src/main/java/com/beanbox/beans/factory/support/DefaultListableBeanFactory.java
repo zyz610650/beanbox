@@ -45,9 +45,12 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			Class<?> clazz=beanDefinition.getBeanClass ();
 			if (type.isAssignableFrom (clazz) )
 			{
+				// 讲扫描到的processor添加到缓存，processor这时还未创建
+				// 通过getBean创建对象
 				res.put (beanName, (T) getBean (beanName));
 			}
 		});
+
 		return res;
 	}
 

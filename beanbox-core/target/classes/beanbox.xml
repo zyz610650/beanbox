@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
 
-    <bean id="userService1" class="com.beanbox.test.proxy.IUserService"/>
+    <bean id="userService1" class="com.beanbox.test.proxy.UserService"/>
     <bean class="com.beanbox.aop.proxy.DefaultAdvisorAutoProxyCreator"/>
     <bean id="beforeAdvice" class="com.beanbox.test.aop.UserServiceBeforeAdvice"/>
     <bean id="methodInterceptor" class="com.beanbox.aop.interceptor.MethodBeforeAdviceInterceptor">
@@ -38,7 +38,7 @@
 <!--    </bean>-->
 <!--    <bean id="higherUser" class="com.beanbox.test.pojo.HigherUser"/>-->
 <!--    <bean class="com.beanbox.test.processor.MyBeanDefinitionPostProcessor"/>-->
-<!--    <bean class="com.beanbox.test.processor.MyBeanPostProcessor"/>-->
+    <bean class="com.beanbox.test.processor.MyBeanProcessor"/>
 
 <!--    <bean id="userDao" class="com.beanbox.test.pojo.UserDao" init-method="initDataMethod" destory-method="destroyDataMethod"/>-->
 <!--    <bean id="userBean" class="com.beanbox.test.pojo.UserBean" />-->

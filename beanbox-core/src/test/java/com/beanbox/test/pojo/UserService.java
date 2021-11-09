@@ -7,7 +7,7 @@ import lombok.SneakyThrows;
  * @author: @zyz
  */
 @Getter
-public class UserService implements IUserService{
+public class UserService extends HigherUser implements IUserService{
 
 	private String uId;
 	private String company;

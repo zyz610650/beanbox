@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 /**
  * @author: @zyz
  */
-public interface MethodBeforeAdvice {
+public interface MethodBeforeAdvice extends BeforeAdvice{
 
 	/**
 	 * 在method方法执行前，调用该方法

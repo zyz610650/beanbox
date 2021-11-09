@@ -17,7 +17,9 @@ public class UserService implements IUserService{
 
 
 	public String queryUserInfo() {
-		return userDao.queryUserName(uId) + "," + company + "," + location;
+//		return userDao.queryUserName(uId) + "," + company + "," + location;
+//		System.out.println ("I am queryUserInfo");
+		return "queryUserInfo";
 	}
 
 	@Override

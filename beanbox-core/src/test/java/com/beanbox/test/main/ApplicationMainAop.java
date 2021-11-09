@@ -6,9 +6,11 @@ import com.beanbox.aop.aspect.TargetSource;
 import com.beanbox.aop.proxy.support.CglibAopProxy;
 import com.beanbox.context.suppport.ClassPathXmlApplicationContext;
 import com.beanbox.test.aop.UserServiceInterceptor;
-import com.beanbox.test.pojo.IUserService;
+
 import com.beanbox.test.pojo.UserBean;
-import com.beanbox.test.pojo.UserService;
+
+import com.beanbox.test.proxy.UserService;
+import com.beanbox.test.proxy.IUserService;
 import com.beanbox.test.service.UserService2;
 import org.junit.Test;
 
@@ -28,7 +30,7 @@ public class ApplicationMainAop {
 		TargetSource targetSource = new TargetSource (userService);
 		advisedSupport.setTargetSource (targetSource);
 
-		// 为啥这里必须声明为接口 否则到代理类里就match为false 在外面就为true
+		// 这里必须声明为接口 否则到代理类里就match为false 在外面就为true
 		AspectJExpressionPointCut pointCut=new AspectJExpressionPointCut ("execution( * com.beanbox.test.pojo.UserService.*(..))");
 		advisedSupport.setMethodMatcher (pointCut);
 		advisedSupport.setMethodInterceptor (new UserServiceInterceptor ());
@@ -49,7 +51,7 @@ public class ApplicationMainAop {
 	@Test
 	public void test_pointcut() throws NoSuchMethodException {
 		AspectJExpressionPointCut pointCut=new AspectJExpressionPointCut ("execution(* com.beanbox.test.pojo.UserService.*(..))");
-		Class< com.beanbox.test.pojo.UserService > clazz= UserService.class;
+		Class< com.beanbox.test.pojo.UserService > clazz= com.beanbox.test.pojo.UserService.class;
 		Method method = clazz.getDeclaredMethod ("queryUserInfo");
 		System.out.println (pointCut.matches (clazz));
 		System.out.println (pointCut.matches (method,clazz));
@@ -59,8 +61,9 @@ public class ApplicationMainAop {
 	public void test_beforeAdvice()
 	{
 		ClassPathXmlApplicationContext applicationContext=new ClassPathXmlApplicationContext ("classpath:beanbox.xml");
-		System.out.println (applicationContext.getBean ("userService1",IUserService.class));
-		IUserService userService=applicationContext.getBean ("userService1",IUserService.class);
+//		System.out.println (applicationContext.getBean ("userService1").getClass ().getSuperclass ());
+	IUserService userService=applicationContext.getBean ("userService1",IUserService.class);
+//		System.out.println (userService.getClass ().getSuperclass ());
 		System.out.println ("end: "+ userService.queryUserInfo ());
 	}
 
