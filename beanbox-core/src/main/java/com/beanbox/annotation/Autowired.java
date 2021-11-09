@@ -1,4 +1,4 @@
-package com.beanbox.test;
+package com.beanbox.annotation;
 
 import java.lang.annotation.*;
 

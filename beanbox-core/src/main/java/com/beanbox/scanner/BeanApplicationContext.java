@@ -1,8 +1,7 @@
 //package com.beanbox.scanner;
 //
 //import com.beanbox.annotation.Autowired;
-//import com.beanbox.annotation.Component;
-//import com.beanbox.annotation.ComponentScan;
+
 //import com.beanbox.annotation.Scope;
 //import com.beanbox.enums.ScopeEnum;
 //import com.beanbox.filter.AnnotationTypeFilter;

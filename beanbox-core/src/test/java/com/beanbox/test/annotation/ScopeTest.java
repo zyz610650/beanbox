@@ -1,6 +1,6 @@
 package com.beanbox.test.annotation;
 
-import com.beanbox.test.Scope;
+import com.beanbox.annotation.Scope;
 import com.beanbox.enums.ScopeEnum;
 
 /**

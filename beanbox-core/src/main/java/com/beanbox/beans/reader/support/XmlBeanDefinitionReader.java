@@ -2,6 +2,7 @@ package com.beanbox.beans.reader.support;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.XmlUtil;
+import com.beanbox.annotation.scanner.ClassPathBeanDefinitionScanner;
 import com.beanbox.beans.factory.ConfigurableBeanFactory;
 import com.beanbox.beans.po.BeanDefinition;
 import com.beanbox.beans.po.BeanReference;
@@ -14,6 +15,7 @@ import com.beanbox.io.loader.support.DefaultResourceLoader;
 import com.beanbox.io.resource.Resource;
 import com.beanbox.utils.ClassUtils;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -23,6 +25,7 @@ import java.io.InputStream;
 /**
  * @author: @zyz
  */
+@Slf4j
 public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	public XmlBeanDefinitionReader (BeanDefinitionRegistry registry) {
 		super (registry);
@@ -66,8 +69,49 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		BeanDefinitionRegistry registry = getRegistry ();
 		Document doc = XmlUtil.readXML (inputStream);
 		Element root=doc.getDocumentElement ();
-		NodeList beanNodeList = root.getElementsByTagName ("bean");
 
+
+	}
+
+	/**
+	 * 解析 context:bean-scan 标签下的内容 用于组装BeanDefinition
+	 * @param root
+	 * @param registry
+	 */
+	protected void loadBeanScan(Element root, BeanDefinitionRegistry registry)
+	{
+		NodeList beanScanNodeList = root.getElementsByTagName ("bean-scan");
+		String basePackage=null;
+		for (int i=0;i<beanScanNodeList.getLength ();i++)
+		{
+			Element element= (Element) beanScanNodeList.item (i);
+			 basePackage = element.getAttribute ("base-package");
+			if (StrUtil.isEmpty (basePackage)) {
+				log.warn ("base-package is empty ");
+				continue;
+			}
+		}
+		scanPackage (basePackage);
+	}
+
+	/**
+	 * 扫描并加载包下的BeanDefinition
+	 * @param scnPath
+	 */
+	private void scanPackage(String scnPath){
+		String[] basePackages=StrUtil.splitToArray (scnPath,',');
+		ClassPathBeanDefinitionScanner scanner=new ClassPathBeanDefinitionScanner (getRegistry ());
+		scanner.doScan (basePackages);
+	}
+	/**
+	 * 解析XML中Bean标签下的内容
+	 * @param root XML中根节点元素
+	 * @param registry
+	 */
+	protected void loadBeanElement(Element root,BeanDefinitionRegistry registry)
+	{
+
+		NodeList beanNodeList = root.getElementsByTagName ("bean");
 		for (int i=0;i<beanNodeList.getLength ();i++)
 		{
 			Element element= (Element) beanNodeList.item (i);
@@ -109,7 +153,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 				if (StrUtil.isNotEmpty (beanScope))
 				{
 					if (beanScope.equals (ConfigurableBeanFactory.SCOPE_PROTOTYPE)||beanScope.equals (ConfigurableBeanFactory.SCOPE_SINGLETON))
-					 beanDefinition.setScope (beanScope);
+						beanDefinition.setScope (beanScope);
 					else  throw new BeanException ("property [scope] exception :"+ beanScope);
 				}
 				//判重
@@ -120,12 +164,11 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 				//到beanDefition容器中
 				registry.registerBeanDefinition (beanName,beanDefinition);
 
-		      } catch (ClassNotFoundException e) {
+			} catch (ClassNotFoundException e) {
 
 				throw new BeanException (className+ "can not be instantiated",e);
 			}
 		}
-
 	}
 
 	/**

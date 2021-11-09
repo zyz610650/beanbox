@@ -1,4 +1,4 @@
-package com.beanbox.test;
+package com.beanbox.annotation;
 
 import java.lang.annotation.*;
 
@@ -9,5 +9,11 @@ import java.lang.annotation.*;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target (ElementType.TYPE)
-public @interface Component {
+public @interface Bean {
+
+	/**
+	 * Bean 的名字
+	 * @return
+	 */
+	String value() default "";
 }

@@ -1,16 +1,15 @@
-package com.beanbox.test;
-
-import com.beanbox.enums.ScopeEnum;
+package com.beanbox.annotation;
 
 import java.lang.annotation.*;
 
 /**
+ *
  * @author: @zyz
  */
 
 @Documented
 @Retention (RetentionPolicy.RUNTIME)
 @Target (ElementType.TYPE)
-public @interface Scope {
-	ScopeEnum value() default ScopeEnum.SINGLETON;
+public @interface ComponentScan {
+	String[] basePackages();
 }
