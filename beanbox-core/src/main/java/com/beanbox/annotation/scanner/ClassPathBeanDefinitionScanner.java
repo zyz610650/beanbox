@@ -31,6 +31,8 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateBe
 			for (BeanDefinition beanDefinition: candidates){
 				//解析BeanDefinition的作用域
 				ScopeEnum scopeEnum = resolveBeanScope (beanDefinition);
+				// 默认单例
+				if (scopeEnum==null) scopeEnum=ScopeEnum.SINGLETON;
 				beanDefinition.setScope (scopeEnum.getTypes ());
 
 				// 将BeanDefinition注入IOC容器

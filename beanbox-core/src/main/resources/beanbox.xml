@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
 
-    <bean id="userService1" class="com.beanbox.test.proxy.UserService"/>
-    <bean class="com.beanbox.aop.proxy.DefaultAdvisorAutoProxyCreator"/>
-    <bean id="beforeAdvice" class="com.beanbox.test.aop.UserServiceBeforeAdvice"/>
-    <bean id="methodInterceptor" class="com.beanbox.aop.interceptor.MethodBeforeAdviceInterceptor">
-        <property name="advice" ref="beforeAdvice"/>
-    </bean>
-    <bean id="pointcutAdvisor" class="com.beanbox.aop.advisor.AspectJExpressionPointcutAdvisor">
-        <property name="expression" value="execution(* com.beanbox.test.proxy.IUserService.*(..))"/>
-        <property name="advice" ref="methodInterceptor"/>
-    </bean>
-<!--    prox test-->
-<!--    <bean id="userService" class="com.beanbox.test.aop.UserService" scope="prototype">-->
-<!--    <property name="uId" value="zyz"></property>-->
-<!--        <property name="uId" value="zyz"></property>-->
-<!--        <property name="company" value="jlu"></property>-->
-<!--        <property name="location" value="changchun"></property>-->
-<!--        <property name="userDao" ref="proxyUserDao"></property>-->
+<!--    <bean id="userService" class="com.beanbox.test.pojo.UserService"/>-->
+<!--    <bean class="com.beanbox.aop.proxy.DefaultAdvisorAutoProxyCreator"/>-->
+<!--    <bean id="beforeAdvice" class="com.beanbox.test.aop.UserServiceBeforeAdvice"/>-->
+<!--    <bean id="methodInterceptor" class="com.beanbox.aop.interceptor.MethodBeforeAdviceInterceptor">-->
+<!--        <property name="advice" ref="beforeAdvice"/>-->
 <!--    </bean>-->
+<!--    <bean id="pointcutAdvisor" class="com.beanbox.aop.advisor.AspectJExpressionPointcutAdvisor">-->
+<!--        <property name="expression" value="execution(* com.beanbox.test.proxy.IUserService.*(..))"/>-->
+<!--        <property name="advice" ref="methodInterceptor"/>-->
+<!--    </bean>-->
+<!--    prox test-->
+    <bean id="userService" class="com.beanbox.test.pojo.UserService" scope="prototype">
+    <property name="uId" value="zyz"></property>
+        <property name="uId" value="zyz"></property>
+        <property name="company" value="jlu"></property>
+        <property name="location" value="changchun"></property>
+        <property name="token" value="${token}"/>
+<!--        <property name="userDao" ref="proxyUserDao"></property>-->
+    </bean>
+    <bean class="com.beanbox.beans.processor.support.PropertyPlaceholderProcessor">
+        <property name="location" value="classpath:property.properties"/>
+    </bean>
 <!--    <bean name="proxyUserDao" class="com.beanbox.test.proxy.ProxyUserDao" ></bean>-->
 
 
@@ -38,7 +42,7 @@
 <!--    </bean>-->
 <!--    <bean id="higherUser" class="com.beanbox.test.pojo.HigherUser"/>-->
 <!--    <bean class="com.beanbox.test.processor.MyBeanDefinitionPostProcessor"/>-->
-    <bean class="com.beanbox.test.processor.MyBeanProcessor"/>
+<!--    <bean class="com.beanbox.test.processor.MyBeanProcessor"/>-->
 
 <!--    <bean id="userDao" class="com.beanbox.test.pojo.UserDao" init-method="initDataMethod" destory-method="destroyDataMethod"/>-->
 <!--    <bean id="userBean" class="com.beanbox.test.pojo.UserBean" />-->

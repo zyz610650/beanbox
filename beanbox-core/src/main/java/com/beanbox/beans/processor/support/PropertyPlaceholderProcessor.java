@@ -76,7 +76,7 @@ public class PropertyPlaceholderProcessor implements BeanDefinitionPostProcessor
 					String proValue = (String)properties.get (key);
 					if (proValue==null)
 					{
-						log.error ("Property {} not be injected",key);
+						log.warn ("property [{}] is empty",key);
 						continue;
 					}
 					propertyValueSession.addPropertyValue (new PropertyValue (name,proValue));

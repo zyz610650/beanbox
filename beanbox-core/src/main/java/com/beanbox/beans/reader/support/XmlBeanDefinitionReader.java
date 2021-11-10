@@ -69,6 +69,10 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		BeanDefinitionRegistry registry = getRegistry ();
 		Document doc = XmlUtil.readXML (inputStream);
 		Element root=doc.getDocumentElement ();
+		//加载带有BeanScan标签的类
+		loadBeanScan(root,registry);
+		//加载带有Bean标签的类
+		loadBeanElement(root,registry);
 
 
 	}
@@ -86,10 +90,13 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		{
 			Element element= (Element) beanScanNodeList.item (i);
 			 basePackage = element.getAttribute ("base-package");
-			if (StrUtil.isEmpty (basePackage)) {
-				log.warn ("base-package is empty ");
-				continue;
-			}
+
+		}
+
+		if (basePackage==null||StrUtil.isEmpty (basePackage))
+		{
+			log.warn ("base-package is empty ");
+			return;
 		}
 		scanPackage (basePackage);
 	}

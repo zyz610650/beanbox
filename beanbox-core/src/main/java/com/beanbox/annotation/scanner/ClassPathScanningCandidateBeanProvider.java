@@ -24,7 +24,7 @@ public class ClassPathScanningCandidateBeanProvider {
 		//扫描basePackage包下的所有带Bean注解的类
 		Set<Class<?>> classes =ClassUtil.scanPackageByAnnotation (basePackage, Bean.class);
 		for (Class<?> clazz : classes){
-			candidates.add (new BeanDefinition ());
+			candidates.add (new BeanDefinition (clazz));
 		}
 		return candidates;
 	}
