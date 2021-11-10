@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.beanbox.beans.annotation.Bean;
 import com.beanbox.beans.annotation.Scope;
 import com.beanbox.beans.po.BeanDefinition;
+import com.beanbox.beans.processor.support.AutowiredAndValueAnnotationBeanPostProcessor;
 import com.beanbox.beans.registry.BeanDefinitionRegistry;
 import com.beanbox.enums.ScopeEnum;
 
@@ -39,6 +40,9 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateBe
 				registry.registerBeanDefinition (determineBeanName (beanDefinition),beanDefinition);
 			}
 		}
+
+		// 注册@Autowired 和@Value注解处理Processor: AutowiredAndValueAnnotationBeanPostProcessor 到BeanDefinition IOC容器中
+		registry.registerBeanDefinition ("com.beanbox.beans.processor.support.AutowiredAndValueAnnotationBeanPostProcessor",new BeanDefinition (AutowiredAndValueAnnotationBeanPostProcessor.class));
 
 	}
 

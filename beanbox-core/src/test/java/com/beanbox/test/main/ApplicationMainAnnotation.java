@@ -26,6 +26,7 @@ public class ApplicationMainAnnotation {
 		UserBean userBean = applicationContext.getBean ("userBean" , UserBean.class);
 		System.out.println (userBean.getHigherUser ().getName ());
 		System.out.println (userBean.getName ());
+
 	}
 
 	@Test

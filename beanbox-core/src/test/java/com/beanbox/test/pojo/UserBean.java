@@ -20,7 +20,7 @@ public class UserBean  {
 	String name;
 	String school;
 	@Autowired
-	@Qualifier("higherUser1")
+	@Qualifier("higherUser2")
 	HigherUser higherUser;
 	int age;
 

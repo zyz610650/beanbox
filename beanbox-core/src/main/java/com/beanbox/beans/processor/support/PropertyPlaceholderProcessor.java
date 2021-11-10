@@ -73,23 +73,23 @@ public class PropertyPlaceholderProcessor implements BeanDefinitionPostProcessor
 					String proValue=resolvePlaceHolder(value,properties);
 					if (proValue==null)
 					{
-						log.warn ("property [{}] is empty",name);
+//						log.warn ("property [{}] is empty",name);
 						continue;
 					}
 					propertyValueSession.addPropertyValue (new PropertyValue (name,proValue));
 				}
-
-				//向容器中添加字符串解析器，共解析@Value注解使用
-				StringValueResolver valueResolver =new PlaceholderResolvingStringValueResolver (properties);
-				beanFactory.addEmbeddedValueResolver (valueResolver);
 			}
+			//向容器中添加字符串解析器，共解析@Value注解使用
+			StringValueResolver valueResolver =new PlaceholderResolvingStringValueResolver (properties);
+			beanFactory.addEmbeddedValueResolver (valueResolver);
+
 		} catch (IOException e) {
 			throw new BeanException ("Could not load properties",e);
 		}
 	}
 
 	/**
-	 * 解析${}属性
+	 * 从Properties文件中 解析${value}属性 并返回其值
 	 * @param value
 	 * @param properties
 	 * @return
