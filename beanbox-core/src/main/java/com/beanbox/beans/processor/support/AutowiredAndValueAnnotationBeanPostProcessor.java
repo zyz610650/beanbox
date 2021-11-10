@@ -3,6 +3,7 @@ package com.beanbox.beans.processor.support;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ClassUtil;
 import com.beanbox.beans.annotation.Autowired;
+import com.beanbox.beans.annotation.Bean;
 import com.beanbox.beans.annotation.Qualifier;
 import com.beanbox.beans.annotation.Value;
 import com.beanbox.beans.aware.BeanFactoryAware;
@@ -16,6 +17,7 @@ import java.lang.reflect.Field;
 
 /**
  * @author: @zyz
+ *
  */
 public class AutowiredAndValueAnnotationBeanPostProcessor implements InstantiationAwareBeanPostProcessor, BeanFactoryAware {
 
@@ -28,16 +30,23 @@ public class AutowiredAndValueAnnotationBeanPostProcessor implements Instantiati
 	}
 
 
+	/**
+	 * 主要用于处理类含有 @Value、@Autowired 注解的属性，进行属性信息的提取和设置。
+	 * @param propertyValueSession
+	 * @param bean
+	 * @param beanName
+	 * @return
+	 */
 	@Override
 	public PropertyValueSession postProcessPropertyValues (PropertyValueSession propertyValueSession , Object bean , String beanName) {
 
 		Class<?> clazz=bean.getClass ();
 		clazz = ClassUtils.isCglibProxyClass (clazz) ? clazz.getSuperclass () : clazz;
 		Field[] declaredFields = clazz.getDeclaredFields ();
-		for (Field field : declaredFields)
-		{
 
-		}
+		doValueAnnotation (declaredFields,bean);
+		doAutowiredAnnotation (declaredFields,bean);
+
 
 		return null;
 	}
@@ -59,6 +68,11 @@ public class AutowiredAndValueAnnotationBeanPostProcessor implements Instantiati
 		}
 	}
 
+	/**
+	 * 处理fields属性上的@Annotation
+	 * @param fields
+	 * @param bean
+	 */
 	private void doAutowiredAnnotation(Field[] fields,Object bean)
 	{
 		for (Field field: fields)
@@ -72,7 +86,10 @@ public class AutowiredAndValueAnnotationBeanPostProcessor implements Instantiati
 			Object fieldObj=null;
 			if (value!=null){
 				fieldObj=beanFactory.getBean (value,fieldType);
-			}else fieldObj=beanFactory.getBean (fieldType);
+			}else {
+				fieldObj=beanFactory.getBean (fieldType);
+			}
+			BeanUtil.setFieldValue (bean,field.getName (),fieldObj);
 		}
 	}
 	@Override

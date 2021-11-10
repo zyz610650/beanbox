@@ -41,7 +41,14 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		return (T) getBean (name);
 	}
 
-	private <T> T doGetBean(final  String name,final Object[] args)
+	@Override
+	public Object getBean (String name) {
+		return doGetBean (name,null);
+	}
+
+
+
+	private <T> T doGetBean(final  String name, final Object[] args)
 	{
 		Object bean=getSingleton (name);
 		if (bean!=null)

@@ -7,5 +7,6 @@ import lombok.Data;
  */
 @Data
 public class HigherUser {
+
 	private String name;
 }

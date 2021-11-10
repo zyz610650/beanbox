@@ -15,6 +15,7 @@ public class PropertyValueSession {
 	 * 每个类的属性缓存
 	 */
 	private final List< PropertyValue >  propertyValueList=new ArrayList <> ();
+
 	public void addPropertyValue(PropertyValue propertyValue)
 	{
 		this.propertyValueList.add (propertyValue);

@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
 
+<!--    <bean id="userService" class="com.beanbox.test.pojo.UserService" scope="prototype">-->
+<!--        <property name="uId" value="zyz"></property>-->
+<!--        <property name="uId" value="zyz"></property>-->
+<!--        <property name="company" value="jlu"></property>-->
+<!--        <property name="location" value="changchun"></property>-->
+<!--        <property name="token" value="${token}"/>-->
+<!--        &lt;!&ndash;        <property name="userDao" ref="proxyUserDao"></property>&ndash;&gt;-->
+<!--    </bean>-->
+    <bean name="higherUser1" class="com.beanbox.test.pojo.HigherUser">
+        <property name="name" value="higherUser1"/>
+    </bean>
+    <bean name="higherUser2" class="com.beanbox.test.pojo.HigherUser">
+        <property name="name" value="higherUser2"/>
+    </bean>
+    <bean class="com.beanbox.beans.processor.support.PropertyPlaceholderProcessor">
+        <property name="location" value="classpath:property.properties"/>
+    </bean>
+
+    <bean-scan base-package="com.beanbox.test.pojo"/>
+
+<!--    Aop test-->
 <!--    <bean id="userService" class="com.beanbox.test.pojo.UserService"/>-->
 <!--    <bean class="com.beanbox.aop.proxy.DefaultAdvisorAutoProxyCreator"/>-->
 <!--    <bean id="beforeAdvice" class="com.beanbox.test.aop.UserServiceBeforeAdvice"/>-->
@@ -11,19 +32,17 @@
 <!--        <property name="expression" value="execution(* com.beanbox.test.proxy.IUserService.*(..))"/>-->
 <!--        <property name="advice" ref="methodInterceptor"/>-->
 <!--    </bean>-->
+
+
 <!--    prox test-->
-    <bean id="userService" class="com.beanbox.test.pojo.UserService" scope="prototype">
-    <property name="uId" value="zyz"></property>
-        <property name="uId" value="zyz"></property>
-        <property name="company" value="jlu"></property>
-        <property name="location" value="changchun"></property>
-        <property name="token" value="${token}"/>
+<!--    <bean id="userService" class="com.beanbox.test.pojo.UserService" scope="prototype">-->
+<!--    <property name="uId" value="zyz"></property>-->
+<!--        <property name="uId" value="zyz"></property>-->
+<!--        <property name="company" value="jlu"></property>-->
+<!--        <property name="location" value="changchun"></property>-->
 <!--        <property name="userDao" ref="proxyUserDao"></property>-->
-    </bean>
-    <bean class="com.beanbox.beans.processor.support.PropertyPlaceholderProcessor">
-        <property name="location" value="classpath:property.properties"/>
-    </bean>
 <!--    <bean name="proxyUserDao" class="com.beanbox.test.proxy.ProxyUserDao" ></bean>-->
+
 
 
 <!--    Listener test-->

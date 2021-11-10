@@ -7,6 +7,7 @@ package com.beanbox.beans.factory;
 public interface BeanFactory {
 
 
+	public Object getBean(String name);
 
 	/**
 	 * 根据bean的name从IOC容器中获取bean
@@ -24,6 +25,10 @@ public interface BeanFactory {
 	 * @return
 	 */
 	<T> T getBean(String name,Class<T> requiredType);
+
+	<T> T getBean(Class<T> requiredType);
+
+
 
 
 

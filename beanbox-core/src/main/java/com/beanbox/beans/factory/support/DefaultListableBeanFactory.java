@@ -6,8 +6,7 @@ import com.beanbox.exception.BeanException;
 
 import com.beanbox.beans.registry.BeanDefinitionRegistry;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -33,6 +32,23 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	}
 
 
+	@Override
+	public < T > T getBean (Class < T > requiredType) {
+		List<String> beanNames =new ArrayList <> ();
+		Set < Map.Entry < String, BeanDefinition > > entries = beanDefinitionMap.entrySet ();
+		for (Map.Entry entry:entries)
+		{
+			BeanDefinition beanDefinition = (BeanDefinition) entry.getValue ();
+			Class<?> clazz= beanDefinition.getBeanClass ();
+			if (requiredType.isAssignableFrom (clazz))
+			{
+				beanNames.add ((String) entry.getKey ());
+			}
+		}
+		if (beanNames.size ()==0) return getBean (beanNames.get (0),requiredType);
+
+		throw new BeanException (requiredType + "expected single bean but found " + beanNames.size() + ": " + beanNames);
+	}
 	@Override
 	public boolean containsBeanDefinition (String beanName) {
 		return beanDefinitionMap.containsKey (beanName);

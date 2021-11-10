@@ -19,6 +19,14 @@ public class ApplicationMainAnnotation {
 		System.out.println (userService.queryUserInfo ());
 	}
 
+	@Test
+	public void test_annotation()
+	{
+		ClassPathXmlApplicationContext applicationContext=new ClassPathXmlApplicationContext ("classpath:beanbox.xml");
+		UserBean userBean = applicationContext.getBean ("userBean" , UserBean.class);
+		System.out.println (userBean.getHigherUser ().getName ());
+		System.out.println (userBean.getName ());
+	}
 
 	@Test
 	public void test_bean_scan()

@@ -69,16 +69,30 @@
       <recent name="D:\project\java\BeanBox\beanbox-core\src\test\java\com\beanbox\test\pojo" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ApplicationMainAnnotation.test_bean_scan">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ApplicationMainAnnotation.test_annotation">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApplicationMainAnnotation.test_annotation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="beanbox-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.beanbox.test.main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.beanbox.test.main" />
+      <option name="MAIN_CLASS_NAME" value="com.beanbox.test.main.ApplicationMainAnnotation" />
+      <option name="METHOD_NAME" value="test_annotation" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -147,29 +161,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationMain.test_superClass" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="beanbox-core" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.beanbox.test.main.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.beanbox.test.main" />
-      <option name="MAIN_CLASS_NAME" value="com.beanbox.test.main.ApplicationMain" />
-      <option name="METHOD_NAME" value="test_superClass" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ApplicationMainAnnotation.test_annotation" />
         <item itemvalue="JUnit.ApplicationMainAnnotation.test_bean_scan" />
         <item itemvalue="JUnit.ApplicationMainAnnotation.test_property" />
         <item itemvalue="JUnit.ApplicationMain.test_Str" />
         <item itemvalue="JUnit.ApplicationMainAop.test_beforeAdvice" />
-        <item itemvalue="JUnit.ApplicationMain.test_superClass" />
       </list>
     </recent_temporary>
   </component>
@@ -218,6 +216,7 @@
       <workItem from="1636447077715" duration="10213000" />
       <workItem from="1636459615849" duration="6149000" />
       <workItem from="1636505713298" duration="9357000" />
+      <workItem from="1636543168166" duration="4033000" />
     </task>
     <servers />
   </component>
@@ -233,10 +232,10 @@
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="1720" y="4" key="#Project_Structure/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636031376021" />
-    <state x="2477" y="162" key="#com.intellij.ide.util.MemberChooser" timestamp="1636513464431">
+    <state x="2477" y="162" key="#com.intellij.ide.util.MemberChooser" timestamp="1636547056526">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
-    <state x="2477" y="162" key="#com.intellij.ide.util.MemberChooser/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636513464431" />
+    <state x="2477" y="162" key="#com.intellij.ide.util.MemberChooser/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636547056526" />
     <state x="1877" y="352" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1636510383836">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
@@ -323,10 +322,10 @@
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="1741" y="74" key="SettingsEditor/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1635994810264" />
-    <state x="1822" y="83" width="1120" height="848" maximized="true" key="dock-window-1" timestamp="1636506200555">
-      <screen x="1440" y="0" width="1600" height="860" />
+    <state x="44" y="41" width="1176" height="690" key="dock-window-1" timestamp="1636547058142">
+      <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="1822" y="83" width="1120" height="848" maximized="true" key="dock-window-1/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636506200555" />
+    <state x="44" y="41" width="1176" height="690" key="dock-window-1/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636547058142" />
     <state x="1615" y="61" width="1207" height="598" key="dock-window-2" timestamp="1636454820671">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
