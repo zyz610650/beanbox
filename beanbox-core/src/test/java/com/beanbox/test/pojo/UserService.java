@@ -1,6 +1,6 @@
 package com.beanbox.test.pojo;
 
-import com.beanbox.annotation.Bean;
+import com.beanbox.beans.annotation.Bean;
 import lombok.Getter;
 import lombok.SneakyThrows;
 

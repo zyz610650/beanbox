@@ -1,8 +1,8 @@
-package com.beanbox.annotation.scanner;
+package com.beanbox.beans.annotation.scanner;
 
 import cn.hutool.core.util.StrUtil;
-import com.beanbox.annotation.Bean;
-import com.beanbox.annotation.Scope;
+import com.beanbox.beans.annotation.Bean;
+import com.beanbox.beans.annotation.Scope;
 import com.beanbox.beans.po.BeanDefinition;
 import com.beanbox.beans.registry.BeanDefinitionRegistry;
 import com.beanbox.enums.ScopeEnum;

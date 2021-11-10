@@ -1,4 +1,4 @@
-package com.beanbox.annotation;
+package com.beanbox.beans.annotation;
 
 import java.lang.annotation.*;
 
@@ -8,6 +8,6 @@ import java.lang.annotation.*;
 
 @Documented
 @Retention (RetentionPolicy.RUNTIME)
-@Target ({ElementType.FIELD,ElementType.METHOD})
+@Target ({ElementType.FIELD,ElementType.METHOD,ElementType.CONSTRUCTOR})
 public @interface Autowired {
 }

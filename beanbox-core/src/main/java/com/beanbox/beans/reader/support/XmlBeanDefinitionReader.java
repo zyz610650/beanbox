@@ -2,7 +2,7 @@ package com.beanbox.beans.reader.support;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.XmlUtil;
-import com.beanbox.annotation.scanner.ClassPathBeanDefinitionScanner;
+import com.beanbox.beans.annotation.scanner.ClassPathBeanDefinitionScanner;
 import com.beanbox.beans.factory.ConfigurableBeanFactory;
 import com.beanbox.beans.po.BeanDefinition;
 import com.beanbox.beans.po.BeanReference;

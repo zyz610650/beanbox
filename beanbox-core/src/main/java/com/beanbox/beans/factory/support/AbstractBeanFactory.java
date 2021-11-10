@@ -1,5 +1,6 @@
 package com.beanbox.beans.factory.support;
 
+import com.beanbox.beans.annotation.support.StringValueResolver;
 import com.beanbox.beans.factory.ConfigurableListableBeanFactory;
 import com.beanbox.beans.factory.FactoryBean;
 import com.beanbox.beans.po.BeanDefinition;
@@ -20,7 +21,15 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	// BeanPostProcessor容器 项目启动时扫描所有BeanPostProcessor加载到该容器中
 	private final List < BeanPostProcessor> beanPostProcessors=new ArrayList <> ();
 
-	private ClassLoader beanClassLoader= ClassUtils.getDefaultClassLoader ();
+	/**
+	 * 类加载器
+	 */
+	private final ClassLoader beanClassLoader= ClassUtils.getDefaultClassLoader ();
+
+	/**
+	 * 字符串解析器缓存
+	 */
+	private final List<StringValueResolver> embeddedValueResolvers =new ArrayList <> ();
 
 	@Override
 	public Object getBean (String name , Object... args) {
@@ -106,4 +115,25 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		}
 		return object;
 	}
+
+	@Override
+	public void addEmbeddedValueResolver (StringValueResolver valueResolver) {
+			this.embeddedValueResolvers.add (valueResolver);
+	}
+
+	/***
+	 * 依次用字符串解析器对字符进行处理
+	 * @param value
+	 * @return
+	 */
+	@Override
+	public String resolveEmbeddedValue (String value) {
+		String res=value;
+		for (StringValueResolver resolver: this.embeddedValueResolvers){
+			res=resolver.resolveStringValue (res);
+		}
+		return res;
+	}
+
+
 }

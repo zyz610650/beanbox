@@ -1,5 +1,7 @@
 package com.beanbox.beans.processor.support;
 
+import com.beanbox.beans.annotation.support.PlaceholderResolvingStringValueResolver;
+import com.beanbox.beans.annotation.support.StringValueResolver;
 import com.beanbox.beans.factory.ConfigurableListableBeanFactory;
 import com.beanbox.beans.po.BeanDefinition;
 import com.beanbox.beans.po.PropertyValue;
@@ -53,7 +55,7 @@ public class PropertyPlaceholderProcessor implements BeanDefinitionPostProcessor
 			Properties properties=new Properties ();
 			properties.load (resource.getInputStream ());
 
-			// 获得所有BeanDefinition 依次检查是否有${}
+			// 获得所有BeanDefinition 依次检查是否有${} 占位符替换属性值
 			String[] beanDefinitionNames =beanFactory.getBeanDefinitionNames ();
 			for (String beanName :beanDefinitionNames)
 			{
@@ -68,25 +70,40 @@ public class PropertyPlaceholderProcessor implements BeanDefinitionPostProcessor
 					if (!(val instanceof String)) continue;
 					String value=(String) val;
 					String name=propertyValue.getName ();
-					int start_index=value.indexOf (DEFAULT_PLACEHOLDER_PREFIX);
-					int end_index=value.lastIndexOf (DEFAULT_PLACEHOLDER_SUFFIX);
-					if(start_index==-1||end_index==-1||start_index>=end_index) continue;
-					// 获得${key} key的名字
-					String key=value.substring (start_index+2,end_index);
-					String proValue = (String)properties.get (key);
+					String proValue=resolvePlaceHolder(value,properties);
 					if (proValue==null)
 					{
-						log.warn ("property [{}] is empty",key);
+						log.warn ("property [{}] is empty",name);
 						continue;
 					}
 					propertyValueSession.addPropertyValue (new PropertyValue (name,proValue));
 				}
+
+				//向容器中添加字符串解析器，共解析@Value注解使用
+				StringValueResolver valueResolver =new PlaceholderResolvingStringValueResolver (properties);
+				beanFactory.addEmbeddedValueResolver (valueResolver);
 			}
 		} catch (IOException e) {
 			throw new BeanException ("Could not load properties",e);
 		}
 	}
 
+	/**
+	 * 解析${}属性
+	 * @param value
+	 * @param properties
+	 * @return
+	 */
+	public static String resolvePlaceHolder(String value,Properties properties)
+	{
+		int start_index=value.indexOf (DEFAULT_PLACEHOLDER_PREFIX);
+		int end_index=value.lastIndexOf (DEFAULT_PLACEHOLDER_SUFFIX);
+		if(start_index==-1||end_index==-1||start_index>=end_index) return null;
+		// 获得${key} key的名字
+		String key=value.substring (start_index+2,end_index);
+		String proValue = (String)properties.get (key);
+		return proValue;
+	}
 
 
 }

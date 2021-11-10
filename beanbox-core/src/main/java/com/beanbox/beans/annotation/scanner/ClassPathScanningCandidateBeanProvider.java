@@ -1,7 +1,7 @@
-package com.beanbox.annotation.scanner;
+package com.beanbox.beans.annotation.scanner;
 
 import cn.hutool.core.util.ClassUtil;
-import com.beanbox.annotation.Bean;
+import com.beanbox.beans.annotation.Bean;
 import com.beanbox.beans.po.BeanDefinition;
 
 import java.util.LinkedHashSet;

@@ -1,11 +1,11 @@
 package com.beanbox.enums;
 
 
-import com.beanbox.annotation.Autowired;
+import com.beanbox.beans.annotation.Autowired;
 
-import com.beanbox.annotation.Bean;
-import com.beanbox.annotation.BeanScan;
-import com.beanbox.annotation.Scope;
+import com.beanbox.beans.annotation.Bean;
+import com.beanbox.beans.annotation.BeanScan;
+import com.beanbox.beans.annotation.Scope;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

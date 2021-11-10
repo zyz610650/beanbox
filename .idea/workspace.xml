@@ -18,8 +18,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="AnnotationType" />
         <option value="Class" />
+        <option value="AnnotationType" />
       </list>
     </option>
   </component>
@@ -217,7 +217,7 @@
       <workItem from="1636420163155" duration="5095000" />
       <workItem from="1636447077715" duration="10213000" />
       <workItem from="1636459615849" duration="6149000" />
-      <workItem from="1636505713298" duration="3433000" />
+      <workItem from="1636505713298" duration="6622000" />
     </task>
     <servers />
   </component>
@@ -233,15 +233,15 @@
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="1720" y="4" key="#Project_Structure/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636031376021" />
-    <state x="2477" y="162" key="#com.intellij.ide.util.MemberChooser" timestamp="1636464001082">
+    <state x="2477" y="162" key="#com.intellij.ide.util.MemberChooser" timestamp="1636511523394">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
-    <state x="2477" y="162" key="#com.intellij.ide.util.MemberChooser/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636464001082" />
-    <state x="1877" y="352" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1636462879858">
+    <state x="2477" y="162" key="#com.intellij.ide.util.MemberChooser/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636511523394" />
+    <state x="1877" y="352" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1636510383836">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="393" y="352" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1634305473595" />
-    <state x="1877" y="352" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636462879858" />
+    <state x="1877" y="352" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636510383836" />
     <state x="1997" y="296" width="486" height="274" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1636454450482">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
@@ -275,29 +275,29 @@
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="2020" y="184" key="FileChooserDialogImpl/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634815879585" />
-    <state width="1557" height="237" key="GridCell.Tab.0.bottom" timestamp="1636508863331">
+    <state width="1557" height="237" key="GridCell.Tab.0.bottom" timestamp="1636511224603">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.0.bottom/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="237" key="GridCell.Tab.0.bottom/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636508863331" />
+    <state width="1557" height="237" key="GridCell.Tab.0.bottom/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636511224603" />
     <state width="1397" height="222" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1634302908433" />
-    <state width="1557" height="237" key="GridCell.Tab.0.center" timestamp="1636508863331">
+    <state width="1557" height="237" key="GridCell.Tab.0.center" timestamp="1636511224603">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.0.center/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="237" key="GridCell.Tab.0.center/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636508863331" />
+    <state width="1557" height="237" key="GridCell.Tab.0.center/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636511224603" />
     <state width="1397" height="222" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1634302908432" />
-    <state width="1557" height="237" key="GridCell.Tab.0.left" timestamp="1636508863331">
+    <state width="1557" height="237" key="GridCell.Tab.0.left" timestamp="1636511224603">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.0.left/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="237" key="GridCell.Tab.0.left/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636508863331" />
+    <state width="1557" height="237" key="GridCell.Tab.0.left/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636511224603" />
     <state width="1397" height="222" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1634302908432" />
-    <state width="1557" height="237" key="GridCell.Tab.0.right" timestamp="1636508863331">
+    <state width="1557" height="237" key="GridCell.Tab.0.right" timestamp="1636511224603">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.0.right/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="237" key="GridCell.Tab.0.right/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636508863331" />
+    <state width="1557" height="237" key="GridCell.Tab.0.right/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636511224603" />
     <state width="1397" height="222" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1634302908433" />
     <state width="1557" height="264" key="GridCell.Tab.1.bottom" timestamp="1636508787542">
       <screen x="1440" y="0" width="1600" height="860" />
@@ -380,17 +380,7 @@
           <option name="timeStamp" value="52" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/beanbox-core/src/main/java/com/beanbox/beans/processor/support/PropertyPlaceholderProcessor.java</url>
-          <line>75</line>
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/beanbox-core/src/main/java/com/beanbox/beans/processor/support/PropertyPlaceholderProcessor.java</url>
-          <line>68</line>
-          <option name="timeStamp" value="55" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/beanbox-core/src/main/java/com/beanbox/annotation/scanner/ClassPathBeanDefinitionScanner.java</url>
+          <url>file://$PROJECT_DIR$/beanbox-core/src/main/java/com/beanbox/beans/annotation/scanner/ClassPathBeanDefinitionScanner.java</url>
           <line>35</line>
           <option name="timeStamp" value="60" />
         </line-breakpoint>
