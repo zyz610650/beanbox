@@ -33,6 +33,23 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
 	@Override
 	public Object postProcessBeforeInstantiation (Class < ? > beanClass , String beanName) {
 
+
+		return null;
+	}
+
+	@Override
+	public PropertyValueSession postProcessPropertyValues (PropertyValueSession propertyValueSession , Object bean , String beanName) {
+		return propertyValueSession;
+	}
+
+	@Override
+	public Object postProcessBeforeInitialization (Object bean , String beanName) {
+		return bean;
+	}
+
+	@Override
+	public Object postProcessAfterInitialization (Object bean , String beanName) {
+		Class<?> beanClass =bean.getClass ();
 		//如果是那几个用于创建代理类的对象，则不用提前处理
 		if (isInfrastractureClass (beanClass)) return null;
 
@@ -60,24 +77,10 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
 			advisedSupport.setProxyTargetClass (false);
 			advisedSupport.setMethodMatcher (advisor.getPointcut ().getMethodMatcher ());
 
+			//返回代理
 			return new ProxyFactory (advisedSupport).getProxy ();
 
 		}
-		return null;
-	}
-
-	@Override
-	public PropertyValueSession postProcessPropertyValues (PropertyValueSession propertyValueSession , Object bean , String beanName) {
-		return propertyValueSession;
-	}
-
-	@Override
-	public Object postProcessBeforeInitialization (Object bean , String beanName) {
-		return bean;
-	}
-
-	@Override
-	public Object postProcessAfterInitialization (Object bean , String beanName) {
 		return bean;
 	}
 
