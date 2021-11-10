@@ -7,6 +7,7 @@ import com.beanbox.beans.aware.BeanFactoryAware;
 import com.beanbox.beans.factory.BeanFactory;
 import com.beanbox.beans.factory.support.DefaultListableBeanFactory;
 import com.beanbox.beans.processor.InstantiationAwareBeanPostProcessor;
+import com.beanbox.beans.sessions.PropertyValueSession;
 import com.beanbox.exception.BeanException;
 import org.aopalliance.aop.Advice;
 import org.aopalliance.intercept.MethodInterceptor;
@@ -63,6 +64,11 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
 
 		}
 		return null;
+	}
+
+	@Override
+	public PropertyValueSession postProcessPropertyValues (PropertyValueSession propertyValueSession , Object bean , String beanName) {
+		return propertyValueSession;
 	}
 
 	@Override
