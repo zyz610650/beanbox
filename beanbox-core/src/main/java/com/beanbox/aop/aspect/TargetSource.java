@@ -21,7 +21,10 @@ public class TargetSource {
 	 * @return
 	 */
 	public Class < ? >[] getTargerInterface(){
-		return this.target.getClass ().getInterfaces ();
+		Class<?> clazz=this.target.getClass ();
+		//防止该类是动态代理生成进行处理
+		clazz= ClassUtils.isCglibProxyClass (clazz) ? clazz.getSuperclass ():clazz;
+		return clazz.getInterfaces ();
 	}
 
 	/**

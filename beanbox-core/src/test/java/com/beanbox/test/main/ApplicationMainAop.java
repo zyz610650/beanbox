@@ -7,11 +7,10 @@ import com.beanbox.aop.proxy.support.CglibAopProxy;
 import com.beanbox.context.suppport.ClassPathXmlApplicationContext;
 import com.beanbox.test.aop.UserServiceInterceptor;
 
-import com.beanbox.test.pojo.UserBean;
+import com.beanbox.test.pojo.IUserService;
 
-import com.beanbox.test.proxy.UserService;
-import com.beanbox.test.proxy.IUserService;
-import com.beanbox.test.service.UserService2;
+
+
 import org.junit.Test;
 
 import java.io.IOException;
@@ -61,8 +60,10 @@ public class ApplicationMainAop {
 	public void test_beforeAdvice()
 	{
 		ClassPathXmlApplicationContext applicationContext=new ClassPathXmlApplicationContext ("classpath:beanbox.xml");
-//		System.out.println (applicationContext.getBean ("userService1").getClass ().getSuperclass ());
-	IUserService userService=applicationContext.getBean ("userService1",IUserService.class);
+
+	System.out.println (applicationContext.getBean ("userService").getClass ());
+		System.out.println (applicationContext.getBean ("userService", IUserService.class).queryUserInfo ());
+	IUserService userService=applicationContext.getBean ("userService", IUserService.class);
 //		System.out.println (userService.getClass ().getSuperclass ());
 		System.out.println ("end: "+ userService.queryUserInfo ());
 	}

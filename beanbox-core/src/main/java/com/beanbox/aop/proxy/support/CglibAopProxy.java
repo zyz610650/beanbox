@@ -3,12 +3,14 @@ package com.beanbox.aop.proxy.support;
 import com.beanbox.aop.proxy.AopProxy;
 import com.beanbox.aop.aspect.AdvisedSupport;
 import com.beanbox.aop.aspect.CglibMethodInvocation;
+import lombok.extern.slf4j.Slf4j;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 
 /**
  * @author: @zyz
  */
+@Slf4j
 public class CglibAopProxy implements AopProxy {
 
 

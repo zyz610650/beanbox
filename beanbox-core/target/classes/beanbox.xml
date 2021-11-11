@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
 
+<!--    占位符赋值测试-->
 <!--    <bean id="userService" class="com.beanbox.test.pojo.UserService" scope="prototype">-->
 <!--        <property name="uId" value="zyz"></property>-->
 <!--        <property name="uId" value="zyz"></property>-->
@@ -9,29 +10,35 @@
 <!--        <property name="token" value="${token}"/>-->
 <!--        &lt;!&ndash;        <property name="userDao" ref="proxyUserDao"></property>&ndash;&gt;-->
 <!--    </bean>-->
-    <bean name="higherUser1" class="com.beanbox.test.pojo.HigherUser">
-        <property name="name" value="higherUser1"/>
-    </bean>
-    <bean name="higherUser2" class="com.beanbox.test.pojo.HigherUser">
-        <property name="name" value="higherUser2"/>
-    </bean>
-    <bean class="com.beanbox.beans.processor.support.PropertyPlaceholderProcessor">
-        <property name="location" value="classpath:property.properties"/>
-    </bean>
 
-    <bean-scan base-package="com.beanbox.test.pojo"/>
+
+<!--    Annotation test-->
+<!--    <bean name="higherUser1" class="com.beanbox.test.pojo.HigherUser">-->
+<!--        <property name="name" value="higherUser1"/>-->
+<!--    </bean>-->
+<!--    <bean name="higherUser2" class="com.beanbox.test.pojo.HigherUser">-->
+<!--        <property name="name" value="higherUser2"/>-->
+<!--    </bean>-->
+<!--    <bean class="com.beanbox.beans.processor.support.PropertyPlaceholderProcessor">-->
+<!--        <property name="location" value="classpath:property.properties"/>-->
+<!--    </bean>-->
+<!--    <bean-scan base-package="com.beanbox.test.pojo"/>-->
+
+
 
 <!--    Aop test-->
-<!--    <bean id="userService" class="com.beanbox.test.pojo.UserService"/>-->
-<!--    <bean class="com.beanbox.aop.proxy.DefaultAdvisorAutoProxyCreator"/>-->
-<!--    <bean id="beforeAdvice" class="com.beanbox.test.aop.UserServiceBeforeAdvice"/>-->
-<!--    <bean id="methodInterceptor" class="com.beanbox.aop.interceptor.MethodBeforeAdviceInterceptor">-->
-<!--        <property name="advice" ref="beforeAdvice"/>-->
-<!--    </bean>-->
-<!--    <bean id="pointcutAdvisor" class="com.beanbox.aop.advisor.AspectJExpressionPointcutAdvisor">-->
-<!--        <property name="expression" value="execution(* com.beanbox.test.proxy.IUserService.*(..))"/>-->
-<!--        <property name="advice" ref="methodInterceptor"/>-->
-<!--    </bean>-->
+    <bean id="userService" class="com.beanbox.test.pojo.UserService">
+        <property name="uId" value="trqwedsadasffa54sfsd"/>
+    </bean>
+    <bean class="com.beanbox.aop.proxy.DefaultAdvisorAutoProxyCreator"/>
+    <bean id="beforeAdvice" class="com.beanbox.test.aop.UserServiceBeforeAdvice"/>
+    <bean id="methodInterceptor" class="com.beanbox.aop.interceptor.MethodBeforeAdviceInterceptor">
+        <property name="advice" ref="beforeAdvice"/>
+    </bean>
+    <bean id="pointcutAdvisor" class="com.beanbox.aop.advisor.AspectJExpressionPointcutAdvisor">
+        <property name="expression" value="execution(* com.beanbox.test.pojo.IUserService.*(..))"/>
+        <property name="advice" ref="methodInterceptor"/>
+    </bean>
 
 
 <!--    prox test-->
@@ -49,6 +56,7 @@
 <!--    <bean class="com.beanbox.test.event.CustomEventListener"></bean>-->
 <!--    <bean class="com.beanbox.test.event.ContextClosedEventListener"></bean>-->
 <!--    <bean class="com.beanbox.test.event.ContextRefreshedEventListener"></bean>-->
+
 
 <!--    Processor Test-->
 <!--    <bean id="userService2" class="com.beanbox.test.service.UserService2">-->

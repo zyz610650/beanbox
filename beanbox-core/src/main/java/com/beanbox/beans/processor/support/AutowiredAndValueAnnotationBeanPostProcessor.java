@@ -48,8 +48,9 @@ public class AutowiredAndValueAnnotationBeanPostProcessor implements Instantiati
 		doAutowiredAnnotation (declaredFields,bean);
 
 
-		return null;
+		return propertyValueSession;
 	}
+
 
 	/**
 	 * 处理fileds属性上的@Value注解
@@ -98,6 +99,10 @@ public class AutowiredAndValueAnnotationBeanPostProcessor implements Instantiati
 		return null;
 	}
 
+	@Override
+	public boolean postProcessAfterInstantiation (String beanName , Object bean) {
+		return true;
+	}
 
 
 	@Override

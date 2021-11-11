@@ -42,7 +42,7 @@ public class ClassUtils {
 	}
 
 	/**
-	 * 判断该类是否是CGLIB生成的代理类
+	 * 判断该类是否是动态代理生成的代理类
 	 * @param clazz
 	 * @return
 	 */

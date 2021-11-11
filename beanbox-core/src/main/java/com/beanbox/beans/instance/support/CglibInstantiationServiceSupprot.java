@@ -32,7 +32,7 @@ public class CglibInstantiationServiceSupprot implements InstantiationService {
 
 			return enhancer.create (constructor.getParameterTypes (),args);
 		} catch (Exception e) {
-			throw  new BeanException (beanName+": "+beanDefinition.getBeanClass ().getName ()+"  could not be instantiated ",e);
+			throw  new BeanException (beanName+": "+beanDefinition.getBeanClass ().getName ()+"  d not be instantiated ",e);
 		}
 
 	}

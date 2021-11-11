@@ -9,7 +9,7 @@ import lombok.SneakyThrows;
  */
 @Bean("userService")
 @Getter
-public class UserService extends HigherUser implements IUserService{
+public class UserService  implements IUserService{
 
 	private String uId;
 	private String company;

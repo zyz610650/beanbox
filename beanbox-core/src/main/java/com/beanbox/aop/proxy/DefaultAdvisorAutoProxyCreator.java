@@ -43,6 +43,11 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
 	}
 
 	@Override
+	public boolean postProcessAfterInstantiation (String beanName , Object bean) {
+		return true;
+	}
+
+	@Override
 	public Object postProcessBeforeInitialization (Object bean , String beanName) {
 		return bean;
 	}
@@ -64,17 +69,14 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
 
 			// 封装adviseSupport
 			AdvisedSupport advisedSupport=new AdvisedSupport ();
-			TargetSource targetSource=null;
+			TargetSource targetSource=new TargetSource (bean);
 
-			try {
-				targetSource=new TargetSource (beanClass.getDeclaredConstructor ().newInstance ());
-			} catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-				throw new BeanException (beanClass.getName ()+" failed to be instantiate :", e);
-			}
 			//设置目标类 增强方法 代理类方式
 			advisedSupport.setTargetSource (targetSource);
 			advisedSupport.setMethodInterceptor ((MethodInterceptor) advisor.getAdvice ());
+			//JDK 和 Cglib 组合使用实现多重代理
 			advisedSupport.setProxyTargetClass (false);
+			//++++++++++++++++++++++++++++++++++
 			advisedSupport.setMethodMatcher (advisor.getPointcut ().getMethodMatcher ());
 
 			//返回代理

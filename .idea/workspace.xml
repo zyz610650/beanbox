@@ -69,14 +69,48 @@
       <recent name="D:\project\java\BeanBox\beanbox-core\src\test\java\com\beanbox\test\pojo" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ApplicationMainAnnotation.test_annotation">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ApplicationMainAop.test_beforeAdvice">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AopTest.test_aop_method" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="beanbox-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.beanbox.test.aop.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.beanbox.test.aop" />
+      <option name="MAIN_CLASS_NAME" value="com.beanbox.test.aop.AopTest" />
+      <option name="METHOD_NAME" value="test_aop_method" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AopTest.test_pointcut" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="beanbox-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.beanbox.test.aop.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.beanbox.test.aop" />
+      <option name="MAIN_CLASS_NAME" value="com.beanbox.test.aop.AopTest" />
+      <option name="METHOD_NAME" value="test_pointcut" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -113,22 +147,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationMainAnnotation.test_property" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="beanbox-core" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.beanbox.test.main.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.beanbox.test.main" />
-      <option name="MAIN_CLASS_NAME" value="com.beanbox.test.main.ApplicationMainAnnotation" />
-      <option name="METHOD_NAME" value="test_property" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ApplicationMainAop.test_beforeAdvice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="beanbox-core" />
       <extension name="coverage">
@@ -145,29 +163,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationMain.test_Str" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="beanbox-core" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.beanbox.test.main.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.beanbox.test.main" />
-      <option name="MAIN_CLASS_NAME" value="com.beanbox.test.main.ApplicationMain" />
-      <option name="METHOD_NAME" value="test_Str" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ApplicationMainAop.test_beforeAdvice" />
+        <item itemvalue="JUnit.AopTest.test_aop_method" />
+        <item itemvalue="JUnit.AopTest.test_pointcut" />
         <item itemvalue="JUnit.ApplicationMainAnnotation.test_annotation" />
         <item itemvalue="JUnit.ApplicationMainAnnotation.test_bean_scan" />
-        <item itemvalue="JUnit.ApplicationMainAnnotation.test_property" />
-        <item itemvalue="JUnit.ApplicationMain.test_Str" />
-        <item itemvalue="JUnit.ApplicationMainAop.test_beforeAdvice" />
       </list>
     </recent_temporary>
   </component>
@@ -216,7 +218,8 @@
       <workItem from="1636447077715" duration="10213000" />
       <workItem from="1636459615849" duration="6149000" />
       <workItem from="1636505713298" duration="9357000" />
-      <workItem from="1636543168166" duration="8339000" />
+      <workItem from="1636543168166" duration="8340000" />
+      <workItem from="1636591509841" duration="10231000" />
     </task>
     <servers />
   </component>
@@ -232,10 +235,10 @@
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="1720" y="4" key="#Project_Structure/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636031376021" />
-    <state x="2477" y="162" key="#com.intellij.ide.util.MemberChooser" timestamp="1636547056526">
+    <state x="2477" y="162" key="#com.intellij.ide.util.MemberChooser" timestamp="1636592442155">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
-    <state x="2477" y="162" key="#com.intellij.ide.util.MemberChooser/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636547056526" />
+    <state x="2477" y="162" key="#com.intellij.ide.util.MemberChooser/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636592442155" />
     <state x="1877" y="352" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1636510383836">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
@@ -274,58 +277,58 @@
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="2020" y="184" key="FileChooserDialogImpl/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634815879585" />
-    <state width="1557" height="123" key="GridCell.Tab.0.bottom" timestamp="1636550358564">
+    <state width="1557" height="250" key="GridCell.Tab.0.bottom" timestamp="1636601380769">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.0.bottom/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="123" key="GridCell.Tab.0.bottom/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636550358564" />
+    <state width="1557" height="250" key="GridCell.Tab.0.bottom/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636601380769" />
     <state width="1397" height="222" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1634302908433" />
-    <state width="1557" height="123" key="GridCell.Tab.0.center" timestamp="1636550358564">
+    <state width="1557" height="250" key="GridCell.Tab.0.center" timestamp="1636601380769">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.0.center/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="123" key="GridCell.Tab.0.center/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636550358564" />
+    <state width="1557" height="250" key="GridCell.Tab.0.center/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636601380769" />
     <state width="1397" height="222" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1634302908432" />
-    <state width="1557" height="123" key="GridCell.Tab.0.left" timestamp="1636550358564">
+    <state width="1557" height="250" key="GridCell.Tab.0.left" timestamp="1636601380769">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.0.left/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="123" key="GridCell.Tab.0.left/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636550358564" />
+    <state width="1557" height="250" key="GridCell.Tab.0.left/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636601380769" />
     <state width="1397" height="222" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1634302908432" />
-    <state width="1557" height="123" key="GridCell.Tab.0.right" timestamp="1636550358564">
+    <state width="1557" height="250" key="GridCell.Tab.0.right" timestamp="1636601380769">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.0.right/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="123" key="GridCell.Tab.0.right/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636550358564" />
+    <state width="1557" height="250" key="GridCell.Tab.0.right/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636601380769" />
     <state width="1397" height="222" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1634302908433" />
-    <state width="1557" height="264" key="GridCell.Tab.1.bottom" timestamp="1636548912787">
+    <state width="1557" height="250" key="GridCell.Tab.1.bottom" timestamp="1636601371892">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.1.bottom/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="264" key="GridCell.Tab.1.bottom/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636548912787" />
-    <state width="1557" height="264" key="GridCell.Tab.1.center" timestamp="1636548912787">
+    <state width="1557" height="250" key="GridCell.Tab.1.bottom/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636601371892" />
+    <state width="1557" height="250" key="GridCell.Tab.1.center" timestamp="1636601371892">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.1.center/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="264" key="GridCell.Tab.1.center/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636548912787" />
-    <state width="1557" height="264" key="GridCell.Tab.1.left" timestamp="1636548912787">
+    <state width="1557" height="250" key="GridCell.Tab.1.center/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636601371892" />
+    <state width="1557" height="250" key="GridCell.Tab.1.left" timestamp="1636601371892">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.1.left/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="264" key="GridCell.Tab.1.left/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636548912787" />
-    <state width="1557" height="264" key="GridCell.Tab.1.right" timestamp="1636548912787">
+    <state width="1557" height="250" key="GridCell.Tab.1.left/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636601371892" />
+    <state width="1557" height="250" key="GridCell.Tab.1.right" timestamp="1636601371892">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="271" key="GridCell.Tab.1.right/0.0.1440.860/1440.0.1600.860@0.0.1440.860" timestamp="1636005943976" />
-    <state width="1557" height="264" key="GridCell.Tab.1.right/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636548912787" />
+    <state width="1557" height="250" key="GridCell.Tab.1.right/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636601371892" />
     <state x="1741" y="74" key="SettingsEditor" timestamp="1635994810264">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="1741" y="74" key="SettingsEditor/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1635994810264" />
-    <state x="44" y="41" width="1176" height="690" key="dock-window-1" timestamp="1636547058142">
+    <state x="289" y="0" width="1167" height="545" maximized="true" key="dock-window-1" timestamp="1636595973662">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="44" y="41" width="1176" height="690" key="dock-window-1/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636547058142" />
+    <state x="289" y="0" width="1167" height="545" maximized="true" key="dock-window-1/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636595973662" />
     <state x="1615" y="61" width="1207" height="598" key="dock-window-2" timestamp="1636454820671">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
@@ -350,10 +353,10 @@
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
     <state x="1772" y="88" key="new project wizard/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1634555989293" />
-    <state x="1903" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1636461479172">
+    <state x="1903" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1636598432699">
       <screen x="1440" y="0" width="1600" height="860" />
     </state>
-    <state x="1903" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636461479172" />
+    <state x="1903" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1440.860/1440.0.1600.860@1440.0.1600.860" timestamp="1636598432699" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -369,19 +372,9 @@
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/beanbox-core/src/main/java/com/beanbox/aop/proxy/support/CglibAopProxy.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="51" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/beanbox-core/src/main/java/com/beanbox/aop/proxy/ProxyFactory.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/beanbox-core/src/main/java/com/beanbox/beans/processor/support/AutowiredAndValueAnnotationBeanPostProcessor.java</url>
-          <line>63</line>
-          <option name="timeStamp" value="65" />
+          <url>file://$PROJECT_DIR$/beanbox-core/src/main/java/com/beanbox/beans/instance/support/CglibInstantiationServiceSupprot.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="77" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

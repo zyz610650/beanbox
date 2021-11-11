@@ -30,7 +30,9 @@ public class JdkDynamicAopProxy implements AopProxy, InvocationHandler {
 	 */
 	@Override
 	public Object getProxy () {
-		return Proxy.newProxyInstance (ClassUtils.getDefaultClassLoader (),advised.getTargetSource ().getTargerInterface () , this::invoke);
+//		log.debug (String.valueOf (advised.getTargetSource ().getTarget ()));
+//		log.debug ("JdkDynamicAopProxy: {}"+advised.getTargetSource ().getTargerInterface ());
+		return Proxy.newProxyInstance (ClassUtils.getDefaultClassLoader (),advised.getTargetSource ().getTargetClass () , this::invoke);
 	}
 
 	/**
@@ -45,12 +47,9 @@ public class JdkDynamicAopProxy implements AopProxy, InvocationHandler {
 	public Object invoke (Object proxy , Method method , Object[] args) throws Throwable {
 
 		//判断方法是否符合切点定义的表达式  走代理类
-//		System.out.println (advised.getTargetSource ().getTarget ().getClass ());
-//		System.out.println (advised.getMethodMatcher ().matches (method,null));
-//		System.out.println (method.getName ());
-//		System.out.println (advised.getMethodMatcher ().matches (method,advised.getTargetSource ().getTarget ().getClass ()));
 		if (advised.getMethodMatcher ().matches (method,advised.getTargetSource ().getTarget ().getClass ()))
 		{
+
 			//方法拦截器  方法拦截器又用户自定义实现 可以在里面做方法的增强
 			// ReflectiveMethodInvocation 是MethodInvocation的实现类,
 			// 调用proceed会执行真正被代理的方法

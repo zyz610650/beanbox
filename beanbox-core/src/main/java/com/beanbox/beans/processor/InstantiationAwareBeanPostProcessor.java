@@ -26,4 +26,12 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor{
 	 * @return
 	 */
 	PropertyValueSession postProcessPropertyValues(PropertyValueSession propertyValueSession,Object bean, String beanName);
+
+	/**
+	 * 决定是否往下对Bean对象的Property属性进行操作 true 往下运行 False 直接返回没有初始化Bean对象属性的bean
+	 * @param beanName
+	 * @param bean
+	 * @return
+	 */
+	boolean postProcessAfterInstantiation(String beanName,Object bean);
 }
