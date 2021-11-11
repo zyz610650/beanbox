@@ -76,7 +76,6 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
 			advisedSupport.setMethodInterceptor ((MethodInterceptor) advisor.getAdvice ());
 			//JDK 和 Cglib 组合使用实现多重代理
 			advisedSupport.setProxyTargetClass (false);
-			//++++++++++++++++++++++++++++++++++
 			advisedSupport.setMethodMatcher (advisor.getPointcut ().getMethodMatcher ());
 
 			//返回代理
