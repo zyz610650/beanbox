@@ -61,11 +61,13 @@ public class ApplicationMainAop {
 	{
 		ClassPathXmlApplicationContext applicationContext=new ClassPathXmlApplicationContext ("classpath:beanbox.xml");
 
-	System.out.println (applicationContext.getBean ("userService").getClass ());
+	   System.out.println (applicationContext.getBean ("userService").getClass ());
 		System.out.println (applicationContext.getBean ("userService", IUserService.class).queryUserInfo ());
-	IUserService userService=applicationContext.getBean ("userService", IUserService.class);
+	    IUserService userService=applicationContext.getBean ("userService", IUserService.class);
+		System.out.println (userService.getClass ());
+		System.out.println (userService.getClass ().getSuperclass ());
 //		System.out.println (userService.getClass ().getSuperclass ());
-		System.out.println ("end: "+ userService.queryUserInfo ());
+//		System.out.println ("end: "+ userService.queryUserInfo ());
 	}
 
 }
