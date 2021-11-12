@@ -31,7 +31,7 @@ import java.lang.reflect.Method;
  */
 public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory implements AutowireCapableBeanFactory {
 
-	private InstantiationService instantiationService=new CglibInstantiationServiceSupprot ();
+	private InstantiationService instantiationService=new JdkInstantiationServieSupport ();
 //private InstantiationService instantiationService=new JdkInstantiationServieSupport ();
 	@Override
 	protected Object createBean (String name , BeanDefinition beanDefinition , Object[] args) {
@@ -43,6 +43,13 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		// 创建实例
 		bean=createBeanInstance (beanDefinition,name,args);
+
+		//如果是单例对象 则需要走三级缓存避免循环依赖
+		if (beanDefinition.isSingleton ())
+		{
+			Object finalBean = bean;
+			addSingletonFactory (name,()-> getEarlyBeanReference (name,beanDefinition,finalBean));
+		}
 
 		//实例化后判断是否往下运行 根据 InstantiationAwareBeanPostProcessor接口中的 postProcessAfterInstantiation方法
 		boolean continueWithPropertyPopulation =applyBeanPostProcessorsAfterInstantiation(name,bean);
@@ -63,10 +70,32 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		if (beanDefinition.isSingleton ())
 		{
+			//从缓存中获得最新的对象 覆盖之前的实例（因为若存在aop，则这里获得的是aop生成的新代理对象）
+			bean=getSingleton (name);
 			// 注册单例Bean 并执行Processor
 			registerSingleton (name,bean);
 		}
 		return bean;
+	}
+
+	/**
+	 * 提前创建aop的代理对象
+	 * @param beanName
+	 * @param beanDefinition
+	 * @param bean
+	 * @return
+	 */
+	protected Object getEarlyBeanReference(String beanName, BeanDefinition beanDefinition, Object bean)
+	{
+		Object exposedObject=bean;
+		for (BeanPostProcessor beanPostProcessor:getBeanPostProcessors ())
+		{
+			if (beanPostProcessor instanceof  InstantiationAwareBeanPostProcessor)
+			{
+				exposedObject=((InstantiationAwareBeanPostProcessor) beanPostProcessor).getEarlyBeanReference (exposedObject , beanName);
+			}
+		}
+		return exposedObject;
 	}
 
 	/**

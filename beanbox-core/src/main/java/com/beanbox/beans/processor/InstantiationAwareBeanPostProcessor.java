@@ -35,4 +35,14 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor{
 	 * @return
 	 */
 	boolean postProcessAfterInstantiation(String beanName,Object bean);
+
+	/**
+	 * 
+	 * @param bean
+	 * @param beanName
+	 * @return
+	 */
+	default Object getEarlyBeanReference(Object bean, String beanName){
+		return bean;
+	}
 }

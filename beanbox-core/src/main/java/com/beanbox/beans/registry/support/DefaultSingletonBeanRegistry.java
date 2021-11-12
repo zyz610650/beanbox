@@ -1,5 +1,6 @@
 package com.beanbox.beans.registry.support;
 
+import com.beanbox.beans.factory.ObjectFactory;
 import com.beanbox.beans.registry.SingletonBeanRegistry;
 import com.beanbox.context.DisposableBean;
 import com.beanbox.exception.BeanException;
@@ -20,9 +21,20 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 	protected static final Object NULL_OBJECT=new Object ();
 
 	/**
-	 * 保存单例对象
+	 * 一级缓存 保存单例对象
 	 */
 	private Map<String,Object> singletonObjectMap=new ConcurrentHashMap <> ();
+
+	/**
+	 * 二级缓存,提前暴漏对象
+	 */
+	protected Map<String,Object> earlySingletonObjects= new HashMap <> ();
+
+	/**
+	 * 三级缓存 存放Bean对象的创建工厂
+	 */
+	private final Map<String, ObjectFactory <?> > singletonFactoryMap=new HashMap <> ();
+
 
 	/**
 	 *  缓存关闭虚拟机时需要销毁的对象
@@ -33,21 +45,50 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 
 	@Override
 	public Object getSingleton (String beanName) {
-		return singletonObjectMap.get (beanName);
+
+		Object bean = singletonObjectMap.get (beanName);
+		if (bean ==null)
+		{
+			bean=earlySingletonObjects.get (beanName);
+			if (bean==null)
+			{
+				ObjectFactory < ? > objectFactory = singletonFactoryMap.get (beanName);
+				if (objectFactory!=null)
+				{
+					bean=objectFactory.getObject ();
+					earlySingletonObjects.put (beanName,bean);
+					singletonObjectMap.remove (beanName);
+				}
+			}
+		}
+		return bean;
 	}
 	/**
-	 * 向单例容器中添加单例对象
+	 * 向一级缓存中添加单例对象
 	 * @param beanName
 	 * @param singletonObject
 	 */
-
 	@Override
 	public void registerSingleton (String beanName , Object singletonObject) {
 		singletonObjectMap.put (beanName,singletonObject);
+		earlySingletonObjects.remove (beanName);
+		singletonFactoryMap.remove (beanName);
 	}
 
 
-
+	/**
+	 * 像三级缓存中添加对象工厂
+	 * @param beanName
+	 * @param singletonFactory
+	 */
+	protected void addSingletonFactory(String beanName, ObjectFactory<?> singletonFactory)
+	{
+		if (!this.singletonObjectMap.containsKey (beanName))
+		{
+			this.singletonFactoryMap.put (beanName,singletonFactory);
+			this.earlySingletonObjects.remove (beanName);
+		}
+	}
 
 	/**
 	 * 添加到销毁缓存

@@ -14,6 +14,9 @@ import org.aopalliance.intercept.MethodInterceptor;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author: @zyz
@@ -23,6 +26,11 @@ import java.util.Collection;
 public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPostProcessor, BeanFactoryAware {
 
 	private DefaultListableBeanFactory beanFactory;
+
+	/**
+	 * 缓存已经生成过代理的对象 避免二次创建
+	 */
+	private final Set <Object> earlyProxyReferences = Collections.synchronizedSet(new HashSet <Object> ());
 
 	/**
 	 * 在bean对象创建之前 处理beanDefinition 根据classFilter判断Class上是否符合aop的拦截表达式 生成相应的代理类
@@ -54,9 +62,19 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
 
 	@Override
 	public Object postProcessAfterInitialization (Object bean , String beanName) {
+
+		if(!earlyProxyReferences.contains (beanName))
+		{
+			return wrapIfNecessary (bean,beanName);
+		}
+		return bean;
+	}
+
+	protected Object wrapIfNecessary(Object bean, String beanName)
+	{
 		Class<?> beanClass =bean.getClass ();
 		//如果是那几个用于创建代理类的对象，则不用提前处理
-		if (isInfrastractureClass (beanClass)) return null;
+		if (isInfrastractureClass (beanClass)) return bean;
 
 		//获取所有切面 依次判断该类是否符合该切面中定义的表达式
 		Collection< AspectJExpressionPointcutAdvisor> advisors=beanFactory.getBeansOfType (AspectJExpressionPointcutAdvisor.class).values ();
@@ -75,7 +93,7 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
 			advisedSupport.setTargetSource (targetSource);
 			advisedSupport.setMethodInterceptor ((MethodInterceptor) advisor.getAdvice ());
 			//JDK 和 Cglib 组合使用实现多重代理
-			advisedSupport.setProxyTargetClass (false);
+			advisedSupport.setProxyTargetClass (true);
 			advisedSupport.setMethodMatcher (advisor.getPointcut ().getMethodMatcher ());
 
 			//返回代理
@@ -95,4 +113,9 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
 		return Advice.class.isAssignableFrom (beanClass)|| Pointcut.class.isAssignableFrom (beanClass)|| Advisor.class.isAssignableFrom (beanClass);
 	}
 
+	@Override
+	public Object getEarlyBeanReference (Object bean , String beanName) {
+		earlyProxyReferences.add (beanName);
+		return wrapIfNecessary (bean,beanName);
+	}
 }

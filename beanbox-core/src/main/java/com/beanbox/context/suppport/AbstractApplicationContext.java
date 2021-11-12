@@ -1,6 +1,8 @@
 package com.beanbox.context.suppport;
 
 
+import com.beanbox.aop.proxy.DefaultAdvisorAutoProxyCreator;
+import com.beanbox.beans.factory.BeanFactory;
 import com.beanbox.beans.factory.ConfigurableBeanFactory;
 import com.beanbox.beans.factory.ConfigurableListableBeanFactory;
 import com.beanbox.beans.processor.BeanDefinitionPostProcessor;
@@ -37,8 +39,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 		//获取beanFactory
 		ConfigurableListableBeanFactory beanFactory=getBeanFactory ();
 
-		// 添加ApplicationContextAwareProcessor,让继承自ApplicationContextAware的Bean对象都能感知所属的ApplicationContext
-		beanFactory.addBeanPostProcessor (new ApplicationContextAwareProcessor (this));
+		// 添加需要用到的Processor
+		addPreBeanPostProcessor(beanFactory);
 
 		//注册并执行执行定义的BeanDefinition处理器
 		registerBeanDefinitionPostProcessors (beanFactory);
@@ -58,6 +60,18 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
 		//发布容器刷新完成事件
 		finshRefresh ();
+	}
+
+	/**
+	 * 提前添加用到的Processor到IOC
+	 * @param beanFactory
+	 */
+	public void addPreBeanPostProcessor(ConfigurableListableBeanFactory beanFactory)
+	{
+		// 添加ApplicationContextAwareProcessor,让继承自ApplicationContextAware的Bean对象都能感知所属的ApplicationContext
+		beanFactory.addBeanPostProcessor (new ApplicationContextAwareProcessor (this));
+		// 添加Aop Processor
+		beanFactory.addBeanPostProcessor (new DefaultAdvisorAutoProxyCreator ());
 	}
 
 	/**

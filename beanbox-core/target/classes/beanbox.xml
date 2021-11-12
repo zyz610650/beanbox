@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
 
+<!--    循环依赖测试-->
+    <bean id="wife" class="com.beanbox.test.circleDependence.Wife">
+        <property name="name" value="wife"/>
+        <property name="husband" ref="husband"/>
+    </bean>
+    <bean id="husband" class="com.beanbox.test.circleDependence.Husband">
+        <property name="name" value="husband"/>
+        <property name="wife" ref="wife"/>
+    </bean>
+    <bean id="beforeAdvice" class="com.beanbox.test.circleDependence.aop.SpouseAdvice"/>
+    <bean id="methodInterceptor" class="com.beanbox.aop.interceptor.MethodBeforeAdviceInterceptor">
+           <property name="advice" ref="beforeAdvice"/>
+     </bean>
+        <bean id="pointcutAdvisor" class="com.beanbox.aop.advisor.AspectJExpressionPointcutAdvisor">
+            <property name="expression" value="execution(* com.beanbox.test.circleDependence.Wife.*(..))"/>
+            <property name="advice" ref="methodInterceptor"/>
+        </bean>
+
 <!--    占位符赋值测试-->
 <!--    <bean id="userService" class="com.beanbox.test.pojo.UserService" scope="prototype">-->
 <!--        <property name="uId" value="zyz"></property>-->
@@ -27,18 +45,18 @@
 
 
 <!--    Aop test-->
-    <bean id="userService" class="com.beanbox.test.pojo.UserService">
-        <property name="uId" value="trqwedsadasffa54sfsd"/>
-    </bean>
-    <bean class="com.beanbox.aop.proxy.DefaultAdvisorAutoProxyCreator"/>
-    <bean id="beforeAdvice" class="com.beanbox.test.aop.UserServiceBeforeAdvice"/>
-    <bean id="methodInterceptor" class="com.beanbox.aop.interceptor.MethodBeforeAdviceInterceptor">
-        <property name="advice" ref="beforeAdvice"/>
-    </bean>
-    <bean id="pointcutAdvisor" class="com.beanbox.aop.advisor.AspectJExpressionPointcutAdvisor">
-        <property name="expression" value="execution(* com.beanbox.test.pojo.IUserService.*(..))"/>
-        <property name="advice" ref="methodInterceptor"/>
-    </bean>
+<!--    <bean id="userService" class="com.beanbox.test.pojo.UserService">-->
+<!--        <property name="uId" value="trqwedsadasffa54sfsd"/>-->
+<!--    </bean>-->
+<!--    <bean class="com.beanbox.aop.proxy.DefaultAdvisorAutoProxyCreator"/>-->
+<!--    <bean id="beforeAdvice" class="com.beanbox.test.aop.UserServiceBeforeAdvice"/>-->
+<!--    <bean id="methodInterceptor" class="com.beanbox.aop.interceptor.MethodBeforeAdviceInterceptor">-->
+<!--        <property name="advice" ref="beforeAdvice"/>-->
+<!--    </bean>-->
+<!--    <bean id="pointcutAdvisor" class="com.beanbox.aop.advisor.AspectJExpressionPointcutAdvisor">-->
+<!--        <property name="expression" value="execution(* com.beanbox.test.pojo.IUserService.*(..))"/>-->
+<!--        <property name="advice" ref="methodInterceptor"/>-->
+<!--    </bean>-->
 
 
 <!--    prox test-->
