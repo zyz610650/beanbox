@@ -5,8 +5,16 @@ import lombok.Data;
 /**
  * @author: @zyz
  */
-@Data
+
 public class Husband {
+
+	public Wife getWife () {
+		return wife;
+	}
+
+	public String getName () {
+		return name;
+	}
 
 	private Wife wife;
 	private String name;

@@ -12,6 +12,6 @@ public class SpouseAdvice implements MethodBeforeAdvice {
 	@Override
 	public void before (Method method , Object[] args , Object target) {
 
-		System.out.println ("Aop 切面:"+method);
+		System.out.println ("  Aop 切面:"+method.getName ());
 	}
 }

@@ -10,6 +10,7 @@
         <property name="name" value="husband"/>
         <property name="wife" ref="wife"/>
     </bean>
+    <bean class="com.beanbox.aop.proxy.DefaultAdvisorAutoProxyCreator"/>
     <bean id="beforeAdvice" class="com.beanbox.test.circleDependence.aop.SpouseAdvice"/>
     <bean id="methodInterceptor" class="com.beanbox.aop.interceptor.MethodBeforeAdviceInterceptor">
            <property name="advice" ref="beforeAdvice"/>

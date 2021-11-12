@@ -27,8 +27,8 @@ public class ApplicationMainCircleDependence {
 		ClassPathXmlApplicationContext applicationContext=new ClassPathXmlApplicationContext ("classpath:beanbox.xml");
 		Wife wife = applicationContext.getBean ("wife" , Wife.class);
 		Husband husband=applicationContext.getBean ("husband",Husband.class);
-		wife.getHusband ();
-		husband.queryWife ();
+		System.out.println (wife.queryHusband ());
+		System.out.println (husband.queryWife ());
 	}
 
 }
