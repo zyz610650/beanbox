@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="beanbox-webtest:war">
+    <output-path>$PROJECT_DIR$/beanbox-webtest/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>beanbox-webtest</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="beanbox-webtest.war">
+      <element id="artifact" artifact-name="beanbox-webtest:war exploded" />
+    </root>
+  </artifact>
+</component>

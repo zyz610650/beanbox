@@ -11,6 +11,7 @@
     <modules>
         <module>beanbox-core</module>
         <module>beanbox-commons</module>
+        <module>beanbox-webtest</module>
     </modules>
     <properties>
         <encoding>UTF-8</encoding>
@@ -30,25 +31,7 @@
 
     <dependencies>
 
-        <!-- aop -->
-        <dependency>
-            <groupId>aopalliance</groupId>
-            <artifactId>aopalliance</artifactId>
-            <version>${aopalliance.version}</version>
-        </dependency>
 
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>${aspectj.version}</version>
-        </dependency>
-
-       <!-- cglib动态代理-->
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-            <version>${cglib.version}</version>
-        </dependency>
         <!-- lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -62,19 +45,7 @@
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
         </dependency>
-        <!-- fastjson -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${fastjson.version}</version>
-        </dependency>
 
-        <!-- StringUtils-->
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>${commonlang.version}</version>
-        </dependency>
        <!-- test-->
         <dependency>
             <groupId>junit</groupId>
@@ -83,11 +54,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>${hutool.vsersion}</version>
-        </dependency>
     </dependencies>
 
     <build>

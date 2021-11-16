@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="beanbox-core" />
+        <module name="beanbox-webtest" />
         <module name="beanbox-commons" />
       </profile>
     </annotationProcessing>
@@ -15,6 +16,7 @@
       <module name="BeanBox" target="1.8" />
       <module name="beanbox-commons" target="1.8" />
       <module name="beanbox-core" target="1.8" />
+      <module name="beanbox-webtest" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
