@@ -208,7 +208,7 @@ public class AnnotationRegister extends AbstractDefaultAnnotationRegistryFactory
 
 
 
-**5>参与管理Bean的状态**
+**5>Bean状态管理**
 
 实现BeanPostProcessor接口，对Bean的状态进行拓展
 
