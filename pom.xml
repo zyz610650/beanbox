@@ -22,7 +22,7 @@
         <fastjson.version>1.2.73</fastjson.version>
         <commonlang.version>2.6</commonlang.version>
         <junit.version>4.12</junit.version>
-        <cglib.version>2.2.2</cglib.version>
+        <cglib.version>3.2.11</cglib.version>
         <hutool.vsersion>5.4.1</hutool.vsersion>
         <aspectj.version>1.9.7</aspectj.version>
         <aopalliance.version>1.0</aopalliance.version>

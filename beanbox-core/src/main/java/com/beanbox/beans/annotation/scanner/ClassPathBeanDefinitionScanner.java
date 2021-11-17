@@ -3,13 +3,16 @@ package com.beanbox.beans.annotation.scanner;
 import cn.hutool.core.util.StrUtil;
 import com.beanbox.beans.annotation.Bean;
 import com.beanbox.beans.annotation.Scope;
-import com.beanbox.beans.annotation.register.DefaultAnnotationRegistryFactory;
+import com.beanbox.beans.annotation.register.AnnotationRegistryFactory;
 import com.beanbox.beans.po.BeanDefinition;
 import com.beanbox.beans.processor.support.AutowiredAndValueAnnotationBeanPostProcessor;
 import com.beanbox.beans.registry.BeanDefinitionRegistry;
 import com.beanbox.enums.ScopeEnum;
 
 import java.lang.annotation.Annotation;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -18,8 +21,7 @@ import java.util.Set;
 public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateBeanProvider{
 
 	private BeanDefinitionRegistry registry;
-
-	private DefaultAnnotationRegistryFactory defaultAnnotationRegistryFactory=new DefaultAnnotationRegistryFactory ();
+	private String ANNOTATION_REGISTRY_FACTORY_NAME="annotationRegistryFactory";
 
 	public ClassPathBeanDefinitionScanner (BeanDefinitionRegistry registry) {
 		this.registry = registry;
@@ -32,7 +34,24 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateBe
 	public void doScan(String... basePackages){
 		for (String basePackage : basePackages)
 		{
-			Set < BeanDefinition > candidates=findCandidateBeans (basePackage);
+
+			 // 添加需要扫描的注解
+
+			BeanDefinition annotationRegistryFactoryBeanDefinition = registry.getBeanDefinition (ANNOTATION_REGISTRY_FACTORY_NAME);
+			List < Class < ? extends Annotation > > allAnnotations=null;
+			if(annotationRegistryFactoryBeanDefinition!=null)
+			{
+				try {
+					AnnotationRegistryFactory annotationRegistryFactory=(AnnotationRegistryFactory) annotationRegistryFactoryBeanDefinition.getBeanClass ().newInstance ();
+					annotationRegistryFactory.registAnnotations ();
+					allAnnotations= annotationRegistryFactory.getAllAnnotations ();
+				} catch (InstantiationException | IllegalAccessException e) {
+					throw new RuntimeException ("AnnotationRegistryFactory failed to be registered: ",e);
+				}
+			}
+          // 如果没有配置 则添加Bean.class注解
+			if (allAnnotations==null) allAnnotations=new LinkedList <> (Collections.singleton (Bean.class));
+			Set < BeanDefinition > candidates=findCandidateBeans (basePackage,allAnnotations);
 			for (BeanDefinition beanDefinition: candidates){
 				//解析BeanDefinition的作用域
 				ScopeEnum scopeEnum = resolveBeanScope (beanDefinition);
