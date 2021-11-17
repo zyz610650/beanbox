@@ -14,7 +14,7 @@ public interface AnnotationRegistryFactory {
 	 * 对外提供添加需要扫描的注解的接口
 	 * @param annotype
 	 */
-	void registAnnotation(Class<? extends Annotation > annotype);
+	void registAnnotation(AnnotationType annotype);
 
 
 	/**

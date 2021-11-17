@@ -8,14 +8,20 @@ import javax.servlet.ServletContextListener;
 /**
  * @author: @zyz
  */
-public class WebAppEventListener implements ServletContextListener {
+public class WebAppEventListener extends ContextLoader implements ServletContextListener {
+	public WebAppEventListener () {
+	}
+
+
 	@Override
 	public void contextInitialized (ServletContextEvent servletContextEvent) {
-		ClassPathXmlApplicationContext applicationContext=new ClassPathXmlApplicationContext ("classpath:beanbox.xml");
+		this.initWebApplicationContext (servletContextEvent.getServletContext ());
+		servletContextEvent.getServletContext ().log ("Beanbox startup successful");
 	}
 
 	@Override
 	public void contextDestroyed (ServletContextEvent servletContextEvent) {
-
+		this.closeWebApplicationContext (servletContextEvent.getServletContext ());
+		servletContextEvent.getServletContext ().log ("Beanbox is closed");
 	}
 }

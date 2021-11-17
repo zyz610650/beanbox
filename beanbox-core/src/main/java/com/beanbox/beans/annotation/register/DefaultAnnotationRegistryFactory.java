@@ -17,8 +17,8 @@ public  class DefaultAnnotationRegistryFactory implements AnnotationRegistryFact
 	Set <Class<? extends Annotation>> ANNOTATION_MAP=new LinkedHashSet <> ();
 
 	@Override
-	public void registAnnotation (Class < ? extends Annotation > annotype) {
-			ANNOTATION_MAP.add (annotype);
+	public void registAnnotation (AnnotationType annotype) {
+			ANNOTATION_MAP.add (annotype.getAnnotation ());
 	}
 
 	@Override
