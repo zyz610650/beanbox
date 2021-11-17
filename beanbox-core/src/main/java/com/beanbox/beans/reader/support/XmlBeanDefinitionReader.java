@@ -1,5 +1,6 @@
 package com.beanbox.beans.reader.support;
 
+import cn.hutool.core.bean.BeanException;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.XmlUtil;
 import com.beanbox.beans.annotation.scanner.ClassPathBeanDefinitionScanner;
@@ -9,7 +10,6 @@ import com.beanbox.beans.po.BeanReference;
 import com.beanbox.beans.po.PropertyValue;
 import com.beanbox.beans.registry.BeanDefinitionRegistry;
 import com.beanbox.beans.sessions.PropertyValueSession;
-import com.beanbox.exception.BeanException;
 import com.beanbox.io.loader.ResourceLoader;
 import com.beanbox.io.loader.support.DefaultResourceLoader;
 import com.beanbox.io.resource.Resource;
@@ -69,10 +69,12 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		BeanDefinitionRegistry registry = getRegistry ();
 		Document doc = XmlUtil.readXML (inputStream);
 		Element root=doc.getDocumentElement ();
-		//加载带有BeanScan标签的类
-		loadBeanScan(root,registry);
+
 		//加载带有Bean标签的类
 		loadBeanElement(root,registry);
+
+		//加载带有BeanScan标签的获得需要扫描的路径 在路径下扫描注解
+		loadBeanScan(root,registry);
 
 
 	}
@@ -98,6 +100,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 			log.warn ("base-package is empty ");
 			return;
 		}
+		//扫描basePackage包下的注解
 		scanPackage (basePackage);
 	}
 
