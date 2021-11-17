@@ -1,0 +1,4 @@
+com\beanbox\beans\annotation\register\AnnotationType.class
+com\beanbox\beans\annotation\register\AnnotationRegistryFactory.class
+com\beanbox\beans\annotation\register\AbstractDefaultAnnotationRegistryFactory.class
+com\beanbox\web\ContextLoader.class

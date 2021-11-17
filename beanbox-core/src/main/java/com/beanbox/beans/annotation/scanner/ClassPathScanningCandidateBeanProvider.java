@@ -2,7 +2,6 @@ package com.beanbox.beans.annotation.scanner;
 
 import cn.hutool.core.util.ClassUtil;
 import com.beanbox.beans.po.BeanDefinition;
-import com.sun.istack.internal.Nullable;
 
 import java.lang.annotation.Annotation;
 import java.util.LinkedHashSet;
@@ -22,7 +21,7 @@ public class ClassPathScanningCandidateBeanProvider {
 	 * @param basePackage
 	 * @return
 	 */
-	public Set < BeanDefinition> findCandidateBeans(String basePackage, @Nullable 	List < Class < ? extends Annotation > > annotationList)
+	public Set < BeanDefinition> findCandidateBeans(String basePackage,  	List < Class < ? extends Annotation > > annotationList)
 	{
 		Set<BeanDefinition> candidates=new LinkedHashSet <> ();
 

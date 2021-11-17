@@ -5,6 +5,7 @@ import com.beanbox.beans.po.BeanDefinition;
 import com.beanbox.exception.BeanException;
 
 import com.beanbox.beans.registry.BeanDefinitionRegistry;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -13,6 +14,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author: @zyz
  *  与BeanDefinition类有关方法的具体实现类
  */
+@Slf4j
+
 public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry, ConfigurableListableBeanFactory {
 	private Map<String, BeanDefinition > beanDefinitionMap=new ConcurrentHashMap <> ();
 	@Override
@@ -21,7 +24,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		BeanDefinition beanDefinition=beanDefinitionMap.get (beanName);
 		if (beanDefinition==null)
 		{
-			throw new BeanException ("The bean named "+ beanName+" is not found");
+			log.warn ("The bean named "+ beanName+" is not found");
 		}
 		return beanDefinition;
 	}

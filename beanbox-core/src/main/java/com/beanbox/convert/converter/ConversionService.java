@@ -1,6 +1,5 @@
 package com.beanbox.convert.converter;
 
-import com.sun.istack.internal.Nullable;
 
 /**
  * @author: @zyz
@@ -13,7 +12,7 @@ public interface ConversionService {
 	 * @param targetType
 	 * @return
 	 */
-	boolean canConvert(@Nullable Class<?> sourceType,Class<?> targetType);
+	boolean canConvert( Class<?> sourceType,Class<?> targetType);
 
 	/**
 	 * 转换对象source到指定的类型

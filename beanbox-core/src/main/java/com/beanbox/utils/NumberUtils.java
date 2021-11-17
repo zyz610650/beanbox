@@ -1,7 +1,7 @@
 package com.beanbox.utils;
 
 import cn.hutool.core.lang.Assert;
-import com.sun.istack.internal.Nullable;
+
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -227,7 +227,7 @@ public class NumberUtils {
      * @see #parseNumber(String, Class)
      */
     public static <T extends Number> T parseNumber(
-            String text, Class<T> targetClass, @Nullable NumberFormat numberFormat) {
+            String text, Class<T> targetClass,  NumberFormat numberFormat) {
 
         if (numberFormat != null) {
             Assert.notNull(text, "Text must not be null");
@@ -275,7 +275,7 @@ public class NumberUtils {
         return sb.toString();
     }
 
-    public static boolean hasLength(@Nullable String str) {
+    public static boolean hasLength( String str) {
         return (str != null && !str.isEmpty());
     }
 

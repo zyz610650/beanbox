@@ -3,7 +3,6 @@ package com.beanbox.convert.support;
 import com.beanbox.convert.converter.Converter;
 import com.beanbox.convert.converter.ConverterFactory;
 import com.beanbox.utils.NumberUtils;
-import com.sun.istack.internal.Nullable;
 
 /**
  * ref: spring
@@ -24,7 +23,6 @@ public class StringToNumberConverterFactory implements ConverterFactory <String,
 		}
 
 		@Override
-		@Nullable
 		public T convert(String source) {
 			if (source.isEmpty()) {
 				return null;

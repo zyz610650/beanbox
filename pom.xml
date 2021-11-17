@@ -11,7 +11,6 @@
     <modules>
         <module>beanbox-core</module>
         <module>beanbox-commons</module>
-        <module>beanbox-webtest</module>
     </modules>
     <properties>
         <encoding>UTF-8</encoding>

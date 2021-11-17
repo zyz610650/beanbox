@@ -3,7 +3,6 @@ package com.beanbox.web;
 import com.beanbox.context.ConfigurableApplicationContext;
 import com.beanbox.context.suppport.ClassPathXmlApplicationContext;
 import com.beanbox.exception.BeanException;
-import com.sun.istack.internal.Nullable;
 import jdk.nashorn.internal.runtime.logging.Logger;
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,7 +14,7 @@ import javax.servlet.ServletContext;
 @Slf4j
 public class ContextLoader {
 
-	@Nullable
+
 	private ConfigurableApplicationContext context;
 
 	private String ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE="configurableContext";
