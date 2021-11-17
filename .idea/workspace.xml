@@ -87,19 +87,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.55">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AopTest.test_aop_method" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="beanbox-core" />
       <extension name="coverage">
@@ -330,6 +317,8 @@
       <workItem from="1637062455909" duration="41000" />
       <workItem from="1637067434107" duration="1562000" />
       <workItem from="1637069017403" duration="3983000" />
+      <workItem from="1637110377227" duration="555000" />
+      <workItem from="1637111395825" duration="65000" />
     </task>
     <servers />
   </component>

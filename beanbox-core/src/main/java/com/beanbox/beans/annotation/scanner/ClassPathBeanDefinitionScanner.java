@@ -3,11 +3,13 @@ package com.beanbox.beans.annotation.scanner;
 import cn.hutool.core.util.StrUtil;
 import com.beanbox.beans.annotation.Bean;
 import com.beanbox.beans.annotation.Scope;
+import com.beanbox.beans.annotation.register.DefaultAnnotationRegistryFactory;
 import com.beanbox.beans.po.BeanDefinition;
 import com.beanbox.beans.processor.support.AutowiredAndValueAnnotationBeanPostProcessor;
 import com.beanbox.beans.registry.BeanDefinitionRegistry;
 import com.beanbox.enums.ScopeEnum;
 
+import java.lang.annotation.Annotation;
 import java.util.Set;
 
 /**
@@ -16,6 +18,8 @@ import java.util.Set;
 public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateBeanProvider{
 
 	private BeanDefinitionRegistry registry;
+
+	private DefaultAnnotationRegistryFactory defaultAnnotationRegistryFactory=new DefaultAnnotationRegistryFactory ();
 
 	public ClassPathBeanDefinitionScanner (BeanDefinitionRegistry registry) {
 		this.registry = registry;
@@ -67,7 +71,13 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateBe
 	private String determineBeanName(BeanDefinition beanDefinition)
 	{
 		Class<?> beanClass = beanDefinition.getBeanClass ();
-		String value=beanClass.getAnnotation (Bean.class).value ();
+		String value=null;
+
+		Bean beanAnnotation = beanClass.getAnnotation (Bean.class);
+		if(beanAnnotation!=null)
+		{
+			value=beanAnnotation.value ();
+		}
 		if (StrUtil.isEmpty (value))
 		{
 			value=StrUtil.lowerFirst (beanClass.getSimpleName ());
