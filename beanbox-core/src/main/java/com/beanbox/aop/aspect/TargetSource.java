@@ -2,6 +2,8 @@ package com.beanbox.aop.aspect;
 
 import com.beanbox.utils.ClassUtils;
 
+import java.util.Arrays;
+
 /**
  * @author: @zyz
  */
@@ -23,7 +25,9 @@ public class TargetSource {
 	public Class < ? >[] getTargerInterface(){
 		Class<?> clazz=this.target.getClass ();
 		//防止该类是动态代理生成进行处理
+
 		clazz= ClassUtils.isCglibProxyClass (clazz) ? clazz.getSuperclass ():clazz;
+
 		return clazz.getInterfaces ();
 	}
 

@@ -1,44 +1,45 @@
 package com.beanbox.test.aop;
 
-import com.beanbox.aop.proxy.support.CglibAopProxy;
-import com.beanbox.aop.aspect.AdvisedSupport;
 import com.beanbox.aop.aspect.AspectJExpressionPointCut;
-import com.beanbox.aop.aspect.TargetSource;
+import com.beanbox.context.suppport.ClassPathXmlApplicationContext;
 import com.beanbox.test.pojo.IUserService;
 import com.beanbox.test.pojo.UserService;
 
 import org.junit.Test;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.Properties;
 
 /**
  * @author: @zyz
  */
 public class AopTest {
 
+	public static void main(String[] args) {
+//		UserService userService1=new UserService();
+//		System.out.println(Arrays.toString(userService1.getClass().getInterfaces()));
+		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:beanboxDemo.xml");
+ 		IUserService userService=applicationContext.getBean("userService", IUserService.class);
+		System.out.println(userService.queryUserInfo());
+
+	}
 	@Test
-	public void test_aop_method() throws NoSuchMethodException {
+	public void test_aop_method() throws NoSuchMethodException, InstantiationException, IllegalAccessException, NoSuchFieldException {
 
-		UserService userService = new UserService ();
+		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:beanboxDemo.xml");
+		Object obj=applicationContext.getBean("userService", IUserService.class);
+		System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
+		System.getProperties().put("jdk.proxy.ProxyGenerator.saveGeneratedFiles", "true");
+		System.out.println(IUserService.class.isAssignableFrom(obj.getClass()));
+		Field field = System.class.getDeclaredField("props"); field.setAccessible(true);
+		Properties props = (Properties) field.get(null); props.put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
+//		IUserService userService = applicationContext.getBean("userService", IUserService.class);
+//		System.out.println("测试结果：" + userService.queryUserInfo());
 
-		AdvisedSupport advisedSupport=new AdvisedSupport ();
-		TargetSource targetSource = new TargetSource (userService);
-		advisedSupport.setTargetSource (targetSource);
-
-		// 为啥这里必须声明为接口 否则到代理类里就match为false 在外面就为true
-		AspectJExpressionPointCut pointCut=new AspectJExpressionPointCut ("execution( * com.beanbox.test.pojo.UserService.*(..))");
-		advisedSupport.setMethodMatcher (pointCut);
-		advisedSupport.setMethodInterceptor (new UserServiceInterceptor ());
-//		IUserService proxy= (IUserService) new JdkDynamicAopProxy (advisedSupport).getProxy ();
-		IUserService proxy= (IUserService) new CglibAopProxy (advisedSupport).getProxy ();
-		Class<?> clazz=userService.getClass ();
-
-		Method method = clazz.getDeclaredMethod ("queryUserInfo");
-//		System.out.println (pointCut.matches (method,clazz));
-//		System.out.println (pointCut.matches (clazz));
-//		System.out.println (pointCut.matches (method,targetSource.getTarget ().getClass ()));
-//		System.out.println (advisedSupport.getMethodMatcher ().matches (method,null));
-		System.out.println (proxy.queryUserInfo ());
+//		UserService userService=UserService.class.newInstance();
+//		System.out.println(userService);
 
 		//
 	}

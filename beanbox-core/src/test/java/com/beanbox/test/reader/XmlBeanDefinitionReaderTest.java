@@ -6,7 +6,6 @@ import com.beanbox.beans.reader.support.XmlBeanDefinitionReader;
 import com.beanbox.io.loader.ResourceLoader;
 import com.beanbox.io.loader.support.DefaultResourceLoader;
 import com.beanbox.io.resource.Resource;
-import com.beanbox.test.pojo.User;
 import com.beanbox.test.service.UserService;
 import lombok.SneakyThrows;
 import org.junit.Test;

@@ -13,10 +13,7 @@ import org.aopalliance.aop.Advice;
 import org.aopalliance.intercept.MethodInterceptor;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author: @zyz
@@ -72,7 +69,9 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
 
 	protected Object wrapIfNecessary(Object bean, String beanName)
 	{
+
 		Class<?> beanClass =bean.getClass ();
+
 		//如果是那几个用于创建代理类的对象，则不用提前处理
 		if (isInfrastractureClass (beanClass)) return bean;
 
@@ -87,13 +86,14 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
 
 			// 封装adviseSupport
 			AdvisedSupport advisedSupport=new AdvisedSupport ();
+
 			TargetSource targetSource=new TargetSource (bean);
 
 			//设置目标类 增强方法 代理类方式
 			advisedSupport.setTargetSource (targetSource);
 			advisedSupport.setMethodInterceptor ((MethodInterceptor) advisor.getAdvice ());
 			//JDK 和 Cglib 组合使用实现多重代理
-			advisedSupport.setProxyTargetClass (true);
+			advisedSupport.setProxyTargetClass (false);
 			advisedSupport.setMethodMatcher (advisor.getPointcut ().getMethodMatcher ());
 
 			//返回代理

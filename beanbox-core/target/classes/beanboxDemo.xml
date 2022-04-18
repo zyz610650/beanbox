@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
 
-<!--    循环依赖测试-->
-    <bean id="wife" class="com.beanbox.test.circleDependence.Wife">
-        <property name="name" value="wife"/>
-        <property name="husband" ref="husband"/>
-    </bean>
-    <bean id="husband" class="com.beanbox.test.circleDependence.Husband">
-        <property name="name" value="husband"/>
-        <property name="wife" ref="wife"/>
-    </bean>
-    <bean class="com.beanbox.aop.proxy.DefaultAdvisorAutoProxyCreator"/>
-    <bean id="beforeAdvice" class="com.beanbox.test.circleDependence.aop.SpouseAdvice"/>
-    <bean id="methodInterceptor" class="com.beanbox.aop.interceptor.MethodBeforeAdviceInterceptor">
-           <property name="advice" ref="beforeAdvice"/>
-     </bean>
-        <bean id="pointcutAdvisor" class="com.beanbox.aop.advisor.AspectJExpressionPointcutAdvisor">
-            <property name="expression" value="execution(* com.beanbox.test.circleDependence.Wife.*(..))"/>
-            <property name="advice" ref="methodInterceptor"/>
-        </bean>
+<!--&lt;!&ndash;    循环依赖测试&ndash;&gt;-->
+<!--    <bean id="wife" class="com.beanbox.test.circleDependence.Wife">-->
+<!--        <property name="name" value="wife"/>-->
+<!--        <property name="husband" ref="husband"/>-->
+<!--    </bean>-->
+<!--    <bean id="husband" class="com.beanbox.test.circleDependence.Husband">-->
+<!--        <property name="name" value="husband"/>-->
+<!--        <property name="wife" ref="wife"/>-->
+<!--    </bean>-->
+<!--    <bean class="com.beanbox.aop.proxy.DefaultAdvisorAutoProxyCreator"/>-->
+<!--    <bean id="beforeAdvice" class="com.beanbox.test.circleDependence.aop.SpouseAdvice"/>-->
+<!--    <bean id="methodInterceptor" class="com.beanbox.aop.interceptor.MethodBeforeAdviceInterceptor">-->
+<!--           <property name="advice" ref="beforeAdvice"/>-->
+<!--     </bean>-->
+<!--        <bean id="pointcutAdvisor" class="com.beanbox.aop.advisor.AspectJExpressionPointcutAdvisor">-->
+<!--            <property name="expression" value="execution(* com.beanbox.test.circleDependence.Wife.*(..))"/>-->
+<!--            <property name="advice" ref="methodInterceptor"/>-->
+<!--        </bean>-->
 
-<!--    占位符赋值测试-->
+<!--&lt;!&ndash;    占位符赋值测试&ndash;&gt;-->
 <!--    <bean id="userService" class="com.beanbox.test.pojo.UserService" scope="prototype">-->
 <!--        <property name="uId" value="zyz"></property>-->
 <!--        <property name="uId" value="zyz"></property>-->
@@ -46,7 +46,20 @@
 
 
 <!--    Aop test-->
-<!--    <bean id="userService" class="com.beanbox.test.pojo.UserService">-->
+    <bean id="userService" class="com.beanbox.test.pojo.UserService">
+        <property name="uId" value="trqwedsadasffa54sfsd"/>
+    </bean>
+    <bean class="com.beanbox.aop.proxy.DefaultAdvisorAutoProxyCreator"/>
+    <bean id="beforeAdvice" class="com.beanbox.test.aop.UserServiceBeforeAdvice"/>
+    <bean id="methodInterceptor" class="com.beanbox.aop.interceptor.MethodBeforeAdviceInterceptor">
+        <property name="advice" ref="beforeAdvice"/>
+    </bean>
+    <bean id="pointcutAdvisor" class="com.beanbox.aop.advisor.AspectJExpressionPointcutAdvisor">
+        <property name="expression" value="execution(* com.beanbox.test.pojo.IUserService.*(..))"/>
+        <property name="advice" ref="methodInterceptor"/>
+    </bean>
+
+<!--    <bean id="userService" class="com.beanbox.test.UserService">-->
 <!--        <property name="uId" value="trqwedsadasffa54sfsd"/>-->
 <!--    </bean>-->
 <!--    <bean class="com.beanbox.aop.proxy.DefaultAdvisorAutoProxyCreator"/>-->
@@ -62,22 +75,23 @@
 
 <!--    prox test-->
 <!--    <bean id="userService" class="com.beanbox.test.pojo.UserService" scope="prototype">-->
-<!--    <property name="uId" value="zyz"></property>-->
+<!--       <property name="uId" value="zyz"></property>-->
 <!--        <property name="uId" value="zyz"></property>-->
 <!--        <property name="company" value="jlu"></property>-->
 <!--        <property name="location" value="changchun"></property>-->
 <!--        <property name="userDao" ref="proxyUserDao"></property>-->
+<!--    </bean>-->
 <!--    <bean name="proxyUserDao" class="com.beanbox.test.proxy.ProxyUserDao" ></bean>-->
 
 
 
-<!--    Listener test-->
+<!--&lt;!&ndash;    Listener test&ndash;&gt;-->
 <!--    <bean class="com.beanbox.test.event.CustomEventListener"></bean>-->
 <!--    <bean class="com.beanbox.test.event.ContextClosedEventListener"></bean>-->
 <!--    <bean class="com.beanbox.test.event.ContextRefreshedEventListener"></bean>-->
 
 
-<!--    Processor Test-->
+<!--&lt;!&ndash;    Processor Test&ndash;&gt;-->
 <!--    <bean id="userService2" class="com.beanbox.test.service.UserService2">-->
 <!--        &lt;!&ndash;          <property name="user" ref="user"></property>&ndash;&gt;-->
 <!--    </bean>-->

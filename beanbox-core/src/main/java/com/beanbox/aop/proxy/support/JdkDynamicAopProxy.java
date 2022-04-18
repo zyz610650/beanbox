@@ -10,6 +10,7 @@ import org.aopalliance.intercept.MethodInterceptor;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.Arrays;
 
 /**
  * @author: @zyz
@@ -31,7 +32,7 @@ public class JdkDynamicAopProxy implements AopProxy, InvocationHandler {
 	@Override
 	public Object getProxy () {
 //		log.debug (String.valueOf (advised.getTargetSource ().getTarget ()));
-//		log.debug ("JdkDynamicAopProxy: {}"+advised.getTargetSource ().getTargerInterface ());
+//	log.debug ("JdkDynamicAopProxy: {}"+ Arrays.toString(advised.getTargetSource ().getTargerInterface ()));
 		return Proxy.newProxyInstance (ClassUtils.getDefaultClassLoader (),advised.getTargetSource ().getTargetClass () , this::invoke);
 	}
 

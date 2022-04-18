@@ -2,7 +2,6 @@ package com.beanbox.test.instance;
 
 import com.beanbox.beans.factory.support.DefaultListableBeanFactory;
 import com.beanbox.beans.po.BeanDefinition;
-
 import com.beanbox.test.pojo.User;
 
 /**

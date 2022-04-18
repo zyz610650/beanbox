@@ -28,6 +28,8 @@ public class UserService  implements IUserService{
 //		System.out.println ("执行 queryUserInfo()");
 //		return "执行 queryUserInfo()";
 //	return userDao.queryUserName(uId) + "," + company + "," + location;
-		return uId + "," + company + "," + location+" token: "+token;
+
+//		return uId + "," + company + "," + location+" token: "+token;
+		return "hello, 我需要被代理";
 	}
 }

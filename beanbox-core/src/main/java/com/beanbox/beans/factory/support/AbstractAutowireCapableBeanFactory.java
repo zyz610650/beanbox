@@ -25,6 +25,7 @@ import com.sun.corba.se.spi.ior.ObjectKey;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 /**
  * @author: @zyz
@@ -32,7 +33,7 @@ import java.lang.reflect.Method;
 public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory implements AutowireCapableBeanFactory {
 
 	private InstantiationService instantiationService=new JdkInstantiationServieSupport ();
-//private InstantiationService instantiationService=new JdkInstantiationServieSupport ();
+	// private InstantiationService instantiationService=new CglibInstantiationServiceSupprot ();
 	@Override
 	protected Object createBean (String name , BeanDefinition beanDefinition , Object[] args) {
 		Object bean=null;
@@ -43,6 +44,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		// 创建实例
 		bean=createBeanInstance (beanDefinition,name,args);
+
+
 
 		//如果是单例对象 则需要走三级缓存避免循环依赖
 		if (beanDefinition.isSingleton ())

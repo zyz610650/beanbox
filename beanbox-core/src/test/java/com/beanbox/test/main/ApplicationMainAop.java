@@ -4,6 +4,7 @@ import com.beanbox.aop.aspect.AdvisedSupport;
 import com.beanbox.aop.aspect.AspectJExpressionPointCut;
 import com.beanbox.aop.aspect.TargetSource;
 import com.beanbox.aop.proxy.support.CglibAopProxy;
+import com.beanbox.aop.proxy.support.JdkDynamicAopProxy;
 import com.beanbox.context.suppport.ClassPathXmlApplicationContext;
 import com.beanbox.test.aop.UserServiceInterceptor;
 
@@ -33,8 +34,9 @@ public class ApplicationMainAop {
 		AspectJExpressionPointCut pointCut=new AspectJExpressionPointCut ("execution( * com.beanbox.test.pojo.UserService.*(..))");
 		advisedSupport.setMethodMatcher (pointCut);
 		advisedSupport.setMethodInterceptor (new UserServiceInterceptor ());
-//		IUserService proxy= (IUserService) new JdkDynamicAopProxy (advisedSupport).getProxy ();
+//	   IUserService proxy= (IUserService) new JdkDynamicAopProxy(advisedSupport).getProxy ();
 		IUserService proxy= (IUserService) new CglibAopProxy (advisedSupport).getProxy ();
+		System.out.println(proxy.getClass().getName());
 		Class<?> clazz=userService.getClass ();
 
 		Method method = clazz.getDeclaredMethod ("queryUserInfo");
