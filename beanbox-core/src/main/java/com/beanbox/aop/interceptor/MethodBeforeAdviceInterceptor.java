@@ -7,7 +7,7 @@ import org.aopalliance.intercept.MethodInvocation;
 /**
  * @author: @zyz
  */
-public class MethodBeforeAdviceInterceptor implements MethodInterceptor {
+public class MethodBeforeAdviceInterceptor  extends AbstractAdviceInterceptor  {
 
 	private MethodBeforeAdvice advice;
 
@@ -20,9 +20,13 @@ public class MethodBeforeAdviceInterceptor implements MethodInterceptor {
 
 	@Override
 	public Object invoke (MethodInvocation methodInvocation) throws Throwable {
+
 		//Before前置执行
 		this.advice.before (methodInvocation.getMethod (), methodInvocation.getArguments () , methodInvocation.getThis ());
+		MethodInterceptor methodInterceptor=next();
+		if (methodInterceptor==null)
 		//执行被代理方法
 		return methodInvocation.proceed ();
+		else return methodInterceptor.invoke(methodInvocation);
 	}
 }

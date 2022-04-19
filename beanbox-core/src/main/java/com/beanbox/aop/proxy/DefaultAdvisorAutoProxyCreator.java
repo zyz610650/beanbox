@@ -3,6 +3,7 @@ package com.beanbox.aop.proxy;
 import com.beanbox.aop.advisor.Advisor;
 import com.beanbox.aop.advisor.AspectJExpressionPointcutAdvisor;
 import com.beanbox.aop.aspect.*;
+import com.beanbox.aop.interceptor.AbstractAdviceInterceptor;
 import com.beanbox.beans.aware.BeanFactoryAware;
 import com.beanbox.beans.factory.BeanFactory;
 import com.beanbox.beans.factory.support.DefaultListableBeanFactory;
@@ -77,8 +78,8 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
 
 		//获取所有切面 依次判断该类是否符合该切面中定义的表达式
 		Collection< AspectJExpressionPointcutAdvisor> advisors=beanFactory.getBeansOfType (AspectJExpressionPointcutAdvisor.class).values ();
-
-
+		// advice链
+		AdvisedSupport adviceSupportChain=new AdvisedSupport();
 		for (AspectJExpressionPointcutAdvisor advisor: advisors)
 		{
 			ClassFilter classFilter = advisor.getPointcut ().getClassFilter ();
@@ -91,15 +92,17 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
 
 			//设置目标类 增强方法 代理类方式
 			advisedSupport.setTargetSource (targetSource);
-			advisedSupport.setMethodInterceptor ((MethodInterceptor) advisor.getAdvice ());
+			advisedSupport.setMethodInterceptor ((AbstractAdviceInterceptor) advisor.getAdvice ());
 			//JDK 和 Cglib 组合使用实现多重代理
-			advisedSupport.setProxyTargetClass (false);
+			advisedSupport.setProxyTargetClass (true);
 			advisedSupport.setMethodMatcher (advisor.getPointcut ().getMethodMatcher ());
-
-			//返回代理
-			return new ProxyFactory (advisedSupport).getProxy ();
+			adviceSupportChain.appendNextAdviceSupport(advisedSupport);
 
 		}
+		//返回代理
+		if (adviceSupportChain.next()!=null)
+		return new ProxyFactory (adviceSupportChain.next()).getProxy ();
+		// 返回原始类额
 		return bean;
 	}
 

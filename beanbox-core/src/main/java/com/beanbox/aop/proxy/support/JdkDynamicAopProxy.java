@@ -1,6 +1,9 @@
 package com.beanbox.aop.proxy.support;
 
+import com.beanbox.aop.aspect.AbstractAdviceSupport;
 import com.beanbox.aop.aspect.AdvisedSupport;
+import com.beanbox.aop.interceptor.AbstractAdviceInterceptor;
+import com.beanbox.aop.interceptor.MethodAroundAdviceInterceptor;
 import com.beanbox.aop.proxy.AopProxy;
 import com.beanbox.aop.aspect.ReflectiveMethodInvocation;
 import com.beanbox.utils.ClassUtils;
@@ -22,6 +25,7 @@ public class JdkDynamicAopProxy implements AopProxy, InvocationHandler {
 
 	public JdkDynamicAopProxy (AdvisedSupport advised) {
 		this.advised = advised;
+
 	}
 
 
@@ -47,16 +51,27 @@ public class JdkDynamicAopProxy implements AopProxy, InvocationHandler {
 	@Override
 	public Object invoke (Object proxy , Method method , Object[] args) throws Throwable {
 
-		//判断方法是否符合切点定义的表达式  走代理类
-		if (advised.getMethodMatcher ().matches (method,advised.getTargetSource ().getTarget ().getClass ()))
-		{
+		AbstractAdviceInterceptor adviceInterceptorChain=new MethodAroundAdviceInterceptor();
+		AdvisedSupport adviceSupportChain=advised;
+		// 走aop链
+		do {
 
-			//方法拦截器  方法拦截器又用户自定义实现 可以在里面做方法的增强
-			// ReflectiveMethodInvocation 是MethodInvocation的实现类,
-			// 调用proceed会执行真正被代理的方法
-			MethodInterceptor methodInterceptor =advised.getMethodInterceptor ();
-			return methodInterceptor.invoke (new ReflectiveMethodInvocation(advised.getTargetSource ().getTarget (),method,args));
-		}
+//			System.out.println(advised.getMethodMatcher ());
+			//判断方法是否符合切点定义的表达式  走代理类
+			if (adviceSupportChain.getMethodMatcher ().matches (method,advised.getTargetSource ().getTarget ().getClass ()))
+			{
+				//方法拦截器  方法拦截器又用户自定义实现 可以在里面做方法的增强
+				// ReflectiveMethodInvocation 是MethodInvocation的实现类,
+				// 调用proceed会执行真正被代理的方法
+				// 假如责任链
+				AbstractAdviceInterceptor methodInterceptor =adviceSupportChain.getMethodInterceptor ();
+				adviceInterceptorChain.appendNextAdviceInterceptor(methodInterceptor);
+			}
+			adviceSupportChain=adviceSupportChain.next();
+		}while (adviceSupportChain!=null);
+		if (adviceInterceptorChain.next()!=null)
+			return adviceInterceptorChain.next().invoke (new ReflectiveMethodInvocation(advised.getTargetSource ().getTarget (),method,args));
+
 		// 执行原方法
 		return method.invoke (advised.getTargetSource ().getTarget (),args);
 	}

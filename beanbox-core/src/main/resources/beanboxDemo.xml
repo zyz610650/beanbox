@@ -59,6 +59,15 @@
         <property name="advice" ref="methodInterceptor"/>
     </bean>
 
+    <bean id="beforeAdvice1" class="com.beanbox.test.aop.UserServiceBeforeAdvice1"/>
+    <bean id="methodInterceptor1" class="com.beanbox.aop.interceptor.MethodBeforeAdviceInterceptor">
+        <property name="advice" ref="beforeAdvice1"/>
+    </bean>
+    <bean id="pointcutAdvisor1" class="com.beanbox.aop.advisor.AspectJExpressionPointcutAdvisor">
+        <property name="expression" value="execution(* com.beanbox.test.pojo.IUserService.*(..))"/>
+        <property name="advice" ref="methodInterceptor1"/>
+    </bean>
+
 <!--    <bean id="userService" class="com.beanbox.test.UserService">-->
 <!--        <property name="uId" value="trqwedsadasffa54sfsd"/>-->
 <!--    </bean>-->

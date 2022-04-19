@@ -17,26 +17,13 @@ import java.util.Properties;
  */
 public class AopTest {
 
-	public static void main(String[] args) {
-//		UserService userService1=new UserService();
-//		System.out.println(Arrays.toString(userService1.getClass().getInterfaces()));
-		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:beanboxDemo.xml");
- 		IUserService userService=applicationContext.getBean("userService", IUserService.class);
-		System.out.println(userService.queryUserInfo());
 
-	}
 	@Test
 	public void test_aop_method() throws NoSuchMethodException, InstantiationException, IllegalAccessException, NoSuchFieldException {
 
 		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:beanboxDemo.xml");
-		Object obj=applicationContext.getBean("userService", IUserService.class);
-		System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
-		System.getProperties().put("jdk.proxy.ProxyGenerator.saveGeneratedFiles", "true");
-		System.out.println(IUserService.class.isAssignableFrom(obj.getClass()));
-		Field field = System.class.getDeclaredField("props"); field.setAccessible(true);
-		Properties props = (Properties) field.get(null); props.put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
-//		IUserService userService = applicationContext.getBean("userService", IUserService.class);
-//		System.out.println("测试结果：" + userService.queryUserInfo());
+		IUserService userService = applicationContext.getBean("userService", IUserService.class);
+		System.out.println("测试结果：" + userService.queryUserInfo());
 
 //		UserService userService=UserService.class.newInstance();
 //		System.out.println(userService);

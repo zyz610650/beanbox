@@ -7,9 +7,9 @@ import java.lang.reflect.Method;
 /**
  * @author: @zyz
  */
-public class UserServiceBeforeAdvice implements MethodBeforeAdvice {
+public class UserServiceBeforeAdvice1 implements MethodBeforeAdvice {
 	@Override
 	public void before (Method method , Object[] args , Object target) {
-		System.out.println ("拦截方法1： "+method.getName ());
+		System.out.println ("拦截方法2： "+method.getName ());
 	}
 }

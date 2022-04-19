@@ -20,11 +20,27 @@ public class ReflectiveMethodInvocation implements MethodInvocation {
 	//参数
 	private final Object[] arguments;
 
+
+//	// 责任链 解决多重代理
+//	private ReflectiveMethodInvocation next;
+//	private ReflectiveMethodInvocation head;
+//	//	ReflectiveMethodInvocation tail;
 	public ReflectiveMethodInvocation (Object target , Method method , Object[] arguments) {
 		this.target = target;
 		this.method = method;
 		this.arguments = arguments;
+
 	}
+
+//	public ReflectiveMethodInvocation getNext()
+//	{
+//		return this.next;
+//	}
+//	public ReflectiveMethodInvocation appendNextMethodInvocation(ReflectiveMethodInvocation next)
+//	{
+//		this.next=next;
+//		return this;
+//	}
 
 	@Override
 	public Method getMethod () {

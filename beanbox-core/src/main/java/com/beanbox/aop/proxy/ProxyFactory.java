@@ -1,5 +1,6 @@
 package com.beanbox.aop.proxy;
 
+import com.beanbox.aop.aspect.AbstractAdviceSupport;
 import com.beanbox.aop.aspect.AdvisedSupport;
 import com.beanbox.aop.proxy.support.CglibAopProxy;
 import com.beanbox.aop.proxy.support.JdkDynamicAopProxy;

@@ -6,4 +6,6 @@ package com.beanbox.test.pojo;
 public interface IUserService {
 
 	public String queryUserInfo();
+
+
 }
