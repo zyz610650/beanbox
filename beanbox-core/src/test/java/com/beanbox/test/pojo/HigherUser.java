@@ -22,7 +22,7 @@ public class HigherUser {
 		TeacherService teacherService=new TeacherService() {
 			@Override
 			public void queryUserInfo() {
-	;
+
 				System.out.println(a);
 				a=3;
 				System.out.println(str);
