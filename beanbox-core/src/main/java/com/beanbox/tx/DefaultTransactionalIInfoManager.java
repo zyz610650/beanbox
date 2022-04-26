@@ -1,8 +1,11 @@
 package com.beanbox.tx;
 
+import cn.hutool.extra.template.engine.freemarker.FreemarkerEngine;
+import com.beanbox.beans.annotation.Transactional;
 import com.beanbox.exception.TransactionalExpection;
 
 import javax.sql.DataSource;
+import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -18,8 +21,10 @@ public class DefaultTransactionalIInfoManager extends AbstractTransactionalIInfo
      */
     ThreadLocal<TxAttrHolder> oldConnectionThreadLocal=new ThreadLocal<>();
 
-    public DefaultTransactionalIInfoManager() {
+    private DataSourceContext dataSourceContext;
 
+    public DefaultTransactionalIInfoManager(DataSourceContext dataSourceContext) {
+        this.dataSourceContext=dataSourceContext;
     }
 
     /**
@@ -35,7 +40,7 @@ public class DefaultTransactionalIInfoManager extends AbstractTransactionalIInfo
             currentConnectionThreadLocal.set(txAttrHolder);
         }
         // 如果不存在该数据库连接 则保存
-        if (!txAttrHolder.isExistingDataSource(dataSource))
+        if (!txAttrHolder.isExistingTransactionalAttribute(dataSource))
         {
             txAttrHolder.setTransactionalAttribute(dataSource,txAddr);
             return;
@@ -50,7 +55,7 @@ public class DefaultTransactionalIInfoManager extends AbstractTransactionalIInfo
             oldConnectionThreadLocal.set(oldAddr);
         }
         // 这里最多嵌套两层连接
-        if (oldAddr.isExistingDataSource(dataSource))
+        if (oldAddr.isExistingTransactionalAttribute(dataSource))
         throw new TransactionalExpection("REQUIREDS_NEW restricts transactions to be nested at most two levels");
 
         // 挂起当前事务
@@ -64,7 +69,7 @@ public class DefaultTransactionalIInfoManager extends AbstractTransactionalIInfo
      * 将外层事务连接挂起 放到Old容器中保存
      * @param dataSource
      */
-    private void suspend(DataSource dataSource)
+    protected void suspend(DataSource dataSource)
     {
         TxAttrHolder txAttrHolder = currentConnectionThreadLocal.get();
         TransactionalAttribute transactionalAttribute = txAttrHolder.getTransactionalAttribute(dataSource);
@@ -73,6 +78,57 @@ public class DefaultTransactionalIInfoManager extends AbstractTransactionalIInfo
         oldAddr.setTransactionalAttribute(dataSource,transactionalAttribute);
     }
 
+    @Override
+    public TransactionalAttribute createNewTransactional(Method method) {
+
+        TransactionalAttribute transactionalAttribute=new TransactionalAttribute();
+        DataSourceContext dataSourceContext=getDataSourceContext();
+        Connection connection=dataSourceContext.getNewConnection();
+        transactionalAttribute.setCon(connection);
+        // 填充注解
+        analysizeTransaction(transactionalAttribute,method);
+
+        return transactionalAttribute;
+    }
+
+
+
+    /**
+     * 分析@Transactional注解的属性
+     * @param transactionalAttribute
+     * @param method
+     */
+    public void analysizeTransaction(TransactionalAttribute transactionalAttribute, Method method) {
+        Transactional annotation = method.getAnnotation(Transactional.class);
+        if (annotation==null) throw new TransactionalExpection("@Transactional annotation is not detected on the method");
+        // 关闭自动提交
+        transactionalAttribute.setAutoCommit(false);
+        transactionalAttribute.setIsolation(annotation.isolatiion());
+        transactionalAttribute.setPropagation(annotation.propagation());
+    }
+
+    DataSourceContext getDataSourceContext(){ return  dataSourceContext;}
+    @Override
+    public DataSource getDataSource() {
+        return dataSourceContext.getDataSource();
+    }
+
+    @Override
+    public boolean isExistingTransaction() {
+        if (currentConnectionThreadLocal==null) return false;
+        TxAttrHolder txAttrHolder = currentConnectionThreadLocal.get();
+        if (txAttrHolder==null) return false;
+        if (txAttrHolder.isExistingTransactionalAttribute(dataSourceContext.getDataSource()))  return true;
+
+        return false;
+    }
+
+    @Override
+    public TransactionalAttribute getOldTransaction() {
+    if (!isExistingTransaction()) return null;
+     return currentConnectionThreadLocal.get().getTransactionalAttribute(getDataSource());
+
+    }
 
 
 }

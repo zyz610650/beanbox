@@ -3,31 +3,43 @@ package com.beanbox.tx;
 import com.beanbox.enums.Isolation;
 import com.beanbox.enums.Propagation;
 import com.beanbox.exception.TransactionalExpection;
+import com.sun.istack.internal.Nullable;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Savepoint;
+import java.util.LinkedList;
+import java.util.List;
 
 public class TransactionalAttribute implements TransactionalAttributeManager{
 
     /**
      * 事务隔离级别
      */
+    @Nullable
     private Isolation isolation;
     /**
      * 事务传播机制
      */
+    @Nullable
     private Propagation propagation;
 
     /**
      * 本次事务的连接
      */
+    @Nullable
     private Connection con;
+
+    /**
+     * 回滚点
+     */
+    private List<Savepoint> savepoints;
 
     public Isolation getIsolation() {
         return isolation;
     }
 
-    public void setIsolation(Isolation isolation) {
+    public void setIsolation(@Nullable Isolation isolation) {
         this.isolation = isolation;
     }
 
@@ -35,7 +47,7 @@ public class TransactionalAttribute implements TransactionalAttributeManager{
         return propagation;
     }
 
-    public void setPropagation(Propagation propagation) {
+    public void setPropagation(@Nullable Propagation propagation) {
         this.propagation = propagation;
     }
 
@@ -47,29 +59,24 @@ public class TransactionalAttribute implements TransactionalAttributeManager{
         this.con = con;
     }
 
-    @Override
-    public void setTransactionalIsolation() {
 
-    }
-
-    @Override
-    public void setTransactionalPropagaton() {
-
-    }
 
     /**
      * false为关闭自动提交 默认为true
      * @param
      */
     @Override
-    public void setAutoCommit() {
+    public void setAutoCommit(boolean flag) {
         try {
-            con.setAutoCommit(false);
+            con.setAutoCommit(flag);
         } catch (SQLException e) {
             throw new TransactionalExpection(e);
         }
     }
 
+    /**
+     * 提交事务
+     */
     @Override
     public void commit() {
         try {
@@ -84,5 +91,11 @@ public class TransactionalAttribute implements TransactionalAttributeManager{
     @Override
     public void rollback() {
 
+    }
+
+    @Override
+    public void addSavePoint(Savepoint savepoint) {
+        if (savepoints==null) savepoints=new LinkedList<>();
+        savepoints.add(savepoint);
     }
 }

@@ -43,7 +43,7 @@ public class TxAttrHolder {
      * @param dataSource
      * @return
      */
-    boolean isExistingDataSource(DataSource dataSource)
+    boolean isExistingTransactionalAttribute(DataSource dataSource)
     {
         return holder.containsKey(dataSource);
     }

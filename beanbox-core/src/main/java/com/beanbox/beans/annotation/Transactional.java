@@ -20,5 +20,5 @@ public @interface  Transactional {
      * 事务传播机制
      * @return
      */
-    Propagation propagation() default Propagation.REQUIRED;
+    Propagation propagation() default Propagation.PROPAGATION_REQUIRED;
 }
