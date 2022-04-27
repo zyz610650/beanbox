@@ -3,12 +3,14 @@ package com.beanbox.tx;
 import cn.hutool.extra.template.engine.freemarker.FreemarkerEngine;
 import com.beanbox.beans.annotation.Transactional;
 import com.beanbox.exception.TransactionalExpection;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.sql.DataSource;
 import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+@Slf4j
 public class DefaultTransactionalIInfoManager extends AbstractTransactionalIInfoManager{
 
     /**
@@ -32,6 +34,7 @@ public class DefaultTransactionalIInfoManager extends AbstractTransactionalIInfo
      * @param dataSource
      * @param txAddr
      */
+    @Override
     public void saveTxAttrHolder(DataSource dataSource, TransactionalAttribute txAddr)
     {
         TxAttrHolder txAttrHolder = currentConnectionThreadLocal.get();
@@ -69,6 +72,7 @@ public class DefaultTransactionalIInfoManager extends AbstractTransactionalIInfo
      * 将外层事务连接挂起 放到Old容器中保存
      * @param dataSource
      */
+    @Override
     protected void suspend(DataSource dataSource)
     {
         TxAttrHolder txAttrHolder = currentConnectionThreadLocal.get();
@@ -85,12 +89,50 @@ public class DefaultTransactionalIInfoManager extends AbstractTransactionalIInfo
         DataSourceContext dataSourceContext=getDataSourceContext();
         Connection connection=dataSourceContext.getNewConnection();
         transactionalAttribute.setCon(connection);
+
         // 填充注解
         analysizeTransaction(transactionalAttribute,method);
 
         return transactionalAttribute;
     }
 
+    @Override
+    protected void removeCntTransaction() {
+        TxAttrHolder txAttrHolder = currentConnectionThreadLocal.get();
+        txAttrHolder.removeTxAddr(getDataSource());
+    }
+
+
+    @Override
+    protected void resume() {
+        log.info(" old transaction resume from suspending status");
+        removeCntTransaction();
+
+        TxAttrHolder oldTxAttrHolder = oldConnectionThreadLocal.get();
+
+        TransactionalAttribute transactionalAttribute = oldTxAttrHolder.getTransactionalAttribute(getDataSource());
+        oldTxAttrHolder.removeTxAddr(getDataSource());
+        TxAttrHolder cntTxAttrHolder = currentConnectionThreadLocal.get();
+        cntTxAttrHolder.setTransactionalAttribute(getDataSource(),transactionalAttribute);
+    }
+
+    /**
+     * 清除数据库
+     */
+    @Override
+    protected void clearDataSource() {
+        TxAttrHolder txAttrHolder ;
+        if ((txAttrHolder=currentConnectionThreadLocal.get())!=null&&txAttrHolder.canDestory())
+        {
+            txAttrHolder.destoryTxAddr();
+            currentConnectionThreadLocal.remove();
+        }
+        if ((txAttrHolder=oldConnectionThreadLocal.get())!=null&&txAttrHolder.canDestory())
+        {
+            txAttrHolder.destoryTxAddr();
+            currentConnectionThreadLocal.remove();
+        }
+    }
 
 
     /**
@@ -124,11 +166,17 @@ public class DefaultTransactionalIInfoManager extends AbstractTransactionalIInfo
     }
 
     @Override
-    public TransactionalAttribute getOldTransaction() {
+    public TransactionalAttribute getCurrentTransaction() {
     if (!isExistingTransaction()) return null;
      return currentConnectionThreadLocal.get().getTransactionalAttribute(getDataSource());
-
     }
 
+    @Override
+    protected TransactionalAttribute getOldTransaction() {
+        if (oldConnectionThreadLocal==null) return null;
+        TxAttrHolder txAttrHolder = oldConnectionThreadLocal.get();
+        if (txAttrHolder==null) return null;
+        return txAttrHolder.getTransactionalAttribute(getDataSource());
 
+    }
 }

@@ -4,6 +4,7 @@ import com.beanbox.enums.Isolation;
 import com.beanbox.enums.Propagation;
 import com.beanbox.exception.TransactionalExpection;
 import com.sun.istack.internal.Nullable;
+import lombok.extern.slf4j.Slf4j;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -11,6 +12,7 @@ import java.sql.Savepoint;
 import java.util.LinkedList;
 import java.util.List;
 
+@Slf4j
 public class TransactionalAttribute implements TransactionalAttributeManager{
 
     /**
@@ -29,6 +31,15 @@ public class TransactionalAttribute implements TransactionalAttributeManager{
      */
     @Nullable
     private Connection con;
+
+    /**
+     *   标记嵌套了几层事务 为 1时 才可以rollback 或commit
+     */
+
+    private Integer  level=0;
+
+
+
 
     /**
      * 回滚点
@@ -59,7 +70,13 @@ public class TransactionalAttribute implements TransactionalAttributeManager{
         this.con = con;
     }
 
+    public List<Savepoint> getSavepoints() {
+        return savepoints;
+    }
 
+    public void setSavepoints(List<Savepoint> savepoints) {
+        this.savepoints = savepoints;
+    }
 
     /**
      * false为关闭自动提交 默认为true
@@ -87,10 +104,47 @@ public class TransactionalAttribute implements TransactionalAttributeManager{
         }
     }
 
+    public TransactionalAttribute() {
+        incrLevel();
+    }
+    private boolean isLowestLevel()
+    {
+        return 0==level;
+    }
+    public boolean canRollback()
+    {
+        return isLowestLevel();
+    }
+    public boolean canCommit()
+    {
+        return isLowestLevel();
+    }
+    public boolean canClear()
+    {
+        return isLowestLevel();
+    }
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void decLevel()
+    {
+        level--;
+    }
+    public void incrLevel()
+    {
+        level++;
+    }
+
     // 回滚时需要考虑 savepoint
     @Override
     public void rollback() {
-
+        try {
+            con.rollback();
+        } catch (SQLException e) {
+           log.error("rollback failure");
+           throw new TransactionalExpection(e);
+        }
     }
 
     @Override
@@ -98,4 +152,15 @@ public class TransactionalAttribute implements TransactionalAttributeManager{
         if (savepoints==null) savepoints=new LinkedList<>();
         savepoints.add(savepoint);
     }
+    public void destoryTxAddr()
+    {
+        savepoints=null;
+        try {
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

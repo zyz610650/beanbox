@@ -3,6 +3,7 @@ package com.beanbox.tx;
 import javax.sql.DataSource;
 import java.lang.reflect.Method;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 
 public interface TransactionalIInfoManager {
@@ -20,5 +21,9 @@ public interface TransactionalIInfoManager {
     /**
      * 根据事务传播机制创建事务
      */
-    void doBegin(Method method);
+    void beginTransaction(Method method) throws SQLException;
+
+    void rollback(Exception e);
+
+    void commit();
 }

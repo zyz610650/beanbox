@@ -2,6 +2,7 @@ package com.beanbox.aop.interceptor;
 
 import com.beanbox.aop.advice.MethodAfterAdvice;
 import com.beanbox.aop.advice.MethodBeforeAdvice;
+import com.beanbox.exception.TransactionalExpection;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 
@@ -33,4 +34,6 @@ public class MethodAfterAdviceInterceptor extends AbstractAdviceInterceptor  {
 		this.advice.after (methodInvocation.getMethod (), methodInvocation.getArguments () , methodInvocation.getThis ());
 		return res;
 	}
+
+
 }

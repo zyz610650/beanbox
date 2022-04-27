@@ -4,6 +4,9 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 全局唯一 单例TxAttrHolder  管理所有DataSource和事务
+ */
 public class TxAttrHolder {
     private Map<DataSource, TransactionalAttribute> holder;
 
@@ -56,6 +59,17 @@ public class TxAttrHolder {
     {
         holder.remove(dataSource);
     }
+
+    boolean canDestory()
+    {
+        return (holder==null||holder.size()==0);
+    }
+    void destoryTxAddr()
+    {
+        if (holder.size()==0) holder=null;
+    }
+
+
 
 
 }

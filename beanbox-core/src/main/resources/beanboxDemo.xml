@@ -68,6 +68,16 @@
         <property name="advice" ref="methodInterceptor1"/>
     </bean>
 
+<!--    Transactional-->
+    <bean id="dataSourceContext" class="com.beanbox.tx.DataSourceContext"/>
+    <bean id="txMethodInterceptor" class="com.beanbox.aop.interceptor.TransactionalInterceptor">
+        <property name="dataSourceContext" ref="dataSourceContext"/>
+    </bean>
+    <bean id="transactionPointcutAdvisor" class="com.beanbox.aop.advisor.TransactionPointcutAdvisor">
+        <property name="advice" ref="txMethodInterceptor"/>
+    </bean>
+
+
 <!--    <bean id="userService" class="com.beanbox.test.UserService">-->
 <!--        <property name="uId" value="trqwedsadasffa54sfsd"/>-->
 <!--    </bean>-->
