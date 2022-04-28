@@ -5,7 +5,7 @@ import com.beanbox.aop.aspect.Pointcut;
 import com.beanbox.aop.aspect.TransactionPointCut;
 import org.aopalliance.aop.Advice;
 
-public class TransactionPointcutAdvisor implements PointcutAdvisor,Advisor{
+public class TransactionPointcutAdvisor extends AspectJExpressionPointcutAdvisor implements PointcutAdvisor,Advisor{
 
     /**
      * 切点 单例

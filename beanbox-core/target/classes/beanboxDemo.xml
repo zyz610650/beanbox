@@ -41,32 +41,46 @@
 <!--    <bean class="com.beanbox.beans.processor.support.PropertyPlaceholderProcessor">-->
 <!--        <property name="location" value="classpath:property.properties"/>-->
 <!--    </bean>-->
-<!--    <bean-scan base-package="com.beanbox.test.pojo"/>-->
+
 
 
 
 <!--    Aop test-->
-    <bean id="userService" class="com.beanbox.test.pojo.UserService">
-        <property name="uId" value="trqwedsadasffa54sfsd"/>
+<!--    <bean id="userService" class="com.beanbox.test.pojo.UserService">-->
+<!--        <property name="uId" value="trqwedsadasffa54sfsd"/>-->
+<!--    </bean>-->
+<!--    <bean class="com.beanbox.aop.proxy.DefaultAdvisorAutoProxyCreator"/>-->
+<!--    <bean id="beforeAdvice" class="com.beanbox.test.aop.UserServiceBeforeAdvice"/>-->
+<!--    <bean id="methodInterceptor" class="com.beanbox.aop.interceptor.MethodBeforeAdviceInterceptor">-->
+<!--        <property name="advice" ref="beforeAdvice"/>-->
+<!--    </bean>-->
+<!--    <bean id="pointcutAdvisor" class="com.beanbox.aop.advisor.AspectJExpressionPointcutAdvisor">-->
+<!--        <property name="expression" value="execution(* com.beanbox.test.pojo.IUserService.*(..))"/>-->
+<!--        <property name="advice" ref="methodInterceptor"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="beforeAdvice1" class="com.beanbox.test.aop.UserServiceBeforeAdvice1"/>-->
+<!--    <bean id="methodInterceptor1" class="com.beanbox.aop.interceptor.MethodBeforeAdviceInterceptor">-->
+<!--        <property name="advice" ref="beforeAdvice1"/>-->
+<!--    </bean>-->
+<!--    <bean id="pointcutAdvisor1" class="com.beanbox.aop.advisor.AspectJExpressionPointcutAdvisor">-->
+<!--        <property name="expression" value="execution(* com.beanbox.test.pojo.IUserService.*(..))"/>-->
+<!--        <property name="advice" ref="methodInterceptor1"/>-->
+<!--    </bean>-->
+
+<!--    Transactional-->
+    <bean id="userContronller" class="com.beanbox.test.tx.UserContronller">
+        <property name="dataSourceContext" ref="dataSourceContext"/>
+    </bean>
+    <bean id="dataSourceContext" class="com.beanbox.tx.DataSourceContext"/>
+    <bean id="txMethodInterceptor" class="com.beanbox.aop.interceptor.TransactionalInterceptor">
+        <property name="dataSourceContext" ref="dataSourceContext"/>
+    </bean>
+    <bean id="transactionPointcutAdvisor" class="com.beanbox.aop.advisor.TransactionPointcutAdvisor">
+        <property name="advice" ref="txMethodInterceptor"/>
     </bean>
     <bean class="com.beanbox.aop.proxy.DefaultAdvisorAutoProxyCreator"/>
-    <bean id="beforeAdvice" class="com.beanbox.test.aop.UserServiceBeforeAdvice"/>
-    <bean id="methodInterceptor" class="com.beanbox.aop.interceptor.MethodBeforeAdviceInterceptor">
-        <property name="advice" ref="beforeAdvice"/>
-    </bean>
-    <bean id="pointcutAdvisor" class="com.beanbox.aop.advisor.AspectJExpressionPointcutAdvisor">
-        <property name="expression" value="execution(* com.beanbox.test.pojo.IUserService.*(..))"/>
-        <property name="advice" ref="methodInterceptor"/>
-    </bean>
-
-    <bean id="beforeAdvice1" class="com.beanbox.test.aop.UserServiceBeforeAdvice1"/>
-    <bean id="methodInterceptor1" class="com.beanbox.aop.interceptor.MethodBeforeAdviceInterceptor">
-        <property name="advice" ref="beforeAdvice1"/>
-    </bean>
-    <bean id="pointcutAdvisor1" class="com.beanbox.aop.advisor.AspectJExpressionPointcutAdvisor">
-        <property name="expression" value="execution(* com.beanbox.test.pojo.IUserService.*(..))"/>
-        <property name="advice" ref="methodInterceptor1"/>
-    </bean>
+    <bean-scan base-package="com.beanbox.test.tx"/>
 
 <!--    <bean id="userService" class="com.beanbox.test.UserService">-->
 <!--        <property name="uId" value="trqwedsadasffa54sfsd"/>-->

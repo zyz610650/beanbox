@@ -117,7 +117,7 @@ public abstract class AbstractTransactionalIInfoManager implements Transactional
     public void rollback(Exception e1) {
         // 只捕获允许时异常
         if (!RuntimeException.class.isAssignableFrom(e1.getClass())) return;
-        log.warn("rollback: "+e1.getMessage());
+        log.warn("rollback: the reasion is "+e1.getMessage());
         TransactionalAttribute currentTransaction = getCurrentTransaction();
         TransactionalAttribute oldTransaction = getOldTransaction();
         if (currentTransaction==null&&oldTransaction==null) return;

@@ -36,6 +36,7 @@ public class TransactionalInterceptor extends AbstractAdviceInterceptor {
               res= methodInvocation.proceed ();
           else res=methodInterceptor.invoke(methodInvocation);
 
+          log.info("commit new transaction ");
           // 提交事务
           transactionalIInfoManager.commit();
       }catch (Exception e)
@@ -44,6 +45,7 @@ public class TransactionalInterceptor extends AbstractAdviceInterceptor {
         transactionalIInfoManager.rollback(e);
 
       }finally {
+          log.info("clean the transaction infomation");
           // 清除事务信息
         transactionalIInfoManager.clearTxAttr();
       }

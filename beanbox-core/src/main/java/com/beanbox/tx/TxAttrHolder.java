@@ -37,7 +37,8 @@ public class TxAttrHolder {
      */
     Map<DataSource, TransactionalAttribute> getHolder()
     {
-        if (holder==null) return new HashMap<>();
+
+        if (holder==null) holder= new HashMap<>();
         return holder;
     }
 
@@ -48,7 +49,7 @@ public class TxAttrHolder {
      */
     boolean isExistingTransactionalAttribute(DataSource dataSource)
     {
-        return holder.containsKey(dataSource);
+        return getHolder().containsKey(dataSource);
     }
 
     /**

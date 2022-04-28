@@ -87,7 +87,12 @@ public class DefaultTransactionalIInfoManager extends AbstractTransactionalIInfo
 
         TransactionalAttribute transactionalAttribute=new TransactionalAttribute();
         DataSourceContext dataSourceContext=getDataSourceContext();
-        Connection connection=dataSourceContext.getNewConnection();
+        Connection connection;
+        if (dataSourceContext.isFistConn())
+        {
+            connection=dataSourceContext.getFirstConn();
+            dataSourceContext.incrConn();
+        }else connection=dataSourceContext.getNewConnection();
         transactionalAttribute.setCon(connection);
 
         // 填充注解

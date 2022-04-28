@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
 
-    <bean-scan base-package="com.beanbox.test.pojo"/>
+    <bean-scan base-package="com.beanbox.test.tx"/>
 </beans>
