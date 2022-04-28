@@ -1,5 +1,6 @@
 # beanbox
-   BeanBox是一个功能齐全且兼容性很好的一款IOC/AOP工具，用于Java6或以上环境。除了实现了IOC, Aop这些主要功能之外, 该框架还提供了大量可对外扩展的接口，方便使用者在Bean对象的生命周期中能够对对象的状态进行管理和增强。此外，该框架能够很好的和其它框架进行兼容和拓展, 并且本框架搭配我的另一个开源项目fastrpc已经进行了测试。
+
+BeanBox是一个功能齐全且兼容性很好的一款IOC/AOP工具，用于Java6或以上环境。除了实现了IOC, Aop这些主要功能之外, 该框架还提供了大量可对外扩展的接口，方便使用者在Bean对象的生命周期中能够对对象的状态进行管理和增强。此外，该框架能够很好的和其它框架进行兼容和拓展, 并且本框架搭配我的另一个开源项目fastrpc已经进行了测试。
 
 
 
@@ -7,9 +8,9 @@
 
 ### 一.BeanBox的主要优点
 
-1. **功能齐全:** 
+1. **功能齐全:**
 
-   该框架支持 XML配置、注解配置两种配置方式，解决了循环依赖问题和支持IOC/DI、AOP功能。
+   该框架支持 XML配置、注解配置两种配置方式，解决了支持IOC/DI(循环依赖问题)、AOP (aop多重代理),事务(事务的传播机制),监听器机制,添加自定义注解，对象的生命周期等功能。
 
 2. **拓展性好:**
 
@@ -21,7 +22,7 @@
 
 4. **源码简洁:**
 
-    该框架在保持代码的架构清晰和简洁的基础上，实现了Spring所包含的大部分功能。
+   该框架在保持代码的架构清晰和简洁的基础上，实现了Spring所包含的大部分功能。
 
 
 
@@ -31,9 +32,9 @@
 
 ### **三.Quick Start**
 
- 此案例搭配我的另一个项目fastrpc进行展示: https://github.com/zyz610650/Fastrpc
+此案例搭配我的另一个项目fastrpc进行展示: https://github.com/zyz610650/Fastrpc
 
-  具体测试代码可见fastrpc:
+具体测试代码可见fastrpc:
 
 `​`     **1>定义接口**
 
@@ -48,7 +49,7 @@ public interface HelloService {
 }
 ```
 
-   **2>RpcServer**
+**2>RpcServer**
 
 ```java
 /**
@@ -286,7 +287,7 @@ Hello, I am mzd
 
 ### 三.配置文件：
 
-  具体测试Demo可以见代码test模块
+具体测试Demo可以见代码test模块
 
 1. **beanbox.xml:**
 
@@ -403,5 +404,259 @@ Hello, I am mzd
         <listener-class>com.beanbox.web.WebAppEventListener</listener-class>
     </listener>
 </web-app>
+```
+
+
+
+### 四.功能展示
+
+#### 1.事务（事务的传播机制）
+
+本框架实现了的传播机制有如下7种:
+
+```java
+    PROPAGATION_DEFAULT(1),
+    PROPAGATION_REQUIRED(1),
+    PROPAGATION_SUPPORTS(2),
+    PROPAGATION_MANDATORY(3),
+    PROPAGATION_REQUIRES_NEW(4),
+    PROPAGATION_NOT_SUPPORTED(5),
+    PROPAGATION_NEVER(6),
+    PROPAGATION_NESTED(7);
+```
+
+**功能展示:**
+
+由于Spring里通过JdbcTemplate对DataSource的操作进行封装，来简化了数据库的使用，目前BeanBox该版本还没有那么完善，需要自己获取DataSource来对数据库操作，使用起来很是蹩脚，后面版本会继续完善，方便使用.
+
+**1> PROPAGATION_REQUIRED**
+
+```java
+public class ApplicationMain {
+
+	@Test
+	public void test()
+	{
+
+		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:beanboxDemo.xml");
+		UserContronller userContronller = applicationContext.getBean("userContronller",UserContronller.class);
+		userContronller.updateUserInfo();
+	}
+
+
+}
+```
+
+```java
+package com.beanbox.test.tx;
+
+import com.beanbox.beans.annotation.Autowired;
+import com.beanbox.beans.annotation.Bean;
+import com.beanbox.beans.annotation.Transactional;
+import com.beanbox.enums.Propagation;
+import com.beanbox.test.pojo.User;
+import com.beanbox.tx.DataSourceContext;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+//@Bean("userContronller")
+public class UserContronller {
+
+//    @Autowired
+//    UserService userService;
+
+//    @Autowired
+    DataSourceContext dataSourceContext;
+
+    @Transactional(propagation = Propagation.PROPAGATION_REQUIRED)
+    public void updateUserInfo()  {
+        Connection conn = dataSourceContext.getFirstConn();
+
+        int Cid=11;
+        String Cname="zyz";
+        int Tid=05;
+        String sql = "insert into course values (?,?,?)";
+        PreparedStatement pstam = null;
+        try {
+            pstam = conn.prepareStatement(sql);
+            pstam.setInt(1,Cid);
+            pstam.setString(2,Cname);
+            pstam.setInt(3,Tid);
+
+            int result = pstam.executeUpdate();
+            System.out.println(result);
+            throw new RuntimeException("error");
+//
+        } catch (SQLException e) {
+          throw  new RuntimeException(e);
+        }
+
+    }
+
+}
+
+```
+
+
+
+**配置文件：**
+
+```xml
+<!--    Transactional-->
+    <bean id="userContronller" class="com.beanbox.test.tx.UserContronller">
+        <property name="dataSourceContext" ref="dataSourceContext"/>
+    </bean>
+    <bean id="dataSourceContext" class="com.beanbox.tx.DataSourceContext"/>
+    <bean id="txMethodInterceptor" class="com.beanbox.aop.interceptor.TransactionalInterceptor">
+        <property name="dataSourceContext" ref="dataSourceContext"/>
+    </bean>
+    <bean id="transactionPointcutAdvisor" class="com.beanbox.aop.advisor.TransactionPointcutAdvisor">
+        <property name="advice" ref="txMethodInterceptor"/>
+    </bean>
+    <bean class="com.beanbox.aop.proxy.DefaultAdvisorAutoProxyCreator"/>
+    <bean-scan base-package="com.beanbox.test.tx"/>
+```
+
+**结果:**
+
+```xml
+11:04:56.534 [main] WARN com.beanbox.beans.factory.support.DefaultListableBeanFactory - The bean named annotationRegistryFactory is not found
+11:04:56.685 [main] INFO com.beanbox.aop.interceptor.TransactionalInterceptor - start a new transaction 
+11:04:56.705 [main] INFO com.beanbox.tx.DataSourceContext - get a new dataSource connection
+11:04:56.786 [main] INFO com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+1
+11:04:57.036 [main] WARN com.beanbox.tx.AbstractTransactionalIInfoManager - rollback: the reasion is error
+11:04:57.037 [main] INFO com.beanbox.aop.interceptor.TransactionalInterceptor - clean the transaction infomation
+```
+
+**2> PROPAGATION_NESTED**
+
+```java
+//UserContronller 
+//@Bean("userContronller")
+public class UserContronller {
+
+//    @Autowired
+   UserService userService;
+
+//    @Autowired
+    DataSourceContext dataSourceContext;
+
+    @Transactional(propagation = Propagation.PROPAGATION_REQUIRED)
+    public void updateUserInfo()  {
+        Connection conn = dataSourceContext.getFirstConn();
+
+        int Cid=11;
+        String Cname="I am transaction1";
+        int Tid=05;
+        String sql = "insert into course values (?,?,?)";
+        PreparedStatement pstam = null;
+        try {
+            pstam = conn.prepareStatement(sql);
+            pstam.setInt(1,Cid);
+            pstam.setString(2,Cname);
+            pstam.setInt(3,Tid);
+            
+            int result = pstam.executeUpdate();
+
+            userService.update();
+
+        } catch (SQLException e) {
+          throw  new RuntimeException(e);
+        }
+
+
+
+
+    }
+
+}
+
+
+
+public class UserService {
+
+    DataSourceContext dataSourceContext;
+
+    @Transactional(propagation = Propagation.PROPAGATION_NESTED)
+    public void update()
+    {
+        Connection conn = dataSourceContext.getFirstConn();
+
+        int Cid=13;
+        String Cname="I am transaction2";
+        int Tid=05;
+        String sql = "insert into course values (?,?,?)";
+        PreparedStatement pstam = null;
+        try {
+            pstam = conn.prepareStatement(sql);
+            pstam.setInt(1,Cid);
+            pstam.setString(2,Cname);
+            pstam.setInt(3,Tid);
+
+            int result = pstam.executeUpdate();
+            System.out.println(result);
+            throw new RuntimeException("transaction2  rollback ");
+//
+        } catch (SQLException e) {
+            throw  new RuntimeException(e);
+        }
+
+    }
+
+
+}
+
+```
+
+
+
+**配置文件:**
+
+```xml
+<!--    Transactional-->
+    <bean id="userContronller" class="com.beanbox.test.tx.UserContronller">
+        <property name="dataSourceContext" ref="dataSourceContext"/>
+        <property name="userService" ref="userService"/>
+    </bean>
+    <bean id="userService" class="com.beanbox.test.tx.UserService">
+        <property name="dataSourceContext" ref="dataSourceContext"/>
+    </bean>
+    <bean id="dataSourceContext" class="com.beanbox.tx.DataSourceContext"/>
+    <bean id="txMethodInterceptor" class="com.beanbox.aop.interceptor.TransactionalInterceptor">
+        <property name="dataSourceContext" ref="dataSourceContext"/>
+    </bean>
+    <bean id="transactionPointcutAdvisor" class="com.beanbox.aop.advisor.TransactionPointcutAdvisor">
+        <property name="advice" ref="txMethodInterceptor"/>
+    </bean>
+    <bean class="com.beanbox.aop.proxy.DefaultAdvisorAutoProxyCreator"/>
+    <bean-scan base-package="com.beanbox.test.tx"/>
+```
+
+**结果：**
+
+```java
+11:53:03.919 [main] WARN com.beanbox.beans.factory.support.DefaultListableBeanFactory - The bean named annotationRegistryFactory is not found
+11:53:04.150 [main] INFO com.beanbox.aop.interceptor.TransactionalInterceptor - start a new transaction 
+11:53:04.170 [main] INFO com.beanbox.tx.DataSourceContext - get a new dataSource connection
+11:53:04.254 [main] INFO com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+11:53:04.529 [main] INFO com.beanbox.aop.interceptor.TransactionalInterceptor - start a new transaction 
+1
+11:53:05.046 [main] WARN com.beanbox.tx.AbstractTransactionalIInfoManager - rollback: the reasion is transaction2  rollback 
+11:53:05.046 [main] INFO com.beanbox.tx.AbstractTransactionalIInfoManager - rollback savepoint: com.mysql.jdbc.MysqlSavepoint@4671e53b
+11:53:05.049 [main] INFO com.beanbox.aop.interceptor.TransactionalInterceptor - clean the transaction infomation : transactiona1
+11:53:05.049 [main] INFO com.beanbox.aop.interceptor.TransactionalInterceptor - commit new transaction 
+11:53:05.050 [main] INFO com.beanbox.aop.interceptor.TransactionalInterceptor - clean the transaction infomation : transactiona0
+
+Process finished with exit code 0
+
+//course表结果 可见 事务2抛出异常不影响事务1提交
+01	语文	02
+02	数学	01
+03	英语	03
+11	I am transaction1	5
 ```
 

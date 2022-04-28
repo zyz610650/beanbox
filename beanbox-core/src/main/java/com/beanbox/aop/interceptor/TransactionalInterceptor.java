@@ -23,12 +23,13 @@ public class TransactionalInterceptor extends AbstractAdviceInterceptor {
     @Override
     public Object invoke(MethodInvocation methodInvocation) throws Throwable {
 
-        log.info("start a new transaction ");
+
         Object res=null;
         // 事务管理器
         if (transactionalIInfoManager==null) transactionalIInfoManager=new DefaultTransactionalIInfoManager(dataSourceContext);
         // 开启事务
         transactionalIInfoManager.beginTransaction(methodInvocation.getMethod());
+        log.info("start a new transaction infomation : transaction"+transactionalIInfoManager.getCurrentTransaction().getLevel());
       try{
           MethodInterceptor methodInterceptor=next();
           if (methodInterceptor==null)
@@ -36,7 +37,7 @@ public class TransactionalInterceptor extends AbstractAdviceInterceptor {
               res= methodInvocation.proceed ();
           else res=methodInterceptor.invoke(methodInvocation);
 
-          log.info("commit new transaction ");
+          log.info("commit the transaction infomation : transaction"+transactionalIInfoManager.getCurrentTransaction().getLevel());
           // 提交事务
           transactionalIInfoManager.commit();
       }catch (Exception e)
@@ -45,7 +46,7 @@ public class TransactionalInterceptor extends AbstractAdviceInterceptor {
         transactionalIInfoManager.rollback(e);
 
       }finally {
-          log.info("clean the transaction infomation");
+          log.info("clean the transaction infomation : transaction"+transactionalIInfoManager.getCurrentTransaction().getLevel());
           // 清除事务信息
         transactionalIInfoManager.clearTxAttr();
       }

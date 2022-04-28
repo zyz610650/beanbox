@@ -10,13 +10,14 @@ import com.beanbox.tx.DataSourceContext;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 //@Bean("userContronller")
 public class UserContronller {
 
 //    @Autowired
-//    UserService userService;
+   UserService userService;
 
 //    @Autowired
     DataSourceContext dataSourceContext;
@@ -26,7 +27,7 @@ public class UserContronller {
         Connection conn = dataSourceContext.getFirstConn();
 
         int Cid=11;
-        String Cname="zyz";
+        String Cname="I am transaction1";
         int Tid=05;
         String sql = "insert into course values (?,?,?)";
         PreparedStatement pstam = null;
@@ -37,9 +38,9 @@ public class UserContronller {
             pstam.setInt(3,Tid);
 
             int result = pstam.executeUpdate();
-            System.out.println(result);
-            throw new RuntimeException("error");
-//
+
+            userService.update();
+
         } catch (SQLException e) {
           throw  new RuntimeException(e);
         }

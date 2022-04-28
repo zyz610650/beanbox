@@ -71,6 +71,10 @@
 <!--    Transactional-->
     <bean id="userContronller" class="com.beanbox.test.tx.UserContronller">
         <property name="dataSourceContext" ref="dataSourceContext"/>
+        <property name="userService" ref="userService"/>
+    </bean>
+    <bean id="userService" class="com.beanbox.test.tx.UserService">
+        <property name="dataSourceContext" ref="dataSourceContext"/>
     </bean>
     <bean id="dataSourceContext" class="com.beanbox.tx.DataSourceContext"/>
     <bean id="txMethodInterceptor" class="com.beanbox.aop.interceptor.TransactionalInterceptor">

@@ -29,7 +29,7 @@ public abstract class AbstractTransactionalIInfoManager implements Transactional
         List<Savepoint> savepoints=currentTransaction.getSavepoints();
         // 事务级别-1
         currentTransaction.decLevel();
-        if (savepoints!=null)
+        if (savepoints!=null&&savepoints.size()>0)
         {
             savepoints.remove(savepoints.size()-1);
             // GC
@@ -118,8 +118,10 @@ public abstract class AbstractTransactionalIInfoManager implements Transactional
         // 只捕获允许时异常
         if (!RuntimeException.class.isAssignableFrom(e1.getClass())) return;
         log.warn("rollback: the reasion is "+e1.getMessage());
+
         TransactionalAttribute currentTransaction = getCurrentTransaction();
         TransactionalAttribute oldTransaction = getOldTransaction();
+        currentTransaction.decLevel();
         if (currentTransaction==null&&oldTransaction==null) return;
         // PROPAGATION_NOT_SUPPORTED回滚
         if (currentTransaction==null&&oldTransaction!=null)
@@ -136,7 +138,7 @@ public abstract class AbstractTransactionalIInfoManager implements Transactional
             // 找到回滚点
             List<Savepoint> savepoints = currentTransaction.getSavepoints();
           //PROPAGATION_NESTED 该层的事务不能影响外层的事务
-           if (savepoints!=null)
+           if (savepoints!=null&&savepoints.size()>0)
            {
                Savepoint savepoint=savepoints.get(savepoints.size()-1);
                savepoints.remove(savepoints.size()-1);
@@ -145,6 +147,7 @@ public abstract class AbstractTransactionalIInfoManager implements Transactional
                    currentTransaction.getCon().rollback(savepoint);
                } catch (SQLException e) {
                    log.error("rollback failure: "+savepoint);
+                  e.printStackTrace();
 //                   throw  new TransactionalExpection(e);
                }
            }else {
