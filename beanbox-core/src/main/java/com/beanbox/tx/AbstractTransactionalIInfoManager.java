@@ -190,7 +190,7 @@ public abstract class AbstractTransactionalIInfoManager implements Transactional
     protected abstract  TransactionalAttribute getOldTransaction();
     protected abstract  TransactionalAttribute getCurrentTransaction();
     protected abstract  void suspend(DataSource dataSource);
-    protected abstract TransactionalAttribute createNewTransactional(Method method);
+    protected abstract TransactionalAttribute createNewTransactional(Method method) throws SQLException;
     protected abstract void removeCntTransaction();
     protected abstract void resume();
     protected abstract void clearDataSource();

@@ -22,7 +22,8 @@ public enum Isolation {
     /**
      * 串行化
      */
-    SERIALIZABLE(4);
+    SERIALIZABLE(8);
+
 
     Isolation(int i) {
         this.value=i;
@@ -33,4 +34,6 @@ public enum Isolation {
     public int getValue() {
         return value;
     }
+
+
 }

@@ -2,6 +2,7 @@ package com.beanbox.tx;
 
 import cn.hutool.extra.template.engine.freemarker.FreemarkerEngine;
 import com.beanbox.beans.annotation.Transactional;
+import com.beanbox.enums.Isolation;
 import com.beanbox.exception.TransactionalExpection;
 import lombok.extern.slf4j.Slf4j;
 
@@ -83,7 +84,7 @@ public class DefaultTransactionalIInfoManager extends AbstractTransactionalIInfo
     }
 
     @Override
-    public TransactionalAttribute createNewTransactional(Method method) {
+    public TransactionalAttribute createNewTransactional(Method method) throws SQLException {
 
         TransactionalAttribute transactionalAttribute=new TransactionalAttribute();
         DataSourceContext dataSourceContext=getDataSourceContext();
@@ -97,6 +98,9 @@ public class DefaultTransactionalIInfoManager extends AbstractTransactionalIInfo
 
         // 填充注解
         analysizeTransaction(transactionalAttribute,method);
+        //设置session的事务隔离级别
+        connection.setTransactionIsolation(transactionalAttribute.getIsolation().getValue());
+
 
         return transactionalAttribute;
     }
@@ -148,6 +152,7 @@ public class DefaultTransactionalIInfoManager extends AbstractTransactionalIInfo
     public void analysizeTransaction(TransactionalAttribute transactionalAttribute, Method method) {
         Transactional annotation = method.getAnnotation(Transactional.class);
         if (annotation==null) throw new TransactionalExpection("@Transactional annotation is not detected on the method");
+
         // 关闭自动提交
         transactionalAttribute.setAutoCommit(false);
         transactionalAttribute.setIsolation(annotation.isolatiion());
@@ -184,4 +189,6 @@ public class DefaultTransactionalIInfoManager extends AbstractTransactionalIInfo
         return txAttrHolder.getTransactionalAttribute(getDataSource());
 
     }
+
+
 }
